@@ -1,0 +1,2 @@
+// connect to DB and execute a sql file
+psql -U postgres -d joeyshomes -a -f resetTables.sql 

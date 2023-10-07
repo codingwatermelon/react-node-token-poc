@@ -1,0 +1,22 @@
+--DROP TABLE IF EXISTS contacts;
+--DROP TABLE IF EXISTS customers;
+
+CREATE TABLE IF NOT EXISTS Properties (
+   id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+   property_details_id INT NOT NULL,
+   property_maintenance_id INT NOT NULL,
+   property_address VARCHAR ( 200 ) UNIQUE NOT NULL,
+   property_description VARCHAR ( 200 ) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS PropertyDetails (
+   id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+   image_path VARCHAR ( 200 ) NOT NULL,
+   baseValue INT NOT NULL,
+   purchaseDate DATE NOT NULL,
+   CONSTRAINT fk_property_id
+      FOREIGN KEY(id) 
+	  REFERENCES Properties(id)
+	  ON DELETE CASCADE
+);
+
