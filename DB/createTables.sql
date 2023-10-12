@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS Properties (
 CREATE TABLE IF NOT EXISTS PropertyDetails (
    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
    image_path VARCHAR ( 200 ) NOT NULL,
-   baseValue INT NOT NULL,
-   purchaseDate DATE NOT NULL,
+   base_value INT NOT NULL,
+   purchase_date DATE NOT NULL,
    CONSTRAINT fk_property_id
        FOREIGN KEY(id) 
 	    REFERENCES Properties(id)
