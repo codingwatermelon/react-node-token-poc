@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS PropertyDetails (
    baseValue INT NOT NULL,
    purchaseDate DATE NOT NULL,
    CONSTRAINT fk_property_id
-      FOREIGN KEY(id) 
-	  REFERENCES Properties(id)
-	  ON DELETE CASCADE
+       FOREIGN KEY(id) 
+	    REFERENCES Properties(id)
+	    ON DELETE CASCADE
 );
 
