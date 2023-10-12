@@ -1,11 +1,11 @@
-insert into Properties (property_details_id, property_address, property_description) VALUES (1, '21117 47th Avenue E', 'test 1 description')
-insert into Properties (property_details_id, property_address, property_description) VALUES (2, '21818 42nd Avenue E', 'test 2 description')
-insert into Properties (property_details_id, property_address, property_description) VALUES (3, '403 Rudnick Court NW', 'test 3 description')
-insert into Properties (property_details_id, property_address, property_description) VALUES (4, '1800 Greenwood Dr', 'test 4 description')
-insert into Properties (property_details_id, property_address, property_description) VALUES (5, '342 North St', 'test 5 description')
+insert into Properties (property_details_id, property_address, property_description) VALUES (1, '21117 47th Avenue E', 'test 1 description');
+insert into Properties (property_details_id, property_address, property_description) VALUES (2, '21818 42nd Avenue E', 'test 2 description');
+insert into Properties (property_details_id, property_address, property_description) VALUES (3, '403 Rudnick Court NW', 'test 3 description');
+insert into Properties (property_details_id, property_address, property_description) VALUES (4, '1800 Greenwood Dr', 'test 4 description');
+insert into Properties (property_details_id, property_address, property_description) VALUES (5, '342 North St', 'test 5 description');
 
-insert into PropertyDetails (imagePath, baseValue, purchaseDate) VALUES ('https://photos.zillowstatic.com/fp/0c52d2ff7289d3d542c859f68fdbc8f2-cc_ft_1536.webp', 450, '2005-10-03')
-insert into PropertyDetails (imagePath, baseValue, purchaseDate) VALUES ('https://photos.zillowstatic.com/fp/93e01e8055e05aad272cdf9d8e132f4a-cc_ft_1536.webp', 550, '2015-02-05')
-insert into PropertyDetails (imagePath, baseValue, purchaseDate) VALUES ('https://photos.zillowstatic.com/fp/8ccec0ac70fde08d69fed913ce83e89f-cc_ft_1536.webp', 650, '2010-05-10')
-insert into PropertyDetails (imagePath, baseValue, purchaseDate) VALUES ('https://photos.zillowstatic.com/fp/e5c45aa3886e9b832d5a5012b25fc0ed-uncropped_scaled_within_1536_1152.webp', 400, '2006-11-12')
-insert into PropertyDetails (imagePath, baseValue, purchaseDate) VALUES ('https://photos.zillowstatic.com/fp/510de7bae4112e920d4e688eaac98b12-uncropped_scaled_within_1536_1152.webp', 350, '2009-07-20')
+insert into PropertyDetails (imagePath, baseValue, purchaseDate) VALUES ('https://photos.zillowstatic.com/fp/0c52d2ff7289d3d542c859f68fdbc8f2-cc_ft_1536.webp', 450, '2005-10-03');
+insert into PropertyDetails (imagePath, baseValue, purchaseDate) VALUES ('https://photos.zillowstatic.com/fp/93e01e8055e05aad272cdf9d8e132f4a-cc_ft_1536.webp', 550, '2015-02-05');
+insert into PropertyDetails (imagePath, baseValue, purchaseDate) VALUES ('https://photos.zillowstatic.com/fp/8ccec0ac70fde08d69fed913ce83e89f-cc_ft_1536.webp', 650, '2010-05-10');
+insert into PropertyDetails (imagePath, baseValue, purchaseDate) VALUES ('https://photos.zillowstatic.com/fp/e5c45aa3886e9b832d5a5012b25fc0ed-uncropped_scaled_within_1536_1152.webp', 400, '2006-11-12');
+insert into PropertyDetails (imagePath, baseValue, purchaseDate) VALUES ('https://photos.zillowstatic.com/fp/510de7bae4112e920d4e688eaac98b12-uncropped_scaled_within_1536_1152.webp', 350, '2009-07-20');
