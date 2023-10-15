@@ -1,27 +1,14 @@
 const Pool = require('pg').Pool
 
 require('dotenv').config()
-const USERNAME = process.env.USERNAME || ''
-const HOST = process.env.HOST || ''
-const DATABASE = process.env.DATABASE || ''
-const PASSWORD = process.env.PASSWORD || ''
-const PORT = process.env.PORT || ''
-
-console.log(USERNAME);
-console.log(HOST);
-console.log(DATABASE);
-console.log(PASSWORD);
-console.log(PORT);
 
 const pool = new Pool({
-  user: USERNAME,
-  host: HOST,
-  database: DATABASE,
-  password: PASSWORD,
-  port: PORT,
+  user: process.env.USERNAME || '',
+  host: process.env.HOST || '',
+  database: process.env.DATABASE || '',
+  password: process.env.PASSWORD || '',
+  port: process.env.PORT || '',
 });
-
-
 
 const getMerchants = () => {
   return new Promise(function(resolve, reject) {
@@ -51,7 +38,7 @@ const deleteMerchant = () => {
     console.log("test")
     pool.query('DELETE FROM merchants WHERE id = $1', [id], (error, results) => {
       if (error) {
-	console.log(error)
+	  console.log(error)
         reject(error)
       }
       resolve(`Merchant deleted with ID: ${id}`)
