@@ -3,20 +3,21 @@ const fs = require('fs');
 
 var pwd = '';
 
-test = fs.readFile('protected/passwd.txt', 'utf8', (err, data) => {
+test = fs.readFile('protected/passwd.txt', 'utf8', async (err, data) => {
   if (err) {
     console.error(err);
     return;
   }
   // Note: Can't do this with async function (readFile) because code below this occurs before this function executes, and therefore pwd doesn't get set accordingly
-  pwd = data;
+  pwd = await data;
   //console.log(pwd);
 });
 
+console.log(pwd);
 console.log(test);
-test1 = await test;
+test1 = test;
 console.log(test);
-test2 = await test.data;
+test2 = test.data;
 console.log(test2);
 
 const pool = new Pool({
