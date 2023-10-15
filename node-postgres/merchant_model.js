@@ -1,7 +1,7 @@
 const Pool = require('pg').Pool
 const fs = require('fs');
 
-const pwd = '';
+var pwd = '';
 
 fs.readFile('protected/passwd.txt', 'utf8', (err, data) => {
   if (err) {
