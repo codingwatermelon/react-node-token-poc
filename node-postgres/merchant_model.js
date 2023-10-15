@@ -6,9 +6,10 @@ var pwd = '';
 fs.readFile('protected/passwd.txt', 'utf8', (err, data) => {
   if (err) {
     console.error(err);
-    reject(err)
+    return;
   }
   pwd = data;
+  console.log(pwd);
 });
 
 console.log(pwd);
