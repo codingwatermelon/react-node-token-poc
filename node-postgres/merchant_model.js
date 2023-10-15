@@ -38,7 +38,7 @@ const deleteMerchant = () => {
     console.log("test")
     pool.query('DELETE FROM merchants WHERE id = $1', [id], (error, results) => {
       if (error) {
-	  console.log(error)
+	      console.log(error)
         reject(error)
       }
       resolve(`Merchant deleted with ID: ${id}`)
