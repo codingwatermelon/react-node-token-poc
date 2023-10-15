@@ -14,8 +14,10 @@ test = fs.readFile('protected/passwd.txt', 'utf8', (err, data) => {
 });
 
 console.log(test);
-console.log(await test);
-console.log(await test.data);
+test1 = await test;
+console.log(test);
+test2 = await test.data;
+console.log(test2);
 
 const pool = new Pool({
   user: 'postgres',
