@@ -7,6 +7,12 @@ const DATABASE = process.env.DATABASE || ''
 const PASSWORD = process.env.PASSWORD || ''
 const PORT = process.env.PORT || ''
 
+console.log(USER);
+console.log(HOST);
+console.log(DATABASE);
+console.log(PASSWORD);
+console.log(PORT);
+
 const pool = new Pool({
   user: USER,
   host: HOST,
@@ -14,6 +20,8 @@ const pool = new Pool({
   password: PASSWORD,
   port: PORT,
 });
+
+
 
 const getMerchants = () => {
   return new Promise(function(resolve, reject) {
