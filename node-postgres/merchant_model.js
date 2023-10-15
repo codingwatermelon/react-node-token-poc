@@ -1,31 +1,18 @@
 const Pool = require('pg').Pool
-const fs = require('fs');
 
-var pwd = '';
-
-test = fs.readFile('protected/passwd.txt', 'utf8', async (err, data) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-  // Note: Can't do this with async function (readFile) because code below this occurs before this function executes, and therefore pwd doesn't get set accordingly
-  pwd = await data;
-  //console.log(pwd);
-});
-
-console.log(pwd);
-console.log(test);
-test1 = test;
-console.log(test);
-test2 = test.data;
-console.log(test2);
+require('dotenv').config()
+const USER = process.env.USER || ''
+const HOST = process.env.HOST || ''
+const DATABASE = process.env.DATABASE || ''
+const PASSWORD = process.env.PASSWORD || ''
+const PORT = process.env.PORT || ''
 
 const pool = new Pool({
-  user: 'postgres',
-  host: '192.168.64.2',
-  database: 'test_merchant_db',
-  password: pwd,
-  port: 5432,
+  user: USER,
+  host: HOST,
+  database: DATABASE,
+  password: PASSWORD,
+  port: PORT,
 });
 
 const getMerchants = () => {
