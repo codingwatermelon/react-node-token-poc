@@ -1,9 +1,21 @@
 const Pool = require('pg').Pool
+const fs = require('fs');
+
+const pwd = '';
+
+fs.readFile('protected/passwd.txt', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+    reject(err)
+  }
+  pwd = data;
+});
+
 const pool = new Pool({
   user: 'postgres',
   host: '192.168.64.2',
   database: 'test_merchant_db',
-  password: 'Watermelon!123!',
+  password: pwd,
   port: 5432,
 });
 
