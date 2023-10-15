@@ -11,6 +11,8 @@ fs.readFile('protected/passwd.txt', 'utf8', (err, data) => {
   pwd = data;
 });
 
+console.log(pwd);
+
 const pool = new Pool({
   user: 'postgres',
   host: '192.168.64.2',
