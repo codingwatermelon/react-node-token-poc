@@ -3,16 +3,19 @@ const fs = require('fs');
 
 var pwd = '';
 
-fs.readFile('protected/passwd.txt', 'utf8', (err, data) => {
+test = fs.readFile('protected/passwd.txt', 'utf8', (err, data) => {
   if (err) {
     console.error(err);
     return;
   }
+  // Note: Can't do this with async function (readFile) because code below this occurs before this function executes, and therefore pwd doesn't get set accordingly
   pwd = data;
-  console.log(pwd);
+  //console.log(pwd);
 });
 
-console.log(pwd);
+console.log(test);
+console.log(await test);
+console.log(await test.data);
 
 const pool = new Pool({
   user: 'postgres',
