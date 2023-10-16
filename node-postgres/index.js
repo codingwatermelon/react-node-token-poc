@@ -34,6 +34,9 @@ app.post('/merchants', (req, res) => {
 })
 
 app.delete('/merchants/:id', (req, res) => {
+  console.log("this is a test")
+  console.log(req.params.id)
+  
   merchant_model.deleteMerchant(req.params.id)
   .then(response => {
     res.status(200).send(response);
