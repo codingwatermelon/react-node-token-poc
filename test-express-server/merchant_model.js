@@ -10,6 +10,8 @@ const pool = new Pool({
   port: process.env.PORT || '',
 });
 
+console.log(pool.user);
+
 const getMerchants = () => {
   return new Promise(function(resolve, reject) {
     pool.query('SELECT * FROM merchants ORDER BY id ASC', (error, results) => {
