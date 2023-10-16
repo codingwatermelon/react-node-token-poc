@@ -22,7 +22,7 @@ const getHouses = (houseId) => {
     if (houseId) {
       const id = parseInt(houseId)
 
-      pool.query('SELECT FROM properties WHERE id = $1', [id], (error, results) => {
+      pool.query('SELECT * FROM properties WHERE id = $1', [id], (error, results) => {
         if (error) {
           reject(error)
         }
@@ -31,7 +31,7 @@ const getHouses = (houseId) => {
       })
     }
     else {
-      pool.query('SELECT FROM properties', (error, results) => {
+      pool.query('SELECT * FROM properties', (error, results) => {
         if (error) {
           reject(error)
         }
