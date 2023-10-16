@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3001
+const port = 5000
 
 const api = require('./api')
 
@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 //  })
 //})
 
-app.get("/houses", (req, res) => {
+app.get("/api/houses", (req, res) => {
   
   api.getHouses()
     .then(response => {
@@ -37,7 +37,7 @@ app.get("/houses", (req, res) => {
   //return schema.houses.all()
 })
 
-app.get("/houses/:id", (req, res) => {
+app.get("/api/houses/:id", (req, res) => {
   
   api.getHouses(req.params.id)
     .then(response => {
