@@ -10,6 +10,12 @@ const pool = new Pool({
   port: process.env.PORT || '',
 });
 
+console.log(process.env.USERNAME)
+console.log(process.env.HOST)
+console.log(process.env.DATABASE)
+console.log(process.env.PASSWORD)
+console.log(process.env.PORT)
+
 const getHouses = (houseId) => {
   return new Promise(function(resolve, reject) {
     
