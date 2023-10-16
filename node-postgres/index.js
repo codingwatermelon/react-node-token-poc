@@ -4,6 +4,9 @@ const port = 3001
 
 const merchant_model = require('./merchant_model')
 
+const cors = require('cors');
+app.use(cors());
+
 app.use(express.json())
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
