@@ -37,9 +37,9 @@ const getHouses = (houseId) => {
         }
         console.log(`${results}`)
         //console.log(`${...{results.rows}}`)
-        const test = {...results.rows}
+        const test = results.rows[0]['property_address']
         console.log(`${test}`)
-        
+
         console.log(`all houses`)
         resolve(`${results.rows}`)
       })
