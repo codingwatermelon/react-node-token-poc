@@ -34,11 +34,9 @@ const createMerchant = (body) => {
 const deleteMerchant = (merchantId) => {
   return new Promise(function(resolve, reject) {
     const id = parseInt(merchantId)
-    console.log(id)
-    console.log("test")
+    
     pool.query('DELETE FROM merchants WHERE id = $1', [id], (error, results) => {
       if (error) {
-	      console.log(error)
         reject(error)
       }
       resolve(`Merchant deleted with ID: ${id}`)

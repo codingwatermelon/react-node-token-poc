@@ -32,6 +32,8 @@ function App() {
         getMerchant();
       });
   }
+
+  // TODO Figure out how to transfer this to new structure??
   function deleteMerchant() {
     let id = prompt('Enter merchant id');
     fetch(`http://192.168.64.3:3001/merchants/${id}`, {
