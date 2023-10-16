@@ -1,9 +1,3 @@
-const express = require('express')
-const app = express()
-const port = 3001
-
-const merchant_model = require('./merchant_model')
-
 const cors = require('cors');
 const whitelist = ['http://localhost:3000'];
 const corsOptions = {
@@ -18,6 +12,11 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+const express = require('express')
+const app = express()
+const port = 3001
+
+const merchant_model = require('./merchant_model')
 
 app.use(express.json())
 app.use(function (req, res, next) {
