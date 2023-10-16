@@ -36,7 +36,10 @@ const getHouses = (houseId) => {
           reject(error)
         }
         console.log(`${results}`)
-        console.log(`${results.rows}`)
+        //console.log(`${...{results.rows}}`)
+        const test = {...results.rows}
+        console.log(`${test}`)
+        
         console.log(`all houses`)
         resolve(`${results.rows}`)
       })
