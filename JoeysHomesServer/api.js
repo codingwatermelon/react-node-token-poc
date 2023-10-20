@@ -26,7 +26,6 @@ const getHouses = (houseId) => {
         if (error) {
           reject(error)
         }
-        console.log(`houseId ${id}`)
         resolve(`${results.rows}`)
       })
     }
@@ -35,17 +34,18 @@ const getHouses = (houseId) => {
         if (error) {
           reject(error)
         }
-        console.log(`${results}`)
-        //console.log(`${...{results.rows}}`)
-        const test = results.rows[0]['property_address']
-        console.log(`${test}`)
-
-        console.log(`all houses`)
         resolve(`${results.rows}`)
       })
     }
   })
 }
+
+//console.log(`${results}`)
+////console.log(`${...{results.rows}}`)
+//const test = results.rows[0]['property_address']
+//console.log(`${test}`)
+//
+//console.log(`all houses`)
 
 
 //const getMerchants = () => {
