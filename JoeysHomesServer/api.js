@@ -16,28 +16,38 @@ console.log(process.env.DATABASE)
 console.log(process.env.PASSWORD)
 console.log(process.env.PORT)
 
-const getHouses = (houseId) => {
-  return new Promise(function(resolve, reject) {
-    
-    if (houseId) {
-      const id = parseInt(houseId)
 
-      pool.query('SELECT * FROM properties WHERE id = $1', [id], (error, results) => {
-        if (error) {
-          reject(error)
+export async function getHouses(houseId) {
+  //return new Promise(function(resolve, reject) {
+    
+  if (houseId) {
+    const id = parseInt(houseId)
+
+    pool.query('SELECT * FROM properties WHERE id = $1', [id], (error, results) => {
+      if (error) {
+        throw {
+          message: "Failed to get properties by id",
+          statusText: results.statusText,
+          status: results.status
         }
-        resolve(`${results.rows}`)
-      })
-    }
-    else {
-      pool.query('SELECT * FROM properties', (error, results) => {
-        if (error) {
-          reject(error)
+      }
+      const data = results.rows
+      return data
+    })
+  }
+  else {
+    pool.query('SELECT * FROM properties', (error, results) => {
+      if (error) {
+        throw {
+          message: "Failed to get properties",
+          statusText: results.statusText,
+          status: results.status
         }
-        resolve(`${results.rows}`)
-      })
-    }
-  })
+      }
+      const data = results.rows
+      return data
+    })
+  }
 }
 
 //console.log(`${results}`)
