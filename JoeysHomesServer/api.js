@@ -1,4 +1,4 @@
-export async function getHouses(houseId) {
+export function getHouses(houseId) {
   const Pool = require('pg').Pool
 
   require('dotenv').config()
