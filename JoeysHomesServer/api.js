@@ -1,23 +1,15 @@
-const Pool = require('pg').Pool
-
-require('dotenv').config()
-
-const pool = new Pool({
-  user: process.env.USERNAME || '',
-  host: process.env.HOST || '',
-  database: process.env.DATABASE || '',
-  password: process.env.PASSWORD || '',
-  port: process.env.PORT || '',
-});
-
-console.log(process.env.USERNAME)
-console.log(process.env.HOST)
-console.log(process.env.DATABASE)
-console.log(process.env.PASSWORD)
-console.log(process.env.PORT)
-
-
 export async function getHouses(houseId) {
+  const Pool = require('pg').Pool
+
+  require('dotenv').config()
+
+  const pool = new Pool({
+    user: process.env.USERNAME || '',
+    host: process.env.HOST || '',
+    database: process.env.DATABASE || '',
+    password: process.env.PASSWORD || '',
+    port: process.env.PORT || '',
+  });
   //return new Promise(function(resolve, reject) {
     
   if (houseId) {
@@ -107,11 +99,3 @@ export async function getHouses(houseId) {
 //  const data = await res.json()
 //  return data.houses
 //}
-
-
-module.exports = {
-//  getMerchants,
-//  createMerchant,
-//  deleteMerchant,
-  getHouses
-}
