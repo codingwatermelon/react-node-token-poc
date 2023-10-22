@@ -1,45 +1,44 @@
-export function getHouses(houseId) {
-  const Pool = require('pg').Pool
+const Pool = require('pg').Pool
 
-  require('dotenv').config()
+require('dotenv').config()
 
-  const pool = new Pool({
-    user: process.env.USERNAME || '',
-    host: process.env.HOST || '',
-    database: process.env.DATABASE || '',
-    password: process.env.PASSWORD || '',
-    port: process.env.PORT || '',
-  });
-  //return new Promise(function(resolve, reject) {
+const pool = new Pool({
+  user: process.env.USERNAME || '',
+  host: process.env.HOST || '',
+  database: process.env.DATABASE || '',
+  password: process.env.PASSWORD || '',
+  port: process.env.PORT || '',
+});
+
+console.log(process.env.USERNAME)
+console.log(process.env.HOST)
+console.log(process.env.DATABASE)
+console.log(process.env.PASSWORD)
+console.log(process.env.PORT)
+
+
+const getHouses = (houseId) => {
+  return new Promise(function(resolve, reject) {
     
-  if (houseId) {
-    const id = parseInt(houseId)
+    if (houseId) {
+      const id = parseInt(houseId)
 
-    pool.query('SELECT * FROM properties WHERE id = $1', [id], (error, results) => {
-      if (error) {
-        throw {
-          message: "Failed to get properties by id",
-          statusText: results.statusText,
-          status: results.status
+      pool.query('SELECT * FROM properties WHERE id = $1', [id], (error, results) => {
+        if (error) {
+          reject(error)
         }
-      }
-      const data = results.rows
-      return data
-    })
-  }
-  else {
-    pool.query('SELECT * FROM properties', (error, results) => {
-      if (error) {
-        throw {
-          message: "Failed to get properties",
-          statusText: results.statusText,
-          status: results.status
+        resolve(`${results.rows}`)
+      })
+    }
+    else {
+      pool.query('SELECT * FROM properties', (error, results) => {
+        if (error) {
+          reject(error)
         }
-      }
-      const data = results.rows
-      return data
-    })
-  }
+        resolve(`${results.rows}`)
+      })
+    }
+  })
 }
 
 //console.log(`${results}`)
@@ -99,3 +98,11 @@ export function getHouses(houseId) {
 //  const data = await res.json()
 //  return data.houses
 //}
+
+
+module.exports = {
+//  getMerchants,
+//  createMerchant,
+//  deleteMerchant,
+  getHouses
+}
