@@ -31,7 +31,6 @@ export function loader() {
 export default function Maintenance() {
     const [searchParams, setSearchParams] = useSearchParams()
     const dataPromise = useLoaderData()
-    console.log(dataPromise)
 
     const typeFilter = searchParams.get("type")
 
@@ -113,7 +112,7 @@ export default function Maintenance() {
         <div className="van-list-container">
             <h1>Maintenance page</h1>
             <React.Suspense fallback={<h2>Loading maintenance tasks...</h2>}>
-                <Await resolve={dataPromise.houses}>
+                <Await resolve={dataPromise}>
                     {renderHouseElements}
                 </Await>
             </React.Suspense>
