@@ -31,6 +31,7 @@ export function loader() {
 export default function Maintenance() {
     const [searchParams, setSearchParams] = useSearchParams()
     const dataPromise = useLoaderData()
+    console.log(dataPromise)
 
     const typeFilter = searchParams.get("type")
 
