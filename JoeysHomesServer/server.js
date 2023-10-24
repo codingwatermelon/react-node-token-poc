@@ -17,6 +17,8 @@ app.get("/api/houses", (req, res) => {
   
   api.getHouses()
     .then(response => {
+      // TODO Test
+      console.log(response);
       res.status(200).send(response);
     })
     .catch(error => {

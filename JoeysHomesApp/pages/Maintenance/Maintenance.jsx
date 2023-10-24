@@ -112,7 +112,7 @@ export default function Maintenance() {
         <div className="van-list-container">
             <h1>Maintenance page</h1>
             <React.Suspense fallback={<h2>Loading maintenance tasks...</h2>}>
-                <Await resolve={dataPromise}>
+                <Await resolve={dataPromise.houses}>
                     {renderHouseElements}
                 </Await>
             </React.Suspense>

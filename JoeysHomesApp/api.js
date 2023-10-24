@@ -5,7 +5,10 @@ export async function getHouses(id) {
         throw {
             message: "Failed to fetch houses",
             statusText: res.statusText,
-            status: res.status
+            status: res.status,
+            // TODO need to see what is in the res object... need to figure out how to access it
+            test: res
+
         }
     }
     const data = await res.json()
