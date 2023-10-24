@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, defer, Await, useLoaderData } from "react-router-dom"
-//import { getHouses } from "../../api"
-import { getHouses } from "../../../JoeysHomesServer/api"
+import { getHouses } from "../../api"
+//import { getHouses } from "../../../JoeysHomesServer/api"
 import { requireAuth } from "../../utils"
 import { BsStarFill } from "react-icons/bs"
 
