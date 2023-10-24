@@ -7,7 +7,7 @@ import {
     Await
 } from "react-router-dom"
 //import { getHouses } from "../../api"
-import { getHouses } from "../../../JoeysHomesServer/api" 
+import { getHouses } from "../../api"
 
 export function loader() {
     return defer({ houses: getHouses() })

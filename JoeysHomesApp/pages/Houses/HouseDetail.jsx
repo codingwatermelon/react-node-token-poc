@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, useParams, useLocation, useLoaderData } from "react-router-dom"
 //import { getHouses } from "../../api"
-import { getHouses } from "../../../JoeysHomesServer/api"
+import { getHouses } from "../../api"
 
 export function loader({ params }) {
     return getHouses(params.id)
