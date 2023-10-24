@@ -22,7 +22,7 @@ import DefaultLayout from "./components/DefaultLayout"
 
 
 //import "./server"
-import "../JoeysHomesServer/server"
+//import "../JoeysHomesServer/server"
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>

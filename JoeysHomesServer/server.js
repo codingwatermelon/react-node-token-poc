@@ -13,16 +13,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-//app.get('/', (req, res) => {
-//  merchant_model.getMerchants()
-//  .then(response => {
-//    res.status(200).send(response);
-//  })
-//  .catch(error => {
-//    res.status(500).send(error);
-//  })
-//})
-
 app.get("/api/houses", (req, res) => {
   
   api.getHouses()
@@ -51,29 +41,6 @@ app.get("/api/houses/:id", (req, res) => {
   //return schema.houses.find(id)
 })
 
-//app.post('/merchants', (req, res) => {
-//  merchant_model.createMerchant(req.body)
-//  .then(response => {
-//    res.status(200).send(response);
-//  })
-//  .catch(error => {
-//    res.status(500).send(error);
-//  })
-//})
-//
-//app.delete('/merchants/:id', (req, res) => {
-//  console.log("this is a test")
-//  console.log(req.params.id)
-//
-//  merchant_model.deleteMerchant(req.params.id)
-//  .then(response => {
-//    res.status(200).send(response);
-//  })
-//  .catch(error => {
-//    console.log(error)
-//    res.status(500).send(error);
-//  })
-//})
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
