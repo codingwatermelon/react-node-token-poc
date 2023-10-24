@@ -1,6 +1,6 @@
-export async function getHouses(id) {
+export function getHouses(id) {
     const url = id ? `/api/houses/${id}` : "/api/houses"
-    const res = await fetch(url)
+    const res = fetch(url)
     if (!res.ok) {
         throw {
             message: "Failed to fetch houses",
@@ -11,6 +11,8 @@ export async function getHouses(id) {
 
         }
     }
-    const data = await res.json()
+    const data = res.json()
+    console.log(data)
+    console.log(res)
     return data
 }
