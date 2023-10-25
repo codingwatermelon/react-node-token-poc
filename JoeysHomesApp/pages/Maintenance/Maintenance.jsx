@@ -47,9 +47,6 @@ export default function Maintenance() {
 
     function renderHouseElements(houses) {
         const displayedHouses = houses
-        console.log(displayedHouses)
-        console.log(typeof displayedHouses)
-        console.log(displayedHouses[0])
 
         const houseElements = displayedHouses.map(house => (
             <div key={house.id} className="van-tile">

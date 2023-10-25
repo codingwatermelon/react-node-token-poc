@@ -22,9 +22,6 @@ app.get("/api/houses", (req, res) => {
     .catch(error => {
       res.status(500).send(error);
     })
-
-  // TODO Check if I need this
-  //return schema.houses.all()
 })
 
 app.get("/api/houses/:id", (req, res) => {
@@ -36,16 +33,7 @@ app.get("/api/houses/:id", (req, res) => {
     .catch(error => {
       res.status(500).send(error);
     })
-
-  // TODO Check if I need this
-  //return schema.houses.find(id)
 })
-
-//app.get('/api/getList', (req,res) => {
-//	var list = ["item1", "item2", "item3"];
-//	res.json(list);
-//	console.log('Sent list of items');
-//});
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
