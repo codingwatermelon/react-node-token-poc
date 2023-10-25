@@ -11,6 +11,5 @@ export async function getHouses(id) {
 
         }
     }
-    const data = await res.json()
-    return data
+    return res
 }
