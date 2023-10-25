@@ -17,7 +17,7 @@ app.get("/api/houses", (req, res) => {
   
   api.getHouses()
     .then(response => {
-      res.send(response);
+      res.json(response);
     })
     .catch(error => {
       res.status(500).send(error);
