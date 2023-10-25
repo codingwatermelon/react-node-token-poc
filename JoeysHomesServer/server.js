@@ -17,7 +17,7 @@ app.get("/api/houses", (req, res) => {
   
   api.getHouses()
     .then(response => {
-      res.status(200).send(response);
+      res.json(response);
     })
     .catch(error => {
       res.status(500).send(error);
@@ -41,6 +41,11 @@ app.get("/api/houses/:id", (req, res) => {
   //return schema.houses.find(id)
 })
 
+//app.get('/api/getList', (req,res) => {
+//	var list = ["item1", "item2", "item3"];
+//	res.json(list);
+//	console.log('Sent list of items');
+//});
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
