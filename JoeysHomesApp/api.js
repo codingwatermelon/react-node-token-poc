@@ -1,7 +1,7 @@
 export async function getHouses(id) {
-    const url = id ? `/api/houses/${id}` : "/api/houses"
+    const url = id ? `http://localhost:5000/api/houses/${id}` : "http://localhost:5000/api/houses"
     const res = await fetch(url)
-    if (res.ok) {
+    if (!res.ok) {
         throw {
             message: "Failed to fetch houses",
             statusText: res.statusText,
