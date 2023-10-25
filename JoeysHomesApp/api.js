@@ -1,5 +1,5 @@
 export async function getHouses(id) {
-    const url = id ? `http://localhost:5000/api/houses/${id}` : "http://localhost:5000/api/houses"
+    const url = id ? `http://192.168.64.3:5000/api/houses/${id}` : "http://192.168.64.3:5000/api/houses"
     const res = await fetch(url)
     if (!res.ok) {
         throw {
