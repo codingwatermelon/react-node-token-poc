@@ -46,9 +46,7 @@ export default function Maintenance() {
     }
 
     function renderHouseElements(houses) {
-        const displayedHouses = typeFilter
-            ? houses.filter(house => house.type === typeFilter)
-            : houses
+        const displayedHouses = houses
 
         const houseElements = displayedHouses.map(house => (
             <div key={house.id} className="van-tile">
@@ -59,12 +57,11 @@ export default function Maintenance() {
                         type: typeFilter
                     }}
                 >
-                    <img src={house.imageUrl} />
                     <div className="van-info">
-                        <h3>{house.name}</h3>
-                        <p>${house.price}<span>/day</span></p>
+                        <h3>{house.property_address}</h3>
+                        <p>{house.property_description}<span>/day</span></p>
                     </div>
-                    <i className={`van-type ${house.type} selected`}>{house.type}</i>
+                
                 </Link>
             </div>
         ))
