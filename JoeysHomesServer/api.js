@@ -20,6 +20,7 @@ const getHouses = (houseId) => {
         if (error) {
           reject(error)
         }
+        console.log(results.rows)
         resolve(`${results.rows}`)
       })
     }
@@ -28,6 +29,7 @@ const getHouses = (houseId) => {
         if (error) {
           reject(error)
         }
+        console.log(results.rows)
         resolve(`${results.rows}`)
       })
     }
