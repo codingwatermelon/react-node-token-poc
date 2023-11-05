@@ -56,7 +56,10 @@ export default function Houses() {
                 >
                     <div className="van-info">
                         <h3>{house.property_address}</h3>
-                        <p>{house.property_description}<span>/day</span></p>
+                        <p>{house.property_description}</p>
+                        <p><span>$</span>{house.base_value}<span>K</span></p>
+                        <p>{house.purchase_date}</p>
+                        <img src={house.image_path}/>
                     </div>
                 
                 </Link>
