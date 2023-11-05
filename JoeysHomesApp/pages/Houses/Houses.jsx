@@ -59,6 +59,7 @@ export default function Houses() {
                         <p>{house.property_description}</p>
                         <p><span>$</span>{house.base_value}<span>K</span></p>
                         <p>{house.purchase_date}</p>
+                        <p>{house.property_id}</p>
                         <img src={house.image_path}/>
                     </div>
                 
