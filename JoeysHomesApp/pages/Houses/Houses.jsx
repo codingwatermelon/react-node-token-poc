@@ -107,7 +107,7 @@ export default function Houses() {
 
     return (
         <div className="van-list-container">
-            <h1>Maintenance page</h1>
+            <h1>Houses</h1>
             <React.Suspense fallback={<h2>Loading maintenance tasks...</h2>}>
                 <Await resolve={dataPromise.houses}>
                     {renderHouseElements}
