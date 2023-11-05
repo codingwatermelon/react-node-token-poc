@@ -8,9 +8,6 @@ import {
 } from "react-router-dom"
 import { getHouses } from "../../api"
 
-// TODO use a different method to call from express server, maybe fetch
-//import { getHouses } from "../../../JoeysHomesServer/api"
-
 export function loader() {
     return defer({ houses: getHouses() })
 }

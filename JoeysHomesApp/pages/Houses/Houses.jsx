@@ -6,7 +6,6 @@ import {
     defer,
     Await
 } from "react-router-dom"
-//import { getHouses } from "../../api"
 import { getHouses } from "../../api"
 
 export function loader() {
@@ -44,9 +43,7 @@ export default function Houses() {
     }
 
     function renderHouseElements(houses) {
-        const displayedHouses = typeFilter
-            ? houses.filter(house => house.type === typeFilter)
-            : houses
+        const displayedHouses = houses
 
         const houseElements = displayedHouses.map(house => (
             <div key={house.id} className="van-tile">
@@ -57,12 +54,11 @@ export default function Houses() {
                         type: typeFilter
                     }}
                 >
-                    <img src={house.imageUrl} />
                     <div className="van-info">
-                        <h3>{house.name}</h3>
-                        <p>${house.price}<span>/day</span></p>
+                        <h3>{house.property_address}</h3>
+                        <p>{house.property_description}<span>/day</span></p>
                     </div>
-                    <i className={`van-type ${house.type} selected`}>{house.type}</i>
+                
                 </Link>
             </div>
         ))
@@ -108,8 +104,8 @@ export default function Houses() {
 
     return (
         <div className="van-list-container">
-            <h1>Explore our house options</h1>
-            <React.Suspense fallback={<h2>Loading houses...</h2>}>
+            <h1>Maintenance page</h1>
+            <React.Suspense fallback={<h2>Loading maintenance tasks...</h2>}>
                 <Await resolve={dataPromise.houses}>
                     {renderHouseElements}
                 </Await>
