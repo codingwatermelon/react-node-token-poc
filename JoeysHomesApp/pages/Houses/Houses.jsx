@@ -46,9 +46,9 @@ export default function Houses() {
         const displayedHouses = houses
 
         const houseElements = displayedHouses.map(house => (
-            <div key={house.id} className="van-tile">
+            <div key={house.property_id} className="van-tile">
                 <Link
-                    to={house.id}
+                    to={house.property_id}
                     state={{
                         search: `?${searchParams.toString()}`,
                         type: typeFilter
