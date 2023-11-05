@@ -6,7 +6,7 @@ import { getHouses } from "../../api"
 import { BsStarFill } from "react-icons/bs"
 
 export async function loader({ request }) {
-    await requireAuth(request)
+    //await requireAuth(request)
     return defer({ houses: getHouses() })
 }
 
