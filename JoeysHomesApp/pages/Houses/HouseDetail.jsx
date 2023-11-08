@@ -4,33 +4,47 @@ import { Link, useParams, useLocation, useLoaderData } from "react-router-dom"
 import { getHouses } from "../../api"
 
 export function loader({ params }) {
+    console.log(params)
     return getHouses(params.id)
 }
 
 export default function HouseDetail() {
     const location = useLocation()
-    const house = useLoaderData()
+    const dataPromise = useLoaderData()
 
-    const search = location.state?.search || "";
-    const type = location.state?.type || "all";
+
+    function renderHouseElements(house) {
+        const search = location.state?.search || "";
+        const type = location.state?.type || "all";
+    
+        return (
+            <div className="van-detail-container">
+                <Link
+                    to={`..${search}`}
+                    relative="path"
+                    className="back-button"
+                >&larr; <span>Back to {type} houses</span></Link>
+    
+                <div className="van-detail">
+                    <h3>{house.property_address}</h3>
+                    <p>{house.property_description}</p>
+                    <p><span>$</span>{house.base_value}<span>K</span></p>
+                    <p>{house.purchase_date}</p>
+                    <p>{house.property_id}</p>
+                    <img src={house.image_path}/>
+                </div>
+    
+            </div>
+        )
+    }
 
     return (
-        <div className="van-detail-container">
-            <Link
-                to={`..${search}`}
-                relative="path"
-                className="back-button"
-            >&larr; <span>Back to {type} houses</span></Link>
-
-            <div className="van-detail">
-                <h3>{house.property_address}</h3>
-                <p>{house.property_description}</p>
-                <p><span>$</span>{house.base_value}<span>K</span></p>
-                <p>{house.purchase_date}</p>
-                <p>{house.property_id}</p>
-                <img src={house.image_path}/>
-            </div>
-
+        <div className="van-list-container">
+            <React.Suspense fallback={<h2>Loading house...</h2>}>
+                <Await resolve={dataPromise.house}>
+                    {renderHouseElements}
+                </Await>
+            </React.Suspense>
         </div>
     )
 }
