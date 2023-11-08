@@ -36,6 +36,33 @@ const getHouses = (houseId) => {
   })
 }
 
+const getMaintenance = (maintenanceId) => {
+  return new Promise(function(resolve, reject) {
+    
+    if (maintenanceId) {
+      const id = parseInt(maintenanceId)
+      console.log(id)
+
+      pool.query('select * from PropertiesMaintenance where id = $1', [id], (error, results) => {
+        if (error) {
+          reject(error)
+        }
+        console.log(results.rows)
+        resolve(results.rows)
+      })
+    }
+    else {
+      pool.query('select * from PropertiesMaintenance', (error, results) => {
+        if (error) {
+          reject(error)
+        }
+        resolve(results.rows)
+      })
+    }
+  })
+}
+
 module.exports = {
-  getHouses
+  getHouses,
+  getMaintenance,
 }

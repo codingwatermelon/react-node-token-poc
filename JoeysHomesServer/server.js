@@ -35,6 +35,28 @@ app.get("/api/houses/:id", (req, res) => {
     })
 })
 
+app.get("/api/maintenance", (req, res) => {
+  
+  api.getMaintenance()
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
+})
+
+app.get("/api/maintenance/:id", (req, res) => {
+  
+  api.getMaintenance(req.params.id)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
+})
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })

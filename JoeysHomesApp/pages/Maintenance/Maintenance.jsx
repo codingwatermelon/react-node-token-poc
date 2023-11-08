@@ -6,10 +6,10 @@ import {
     defer,
     Await
 } from "react-router-dom"
-import { getHouses } from "../../api"
+import { getMaintenance } from "../../api"
 
 export function loader() {
-    return defer({ houses: getHouses() })
+    return defer({ maintenance: getMaintenance() })
 }
 
 /**
@@ -42,21 +42,21 @@ export default function Maintenance() {
         })
     }
 
-    function renderHouseElements(houses) {
-        const displayedHouses = houses
+    function renderMaintenanceElements(maintenanceTasks) {
+        const displayedMaintenanceTasks = maintenanceTasks
 
-        const houseElements = displayedHouses.map(house => (
-            <div key={house.id} className="van-tile">
+        const maintenanceElements = displayedMaintenanceTasks.map(task => (
+            <div key={task.id} className="van-tile">
                 <Link
-                    to={house.id}
+                    to={task.id}
                     state={{
                         search: `?${searchParams.toString()}`,
                         type: typeFilter
                     }}
                 >
                     <div className="van-info">
-                        <h3>{house.property_address}</h3>
-                        <p>{house.property_description}<span>/day</span></p>
+                        <h3>{task.maintenance_name}</h3>
+                        <p>{task.cost}<span>/day</span></p>
                     </div>
                 
                 </Link>
@@ -96,7 +96,7 @@ export default function Maintenance() {
 
                 </div>
                 <div className="van-list">
-                    {houseElements}
+                    {maintenanceElements}
                 </div>
             </>
         )
@@ -106,8 +106,8 @@ export default function Maintenance() {
         <div className="van-list-container">
             <h1>Maintenance page</h1>
             <React.Suspense fallback={<h2>Loading maintenance tasks...</h2>}>
-                <Await resolve={dataPromise.houses}>
-                    {renderHouseElements}
+                <Await resolve={dataPromise.maintenance}>
+                    {renderMaintenanceElements}
                 </Await>
             </React.Suspense>
         </div>
