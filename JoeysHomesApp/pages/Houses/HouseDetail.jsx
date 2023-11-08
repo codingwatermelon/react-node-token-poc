@@ -23,15 +23,18 @@ export default function HouseDetail() {
             >&larr; <span>Back to {type} houses</span></Link>
 
             <div className="van-detail">
-                <img src={house.imageUrl} />
-                <i className={`van-type ${house.type} selected`}>
-                    {house.type}
-                </i>
-                <h2>{house.name}</h2>
-                <p className="van-price"><span>${house.price}K</span></p>
-                <p>{house.description}</p>
+                <h3>{house.property_address}</h3>
+                <p>{house.property_description}</p>
+                <p><span>$</span>{house.base_value}<span>K</span></p>
+                <p>{house.purchase_date}</p>
+                <p>{house.property_id}</p>
+                <img src={house.image_path}/>
             </div>
 
         </div>
     )
 }
+
+//<i className={`van-type ${house.type} selected`}>
+//    {house.type}
+//</i>
