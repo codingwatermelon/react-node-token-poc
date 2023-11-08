@@ -19,6 +19,21 @@ export default function HouseDetail() {
     const dataPromise = useLoaderData()
 
     function renderHouseElements(house) {
+
+        const displayedHouses = house
+
+        const houseElements = displayedHouses.map(house => (
+            <div key={house.property_id} className="van-tile">
+                <div className="van-info">
+                    <h3>{house.property_address}</h3>
+                    <p>{house.property_description}</p>
+                    <p><span>$</span>{house.base_value}<span>K</span></p>
+                    <p>{house.purchase_date}</p>
+                    <p>{house.property_id}</p>
+                    <img src={house.image_path}/>
+                </div>
+            </div>
+        ))
         const search = location.state?.search || "";
         const type = location.state?.type || "all";
     
@@ -30,13 +45,8 @@ export default function HouseDetail() {
                     className="back-button"
                 >&larr; <span>Back to {type} houses</span></Link>
     
-                <div className="van-detail">
-                    <h3>{house.property_address}</h3>
-                    <p>{house.property_description}</p>
-                    <p><span>$</span>{house.base_value}<span>K</span></p>
-                    <p>{house.purchase_date}</p>
-                    <p>{house.property_id}</p>
-                    <img src={house.image_path}/>
+                <div className="van-list">
+                    {houseElements}
                 </div>
     
             </div>
