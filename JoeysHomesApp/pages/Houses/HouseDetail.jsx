@@ -1,17 +1,22 @@
 import React from "react"
-import { Link, useParams, useLocation, useLoaderData } from "react-router-dom"
-//import { getHouses } from "../../api"
+import {
+    Link,
+    useSearchParams,
+    useLoaderData,
+    defer,
+    Await,
+    useLocation,
+    useParams
+} from "react-router-dom"
 import { getHouses } from "../../api"
 
 export function loader({ params }) {
-    console.log(params)
-    return getHouses(params.id)
+    return defer({ houses: getHouses(params.id) })
 }
 
 export default function HouseDetail() {
     const location = useLocation()
     const dataPromise = useLoaderData()
-
 
     function renderHouseElements(house) {
         const search = location.state?.search || "";
