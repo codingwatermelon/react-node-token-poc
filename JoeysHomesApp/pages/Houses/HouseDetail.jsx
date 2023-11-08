@@ -11,7 +11,7 @@ import {
 import { getHouses } from "../../api"
 
 export function loader({ params }) {
-    return defer({ houses: getHouses(params.id) })
+    return defer({ house: getHouses(params.id) })
 }
 
 export default function HouseDetail() {
