@@ -49,11 +49,8 @@ export default function Houses() {
             <div key={house.property_id} className="van-tile">
                 <Link
                 // TODO Make a static link here?
-                    to={house.property_id}
-                    state={{
-                        search: `?${searchParams.toString()}`,
-                        type: typeFilter
-                    }}
+                    to={`${house.property_id}`}
+                    relative="path"
                 >
                     <div className="van-info">
                         <h3>{house.property_address}</h3>
@@ -110,7 +107,7 @@ export default function Houses() {
     return (
         <div className="van-list-container">
             <h1>Houses</h1>
-            <React.Suspense fallback={<h2>Loading maintenance tasks...</h2>}>
+            <React.Suspense fallback={<h2>Loading houses...</h2>}>
                 <Await resolve={dataPromise.houses}>
                     {renderHouseElements}
                 </Await>
