@@ -15,6 +15,7 @@ const getHouses = (houseId) => {
     
     if (houseId) {
       const id = parseInt(houseId)
+      console.log(id)
 
       pool.query('select properties.id as property_id, property_address, property_description, image_path, base_value, purchase_date from properties join propertiesdetails on properties.id = propertiesdetails.id where properties.id = $1', [id], (error, results) => {
         if (error) {
