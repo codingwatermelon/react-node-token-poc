@@ -45,7 +45,7 @@ export default function HouseDetail() {
                     className="back-button"
                 >&larr; <span>Back to {type} houses</span></Link>
     
-                <div className="van-list">
+                <div className="van-detail">
                     {houseElements}
                 </div>
     

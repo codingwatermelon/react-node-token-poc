@@ -48,7 +48,6 @@ export default function Houses() {
         const houseElements = displayedHouses.map(house => (
             <div key={house.property_id} className="van-tile">
                 <Link
-                // TODO Make a static link here?
                     to={`${house.property_id}`}
                     relative="path"
                 >
