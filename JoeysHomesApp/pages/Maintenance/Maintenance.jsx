@@ -97,6 +97,7 @@ export default function Maintenance() {
                 </div>
                 <div className="maintenance-list">
                     {maintenanceElements}
+                    {maintenanceElements}
                 </div>
             </>
         )
