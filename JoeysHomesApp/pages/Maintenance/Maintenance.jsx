@@ -13,19 +13,6 @@ export function loader() {
     return defer({ maintenance: getMaintenance() })
 }
 
-/**
- * Challenge: remove manual error handling code and any
- * React state code we no longer need, as well as set up
- * errorElement handling for the following routes:
- * - /vans
- * - /vans/:id
- * - /host/vans
- * - /host/vans/:id
- * 
- * Remember: we created an <Error /> component awhile back
- * that you should be able to reuse.
- */
-
 export default function Maintenance() {
     const [searchParams, setSearchParams] = useSearchParams()
     const dataPromise = useLoaderData()
@@ -99,7 +86,6 @@ export default function Maintenance() {
 
                 </div>
                 <div className="maintenance-list">
-                    {maintenanceElements}
                     {maintenanceElements}
                 </div>
             </>
