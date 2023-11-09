@@ -201,6 +201,86 @@ footer {
     border-radius: 10px;
 }
 
+/*** MAINTENANCE PAGES ***/
+.maintenance-list-container {
+    padding-inline: 5px
+}
+
+.maintenance-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 20px;
+    margin-top: 20px;
+    padding: 40px;
+}
+
+.maintenance-tile a {
+    color: #161616;
+    text-decoration: none;    
+}
+
+.maintenance-tile img {
+    max-width: 75%;
+    border-radius: 5px;
+}
+
+
+.maintenance-detail-container {
+    padding-inline: 27px;
+}
+
+.maintenance-detail-container .back-button {
+    color: black;
+    text-decoration: none;
+}
+
+.maintenance-detail-container .back-button:visited {
+    
+}
+
+.maintenance-detail-container .back-button span {
+    text-decoration: underline;
+}
+
+.maintenance-detail {
+    display: flex;
+    flex-direction: column;
+    color: #161616;
+}
+
+.maintenance-detail img {
+    border-radius: 5px;
+    margin-block: 47px;
+    max-width: 50%;
+    justify-items: center;
+    align-items: center;
+}
+
+.maintenance-detail h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.maintenance-detail > i {
+    align-self: flex-start;
+}
+
+.maintenance-detail .maintenance-price {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.maintenance-detail .maintenance-price span {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.maintenance-detail .link-button {
+    background-color: #FF8C38;
+    color: white;
+    font-size: 1.125rem;
+}
 
 /*** VAN PAGES ***/
 .van-list-container {

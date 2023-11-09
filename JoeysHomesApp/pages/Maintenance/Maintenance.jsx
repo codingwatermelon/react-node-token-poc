@@ -46,7 +46,7 @@ export default function Maintenance() {
         const displayedMaintenanceTasks = maintenanceTasks
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
-            <div key={task.id} className="van-tile">
+            <div key={task.id} className="maintenance-tile">
                 <Link
                     to={task.id}
                     state={{
@@ -54,7 +54,7 @@ export default function Maintenance() {
                         type: typeFilter
                     }}
                 >
-                    <div className="van-info">
+                    <div className="maintenance-info">
                         <h3>{task.maintenance_name}</h3>
                         <p>{task.cost}<span>/day</span></p>
                     </div>
@@ -95,7 +95,7 @@ export default function Maintenance() {
                     ) : null}
 
                 </div>
-                <div className="van-list">
+                <div className="maintenance-list">
                     {maintenanceElements}
                 </div>
             </>
@@ -103,7 +103,7 @@ export default function Maintenance() {
     }
 
     return (
-        <div className="van-list-container">
+        <div className="maintenance-list-container">
             <h1>Maintenance page</h1>
             <React.Suspense fallback={<h2>Loading maintenance tasks...</h2>}>
                 <Await resolve={dataPromise.maintenance}>
