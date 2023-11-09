@@ -52,7 +52,7 @@ const getMaintenance = (maintenanceId) => {
       })
     }
     else {
-      pool.query('select * from PropertiesMaintenance', (error, results) => {
+      pool.query('select * from PropertiesMaintenance order by due_date desc', (error, results) => {
         if (error) {
           reject(error)
         }

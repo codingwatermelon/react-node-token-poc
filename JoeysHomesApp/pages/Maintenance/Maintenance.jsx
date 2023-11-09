@@ -55,8 +55,10 @@ export default function Maintenance() {
                     }}
                 >
                     <div className="maintenance-info">
+                        <h2>{task.due_date}</h2>
                         <h3>{task.maintenance_name}</h3>
-                        <p><span>$</span>{task.cost}<span>/day</span></p>
+                        <h3>{task.maintenance_type}</h3>
+                        <p><span>$</span>{task.cost}</p>
                     </div>
                 
                 </Link>
