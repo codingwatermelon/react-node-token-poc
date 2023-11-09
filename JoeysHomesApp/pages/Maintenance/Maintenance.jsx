@@ -56,7 +56,7 @@ export default function Maintenance() {
                 >
                     <div className="maintenance-info">
                         <h3>{task.maintenance_name}</h3>
-                        <p>{task.cost}<span>/day</span></p>
+                        <p><span>$</span>{task.cost}<span>/day</span></p>
                     </div>
                 
                 </Link>

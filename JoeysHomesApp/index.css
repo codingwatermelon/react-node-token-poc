@@ -209,7 +209,8 @@ footer {
 .maintenance-list {
     display: grid;
     grid-template-columns: 1fr;
-    justify-items: center;
+    justify-items: left;
+    align-items: left;
     gap: 20px;
     margin-top: 20px;
     padding: 40px;
