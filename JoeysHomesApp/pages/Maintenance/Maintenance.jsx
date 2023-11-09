@@ -7,6 +7,7 @@ import {
     Await
 } from "react-router-dom"
 import { getMaintenance } from "../../api"
+import { format } from "date-fns"
 
 export function loader() {
     return defer({ maintenance: getMaintenance() })
@@ -55,7 +56,7 @@ export default function Maintenance() {
                     }}
                 >
                     <div className="maintenance-info">
-                        <h2>{task.due_date}</h2>
+                        <h2>{format(Date(task.due_date), "MMMM do, yyyy")}</h2>
                         <h3>{task.maintenance_name}</h3>
                         <h3>{task.maintenance_type}</h3>
                         <p><span>$</span>{task.cost}</p>
