@@ -45,9 +45,7 @@ export default function Maintenance() {
 
     function renderMaintenanceElements(maintenanceTasks) {
         const displayedMaintenanceTasks = maintenanceTasks
-        let currentDate = format(new Date(), 'MMMM do yyyy, h:mm:ss a');
-        console.log(currentDate);
-        
+
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
             <div key={task.id} className="maintenance-tile">
                 <Link
@@ -58,7 +56,7 @@ export default function Maintenance() {
                     }}
                 >
                     <div className="maintenance-info">
-                        <h2>{format(task.due_date, "MMMM do, yyyy")}</h2>
+                        <h2>{format(new Date(task.due_date_epoch * 1000), "MMMM do, yyyy")}</h2>
                         <h3>{task.maintenance_name}</h3>
                         <h3>{task.maintenance_type}</h3>
                         <p><span>$</span>{task.cost}</p>
