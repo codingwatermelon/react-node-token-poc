@@ -45,6 +45,8 @@ export default function Maintenance() {
 
     function renderMaintenanceElements(maintenanceTasks) {
         const displayedMaintenanceTasks = maintenanceTasks
+        const due_date = format(task.due_date, "MMMM do, yyyy")
+        console.log(due_date)
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
             <div key={task.id} className="maintenance-tile">
@@ -56,7 +58,7 @@ export default function Maintenance() {
                     }}
                 >
                     <div className="maintenance-info">
-                        <h2>{format(Date(task.due_date), "MMMM do, yyyy")}</h2>
+                        <h2>{due_date}</h2>
                         <h3>{task.maintenance_name}</h3>
                         <h3>{task.maintenance_type}</h3>
                         <p><span>$</span>{task.cost}</p>
