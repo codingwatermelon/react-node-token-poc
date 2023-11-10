@@ -6,7 +6,12 @@
     "react-router-dom": "6.4.3",
     "miragejs": "0.1.46",
     "react-icons": "^4.8.0",
-    "date-fns": "^2.30.0"
+    "date-fns": "^2.30.0",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/lab": "^5.0.0-alpha.88",
+    "@mui/material": "^5.8.6",
+    "@mui/system": "^5.8.6",
+    "@mui/utils": "^5.8.6"
   },
   "devDependencies": {
     "vite": "latest",

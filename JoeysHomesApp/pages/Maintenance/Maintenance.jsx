@@ -8,6 +8,10 @@ import {
 } from "react-router-dom"
 import { getMaintenance } from "../../api"
 import { format } from "date-fns"
+// material-ui
+import { styled, useTheme } from '@mui/material/styles';
+import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+
 
 export function loader() {
     return defer({ maintenance: getMaintenance() })
@@ -42,12 +46,14 @@ export default function Maintenance() {
                         type: typeFilter
                     }}
                 >
+                    <Box>
                     <div className="maintenance-info">
                         <h2>{format(new Date(task.due_date_epoch * 1000), "MMMM do, yyyy")}</h2>
                         <h3>{task.maintenance_name}</h3>
                         <h3>{task.maintenance_type}</h3>
                         <p><span>$</span>{task.cost}</p>
                     </div>
+                    </Box>
                 
                 </Link>
             </div>
