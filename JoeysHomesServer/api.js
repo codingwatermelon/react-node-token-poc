@@ -52,7 +52,7 @@ const getMaintenance = (maintenanceId) => {
       })
     }
     else {
-      pool.query('select maintenance_name, cost, maintenance_type, EXTRACT(EPOCH from due_date) as due_date_epoch from PropertiesMaintenance order by due_date desc', (error, results) => {
+      pool.query('select id, maintenance_name, cost, maintenance_type, EXTRACT(EPOCH from due_date) as due_date_epoch from PropertiesMaintenance order by due_date desc', (error, results) => {
         if (error) {
           reject(error)
         }
