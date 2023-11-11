@@ -60,7 +60,7 @@ export default function Maintenance() {
         const displayedMaintenanceTasks = maintenanceTasks
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
-            <div key={task.id} className="maintenance-tile">
+            <div key={task.id}>
                 <Link
                     to={task.id}
                     state={{
