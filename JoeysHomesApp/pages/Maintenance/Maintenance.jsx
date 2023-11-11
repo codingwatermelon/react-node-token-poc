@@ -83,7 +83,7 @@ export default function Maintenance() {
                     }}
                 >
                     <Box sx={boxSX}>
-                        <div className="maintenance-info">
+                        <div>
                             <h2>{format(new Date(task.due_date_epoch * 1000), "MMMM do, yyyy")}</h2>
                             <h3>{task.maintenance_name}</h3>
                             <h3>{task.maintenance_type}</h3>
