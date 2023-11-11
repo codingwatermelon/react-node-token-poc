@@ -51,7 +51,13 @@ export default function Maintenance() {
                         bgcolor: 'background.paper',
                         boxShadow: 1,
                         borderRadius: 2,
-                        minWidth: 1000,}}>
+                        width: {
+                            xs: 100, // theme.breakpoints.up('xs')
+                            sm: 200, // theme.breakpoints.up('sm')
+                            md: 300, // theme.breakpoints.up('md')
+                            lg: 400, // theme.breakpoints.up('lg')
+                            xl: 500, // theme.breakpoints.up('xl')
+                          },}}>
                     <div className="maintenance-info">
                         <h2>{format(new Date(task.due_date_epoch * 1000), "MMMM do, yyyy")}</h2>
                         <h3>{task.maintenance_name}</h3>
