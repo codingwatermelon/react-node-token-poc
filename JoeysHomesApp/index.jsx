@@ -16,7 +16,7 @@ import NotFound from "./pages/NotFound"
 import Layout from "./components/Layout"
 import Error from "./components/Error"
 //import { requireAuth } from "./utils"
-import Dashboard, { loader as dashboardLoader } from "./pages/Default/Dashboard"
+import Dashboard from "./pages/Default/Dashboard"
 import Income from "./pages/Default/Income"
 import DefaultLayout from "./components/DefaultLayout"
 
