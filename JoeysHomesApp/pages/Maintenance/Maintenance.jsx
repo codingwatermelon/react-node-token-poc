@@ -45,8 +45,7 @@ const boxSX = {
         xl: 500, // theme.breakpoints.up('xl')
     },
     "&:hover": {
-        backgroundColor: deepPurple[400],
-        transform: scale(1.3)
+        backgroundColor: deepPurple[400]
     }
 }
 
