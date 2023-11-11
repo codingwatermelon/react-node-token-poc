@@ -9,9 +9,31 @@ import {
 import { getMaintenance } from "../../api"
 import { format } from "date-fns"
 // material-ui
-import { styled, useTheme } from '@mui/material/styles';
+import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
+import { deepPurple } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
+const customTheme = createTheme({
+    palette: {
+      primary: {
+        main: deepPurple[500],
+      },
+    },
+  });
+
+const StyledBox = styled(Box)`
+  ${({ theme }) => `
+  cursor: pointer;
+  background-color: ${theme.palette.primary.main};
+  transition: ${theme.transitions.create(['background-color', 'transform'], {
+    duration: theme.transitions.duration.standard,
+  })};
+  &:hover {
+    background-color: ${theme.palette.secondary.main};
+    transform: scale(1.3);
+  }
+  `}
+`;
 
 export function loader() {
     return defer({ maintenance: getMaintenance() })
@@ -46,25 +68,28 @@ export default function Maintenance() {
                         type: typeFilter
                     }}
                 >
-                    <Box sx={{ 
-                        p: 2.25, 
-                        bgcolor: 'background.paper',
-                        boxShadow: 1,
-                        borderRadius: 2,
-                        width: {
-                            xs: 100, // theme.breakpoints.up('xs')
-                            sm: 200, // theme.breakpoints.up('sm')
-                            md: 300, // theme.breakpoints.up('md')
-                            lg: 400, // theme.breakpoints.up('lg')
-                            xl: 500, // theme.breakpoints.up('xl')
-                          },}}>
-                    <div className="maintenance-info">
-                        <h2>{format(new Date(task.due_date_epoch * 1000), "MMMM do, yyyy")}</h2>
-                        <h3>{task.maintenance_name}</h3>
-                        <h3>{task.maintenance_type}</h3>
-                        <p><span>$</span>{task.cost}</p>
-                    </div>
-                    </Box>
+                    <ThemeProvider theme={customTheme}>
+                        <StyledBox sx={{ 
+                            p: 2.25, 
+                            //bgcolor: 'background.paper',
+                            boxShadow: 1,
+                            borderRadius: 2,
+                            width: {
+                                xs: 100, // theme.breakpoints.up('xs')
+                                sm: 200, // theme.breakpoints.up('sm')
+                                md: 300, // theme.breakpoints.up('md')
+                                lg: 400, // theme.breakpoints.up('lg')
+                                xl: 500, // theme.breakpoints.up('xl')
+                            }
+                        }}>
+                        <div className="maintenance-info">
+                            <h2>{format(new Date(task.due_date_epoch * 1000), "MMMM do, yyyy")}</h2>
+                            <h3>{task.maintenance_name}</h3>
+                            <h3>{task.maintenance_type}</h3>
+                            <p><span>$</span>{task.cost}</p>
+                        </div>
+                        </StyledBox>
+                    </ThemeProvider>
                     
                 
                 </Link>
