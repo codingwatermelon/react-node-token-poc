@@ -30,12 +30,10 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route
         index
         element={<Dashboard />}
-        loader={dashboardLoader}
       />
       <Route
         path="income"
         element={<Income />}
-        
       />
     </Route>
     
