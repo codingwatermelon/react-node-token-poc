@@ -10,9 +10,13 @@ import { getMaintenance } from "../../api"
 import { format } from "date-fns"
 // material-ui
 import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
+// mui colors https://mui.com/material-ui/customization/color/
 import { blue } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
+// sx prop doc https://mui.com/system/getting-started/the-sx-prop/
+// box doc https://mui.com/material-ui/react-box/
+// mui template inspiration https://mui.com/store/previews/berry-react-material-admin-free/
 const boxSX = {
     p: 2.25, 
     bgcolor: blue[50],
@@ -25,9 +29,10 @@ const boxSX = {
         lg: 1200, // theme.breakpoints.up('lg')
         xl: 1400, // theme.breakpoints.up('xl')
     },
+    // zoom transition on hover https://stackoverflow.com/questions/64080401/how-to-enlarge-card-size-on-hovering-over-it-in-material-ui
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
-        backgroundColor: blue[300],
+        backgroundColor: blue[200],
         transform: "scale3d(1.05, 1.05, 1)"
     }
 }

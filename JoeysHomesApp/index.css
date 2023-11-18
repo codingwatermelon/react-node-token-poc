@@ -48,13 +48,13 @@ header .site-logo {
 
 header a {
     text-decoration: none;
-    color: #57c1f3;
+    color: #44646a;
     font-weight: 600;
     padding: 15px 15px;
 }
 
 header a:hover {
-    color: #318dbf;
+    color: #334a4e;
     text-decoration: underline;
 }
 
