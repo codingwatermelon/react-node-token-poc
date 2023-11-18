@@ -19,11 +19,11 @@ const boxSX = {
     boxShadow: 1,
     borderRadius: 2,
     width: {
-        xs: 400, // theme.breakpoints.up('xs')
-        sm: 500, // theme.breakpoints.up('sm')
-        md: 600, // theme.breakpoints.up('md')
-        lg: 700, // theme.breakpoints.up('lg')
-        xl: 800, // theme.breakpoints.up('xl')
+        xs: 800, // theme.breakpoints.up('xs')
+        sm: 900, // theme.breakpoints.up('sm')
+        md: 1000, // theme.breakpoints.up('md')
+        lg: 1200, // theme.breakpoints.up('lg')
+        xl: 1400, // theme.breakpoints.up('xl')
     },
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
