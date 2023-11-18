@@ -44,8 +44,10 @@ const boxSX = {
         lg: 400, // theme.breakpoints.up('lg')
         xl: 500, // theme.breakpoints.up('xl')
     },
+    transition: "transform 0.15s ease-in-out",
     "&:hover": {
-        backgroundColor: deepPurple[400]
+        backgroundColor: deepPurple[400],
+        transform: "scale3d(1.05, 1.05, 1)"
     }
 }
 
