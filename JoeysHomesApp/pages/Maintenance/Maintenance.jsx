@@ -26,7 +26,7 @@ const StyledBox = styled(Box)`
 
 const boxSX = {
     p: 2.25, 
-    //bgcolor: 'background.paper',
+    bgcolor: blue[50],
     boxShadow: 1,
     borderRadius: 2,
     width: {
@@ -38,7 +38,7 @@ const boxSX = {
     },
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
-        backgroundColor: blue[50],
+        backgroundColor: blue[300],
         transform: "scale3d(1.05, 1.05, 1)"
     }
 }
