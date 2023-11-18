@@ -7,6 +7,8 @@ import {
     Await
 } from "react-router-dom"
 import { getHouses } from "../../api"
+import { blue } from '@mui/material/colors';
+import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 const boxSX = {
     p: 2.25, 
