@@ -5,7 +5,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #FFF7ED;
+    background-color: #c4eefc;
     font-family: "Inter", sans-serif;
 }
 
@@ -47,13 +47,13 @@ header .site-logo {
 
 header a {
     text-decoration: none;
-    color: #4D4D4D;
+    color: #57c1f3;
     font-weight: 600;
     padding: 15px 15px;
 }
 
 header a:hover {
-    color: #9d3131;
+    color: #318dbf;
     text-decoration: underline;
 }
 
@@ -81,7 +81,7 @@ main {
 
 footer {
     background-color: #161616;
-    color: #AAAAAA;
+    color: #e6e6e6;
     height: 74px;
     display: flex;
     flex-shrink: 0;
@@ -145,7 +145,7 @@ footer {
     display: inline-block;
     text-align: center;
     text-decoration: none;
-    background-color: #FF8C38;
+    background-color: #57daf4;
     border: none;
     width: 100%;
     margin-top: 27px;
@@ -182,7 +182,7 @@ footer {
 }
 
 .about-page-cta {
-    background-color: #FFCC8D;
+    background-color: #57daf4;
     color: #161616;
     padding-inline: 32px;
     padding-bottom: 32px;
@@ -278,7 +278,7 @@ footer {
 }
 
 .maintenance-detail .link-button {
-    background-color: #FF8C38;
+    background-color: #57daf4;
     color: white;
     font-size: 1.125rem;
 }
@@ -328,13 +328,13 @@ footer {
     font-weight: 500;
     border: none;
     border-radius: 5px;
-    background-color: #FFEAD0;
+    background-color: #57daf4;
     color: #4D4D4D;
     transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .van-type:hover {
-    color: #FFEAD0;
+    color: #84ebff;
 }
 
 .van-type:focus {
@@ -342,15 +342,15 @@ footer {
 }
 
 .van-type.selected {
-    color: #FFEAD0;
+    color: #84ebff;
 }
 
 .van-type.simple:hover, .van-type.simple.selected {
-    background-color: #E17654;
+    background-color: #84ebff;
 }
 
 .van-type.rugged:hover, .van-type.rugged.selected {
-    background-color: #115E59;
+    background-color: #1daf7e;
 }
 
 .van-type.luxury:hover, .van-type.luxury.selected {
@@ -425,7 +425,7 @@ i[class*='van-type-'] {
 }
 
 .van-detail .link-button {
-    background-color: #FF8C38;
+    background-color: #84ebff;
     color: white;
     font-size: 1.125rem;
 }
@@ -612,7 +612,7 @@ i[class*='van-type-'] {
 }
 
 .login-form > button {
-    background-color: #FF8C38;
+    background-color: #84ebff;
     border: none;
     border-radius: 6px;
     height: 55px;
@@ -631,7 +631,7 @@ i[class*='van-type-'] {
 }
 
 .host-dashboard-earnings {
-    background-color: #ffead0;
+    background-color: #b1f2ff;
     padding: 37px 26px;
     display: flex;
     justify-content: space-between;
@@ -661,7 +661,7 @@ i[class*='van-type-'] {
 }
 
 .host-dashboard-reviews {
-    background-color: #ffddb2;
+    background-color: #84ebff;
     padding: 25px 26px;
     display: flex;
     align-items: center;
@@ -672,7 +672,7 @@ i[class*='van-type-'] {
 }
 
 .host-dashboard-reviews .star {
-    color: #ff8c38;
+    color: #84ebff;
     margin-left: 15px;
     font-size: 25px;
 }
@@ -821,14 +821,14 @@ img.graph {
 }
 
 .host-reviews .review-star {
-    color: #ff8c38;
+    color: #ffed84;
     margin-right: 5px;
 }
 
 
 .income-summary-red {
-    color: #da0000;
+    color: #be0000;
 }
 .income-summary-green {
-    color: #00d816;
+    color: #00c714;
 }
