@@ -13,14 +13,6 @@ import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styl
 import { blue } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
-const customTheme = createTheme({
-    palette: {
-      primary: {
-        main: deepPurple[500],
-      },
-    },
-  });
-
 const StyledBox = styled(Box)`
   ${({ theme }) => `
   cursor: pointer;
