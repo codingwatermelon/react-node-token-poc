@@ -10,7 +10,7 @@ import { getMaintenance } from "../../api"
 import { format } from "date-fns"
 // material-ui
 import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
-import { deepPurple } from '@mui/material/colors';
+import { blue } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 const customTheme = createTheme({
@@ -46,7 +46,7 @@ const boxSX = {
     },
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
-        backgroundColor: deepPurple[400],
+        backgroundColor: blue[100],
         transform: "scale3d(1.05, 1.05, 1)"
     }
 }
