@@ -19,9 +19,9 @@ const boxSX = {
     boxShadow: 1,
     borderRadius: 2,
     width: {
-        xs: 800, // theme.breakpoints.up('xs')
-        sm: 900, // theme.breakpoints.up('sm')
-        md: 1000, // theme.breakpoints.up('md')
+        xs: 700, // theme.breakpoints.up('xs')
+        sm: 800, // theme.breakpoints.up('sm')
+        md: 9000, // theme.breakpoints.up('md')
         lg: 1200, // theme.breakpoints.up('lg')
         xl: 1400, // theme.breakpoints.up('xl')
     },
