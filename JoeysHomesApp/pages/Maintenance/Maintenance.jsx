@@ -13,28 +13,17 @@ import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styl
 import { blue } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
-const StyledBox = styled(Box)`
-  ${({ theme }) => `
-  cursor: pointer;
-  background-color: ${theme.palette.primary.main};
-  transition: ${theme.transitions.create(['background-color', 'transform'], {
-    duration: theme.transitions.duration.standard,
-  })};
-  
-  `}
-`;
-
 const boxSX = {
     p: 2.25, 
     bgcolor: blue[50],
     boxShadow: 1,
     borderRadius: 2,
     width: {
-        xs: 100, // theme.breakpoints.up('xs')
-        sm: 200, // theme.breakpoints.up('sm')
-        md: 300, // theme.breakpoints.up('md')
-        lg: 400, // theme.breakpoints.up('lg')
-        xl: 500, // theme.breakpoints.up('xl')
+        xs: 400, // theme.breakpoints.up('xs')
+        sm: 500, // theme.breakpoints.up('sm')
+        md: 600, // theme.breakpoints.up('md')
+        lg: 700, // theme.breakpoints.up('lg')
+        xl: 800, // theme.breakpoints.up('xl')
     },
     transition: "transform 0.15s ease-in-out",
     "&:hover": {

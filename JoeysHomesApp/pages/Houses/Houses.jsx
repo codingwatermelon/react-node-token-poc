@@ -8,6 +8,24 @@ import {
 } from "react-router-dom"
 import { getHouses } from "../../api"
 
+const boxSX = {
+    p: 2.25, 
+    bgcolor: blue[50],
+    boxShadow: 1,
+    borderRadius: 2,
+    width: {
+        xs: 200, // theme.breakpoints.up('xs')
+        sm: 300, // theme.breakpoints.up('sm')
+        md: 400, // theme.breakpoints.up('md')
+        lg: 500 // theme.breakpoints.up('lg')
+    },
+    transition: "transform 0.15s ease-in-out",
+    "&:hover": {
+        backgroundColor: blue[300],
+        transform: "scale3d(1.05, 1.05, 1)"
+    }
+}
+
 export function loader() {
     return defer({ houses: getHouses() })
 }
@@ -51,14 +69,16 @@ export default function Houses() {
                     to={`${house.property_id}`}
                     relative="path"
                 >
-                    <div className="van-info">
-                        <h3>{house.property_address}</h3>
-                        <p>{house.property_description}</p>
-                        <p><span>$</span>{house.base_value}<span>K</span></p>
-                        <p>{house.purchase_date}</p>
-                        <p>{house.property_id}</p>
-                        <img src={house.image_path}/>
-                    </div>
+                    <Box sx={boxSX}>
+                        <div className="van-info">
+                            <h3>{house.property_address}</h3>
+                            <p>{house.property_description}</p>
+                            <p><span>$</span>{house.base_value}<span>K</span></p>
+                            <p>{house.purchase_date}</p>
+                            <p>{house.property_id}</p>
+                            <img src={house.image_path}/>
+                        </div>
+                    </Box>
                 
                 </Link>
             </div>
