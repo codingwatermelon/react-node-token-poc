@@ -13,7 +13,7 @@ import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styl
 // mui colors https://mui.com/material-ui/customization/color/
 import { blue } from '@mui/material/colors';
 import { Box, TextField } from '@mui/material';
-import List from "List"
+import List from "./List"
 
 // sx prop doc https://mui.com/system/getting-started/the-sx-prop/
 // box doc https://mui.com/material-ui/react-box/
