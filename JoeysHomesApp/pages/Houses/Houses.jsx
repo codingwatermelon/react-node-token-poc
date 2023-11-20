@@ -23,7 +23,7 @@ const boxSX = {
     },
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
-        backgroundColor: blue[300],
+        backgroundColor: blue[200],
         transform: "scale3d(1.05, 1.05, 1)"
     }
 }

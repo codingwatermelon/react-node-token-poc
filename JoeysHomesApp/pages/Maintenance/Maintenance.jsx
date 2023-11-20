@@ -1,4 +1,4 @@
-import React from "react"
+import { React, useState } from "react"
 import {
     Link,
     useSearchParams,
@@ -12,7 +12,8 @@ import { format } from "date-fns"
 import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 // mui colors https://mui.com/material-ui/customization/color/
 import { blue } from '@mui/material/colors';
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Box, TextField } from '@mui/material';
+import List from "List"
 
 // sx prop doc https://mui.com/system/getting-started/the-sx-prop/
 // box doc https://mui.com/material-ui/react-box/
@@ -59,6 +60,13 @@ export default function Maintenance() {
     }
 
     function renderMaintenanceElements(maintenanceTasks) {
+        const [inputText, setInputText] = useState("");
+        let inputHandler = (e) => {
+            //convert input text to lower case
+            var lowerCase = e.target.value.toLowerCase();
+            setInputText(lowerCase);
+        };
+
         const displayedMaintenanceTasks = maintenanceTasks
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
@@ -72,6 +80,7 @@ export default function Maintenance() {
                 >
                     <Box sx={boxSX}>
                         <div>
+                            
                             <h2>{format(new Date(task.due_date_epoch * 1000), "MMMM do, yyyy")}</h2>
                             <h3>{task.maintenance_name}</h3>
                             <h3>{task.maintenance_type}</h3>
@@ -115,6 +124,18 @@ export default function Maintenance() {
                     ) : null}
 
                 </div>
+
+                <div className="search">
+                    <TextField
+                        id="outlined-basic"
+                        onChange={inputHandler}
+                        variant="outlined"
+                        fullWidth
+                        label="Search"
+                    />
+                </div>
+                <List input={inputText} />
+
                 <div className="maintenance-list">
                     {maintenanceElements}
                 </div>
