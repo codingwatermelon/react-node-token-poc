@@ -13,12 +13,9 @@ import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styl
 // mui colors https://mui.com/material-ui/customization/color/
 import { blue } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
-
-import { useState } from "react";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
+import useState from "react";
 import TextField from "@mui/material/TextField";
-
+import List from "./List";
 
 // sx prop doc https://mui.com/system/getting-started/the-sx-prop/
 // box doc https://mui.com/material-ui/react-box/
@@ -66,50 +63,6 @@ export default function Maintenance() {
 
     function renderMaintenanceElements(maintenanceTasks) {
         const displayedMaintenanceTasks = maintenanceTasks
-        
-        const SearchBar = ({setSearchQuery}) => (
-            <form>
-              <TextField
-                id="search-bar"
-                className="text"
-                onInput={(e) => {
-                  setSearchQuery(e.target.value);
-                }}
-                label="Enter a city name"
-                variant="outlined"
-                placeholder="Search..."
-                size="small"
-              />
-              <IconButton type="submit" aria-label="search">
-                <SearchIcon style={{ fill: "blue" }} />
-              </IconButton>
-            </form>
-          );
-
-        const filterData = (query, data) => {
-            if (!query) {
-              return data;
-            } else {
-              return data.filter((d) => d.toLowerCase().includes(query));
-            }
-          };
-          
-        const data = [
-            "Paris",
-            "London",
-            "New York",
-            "Tokyo",
-            "Berlin",
-            "Buenos Aires",
-            "Cairo",
-            "Canberra",
-            "Rio de Janeiro",
-            "Dublin"
-        ];
-
-          
-        const [searchQuery, setSearchQuery] = useState("");
-        const dataFiltered = filterData(searchQuery, data);
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
             <div key={task.id}>
@@ -133,6 +86,13 @@ export default function Maintenance() {
             </div>
         ))
 
+        const [inputText, setInputText] = useState("");
+        let inputHandler = (e) => {
+            //convert input text to lower case
+            var lowerCase = e.target.value.toLowerCase();
+            setInputText(lowerCase);
+        };
+        
         return (
             <>
                 <div className="van-list-filter-buttons">
@@ -165,39 +125,22 @@ export default function Maintenance() {
                         >Clear filter</button>
                     ) : null}
 
-                <div
-                    style={{
-                        display: "flex",
-                        alignSelf: "center",
-                        justifyContent: "center",
-                        flexDirection: "column",
-                        padding: 20
-                    }}
-                    >
-                    <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-                    <div style={{ padding: 3 }}>
-                        {dataFiltered.map((d) => (
-                        <div
-                            className="text"
-                            style={{
-                            padding: 5,
-                            justifyContent: "normal",
-                            fontSize: 20,
-                            color: "blue",
-                            margin: 1,
-                            width: "250px",
-                            BorderColor: "green",
-                            borderWidth: "10px"
-                            }}
-                            key={d.id}
-                        >
-                            {d}
-                        </div>
-                        ))}
-                    </div>
                 </div>
 
+                <div className="main">
+                <h1>React Search</h1>
+                <div className="search">
+                    <TextField
+                    id="outlined-basic"
+                    onChange={inputHandler}
+                    variant="outlined"
+                    fullWidth
+                    label="Search"
+                    />
                 </div>
+                <List input={inputText} />
+                </div>
+
                 <div className="maintenance-list">
                     {maintenanceElements}
                 </div>
