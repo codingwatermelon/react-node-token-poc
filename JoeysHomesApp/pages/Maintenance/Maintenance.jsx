@@ -1,4 +1,4 @@
-import { React, useState } from "react"
+import React from "react"
 import {
     Link,
     useSearchParams,
@@ -12,9 +12,13 @@ import { format } from "date-fns"
 import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 // mui colors https://mui.com/material-ui/customization/color/
 import { blue } from '@mui/material/colors';
-import { Box, TextField } from '@mui/material';
-// https://salehmubashar.com/blog/create-a-search-bar-in-react-js
-import List from "./List"
+import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+
+import { useState } from "react";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
+
 
 // sx prop doc https://mui.com/system/getting-started/the-sx-prop/
 // box doc https://mui.com/material-ui/react-box/
@@ -61,14 +65,51 @@ export default function Maintenance() {
     }
 
     function renderMaintenanceElements(maintenanceTasks) {
-        const [inputText, setInputText] = useState("");
-        let inputHandler = (e) => {
-            //convert input text to lower case
-            var lowerCase = e.target.value.toLowerCase();
-            setInputText(lowerCase);
-        };
-
         const displayedMaintenanceTasks = maintenanceTasks
+        
+        const SearchBar = ({setSearchQuery}) => (
+            <form>
+              <TextField
+                id="search-bar"
+                className="text"
+                onInput={(e) => {
+                  setSearchQuery(e.target.value);
+                }}
+                label="Enter a city name"
+                variant="outlined"
+                placeholder="Search..."
+                size="small"
+              />
+              <IconButton type="submit" aria-label="search">
+                <SearchIcon style={{ fill: "blue" }} />
+              </IconButton>
+            </form>
+          );
+
+        const filterData = (query, data) => {
+            if (!query) {
+              return data;
+            } else {
+              return data.filter((d) => d.toLowerCase().includes(query));
+            }
+          };
+          
+        const data = [
+            "Paris",
+            "London",
+            "New York",
+            "Tokyo",
+            "Berlin",
+            "Buenos Aires",
+            "Cairo",
+            "Canberra",
+            "Rio de Janeiro",
+            "Dublin"
+        ];
+
+          
+        const [searchQuery, setSearchQuery] = useState("");
+        const dataFiltered = filterData(searchQuery, data);
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
             <div key={task.id}>
@@ -81,7 +122,6 @@ export default function Maintenance() {
                 >
                     <Box sx={boxSX}>
                         <div>
-                            
                             <h2>{format(new Date(task.due_date_epoch * 1000), "MMMM do, yyyy")}</h2>
                             <h3>{task.maintenance_name}</h3>
                             <h3>{task.maintenance_type}</h3>
@@ -92,6 +132,7 @@ export default function Maintenance() {
                 </Link>
             </div>
         ))
+
         return (
             <>
                 <div className="van-list-filter-buttons">
@@ -124,19 +165,39 @@ export default function Maintenance() {
                         >Clear filter</button>
                     ) : null}
 
+                <div
+                    style={{
+                        display: "flex",
+                        alignSelf: "center",
+                        justifyContent: "center",
+                        flexDirection: "column",
+                        padding: 20
+                    }}
+                    >
+                    <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+                    <div style={{ padding: 3 }}>
+                        {dataFiltered.map((d) => (
+                        <div
+                            className="text"
+                            style={{
+                            padding: 5,
+                            justifyContent: "normal",
+                            fontSize: 20,
+                            color: "blue",
+                            margin: 1,
+                            width: "250px",
+                            BorderColor: "green",
+                            borderWidth: "10px"
+                            }}
+                            key={d.id}
+                        >
+                            {d}
+                        </div>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="search">
-                    <TextField
-                        id="outlined-basic"
-                        onChange={inputHandler}
-                        variant="outlined"
-                        fullWidth
-                        label="Search"
-                    />
                 </div>
-                <List input={inputText} />
-
                 <div className="maintenance-list">
                     {maintenanceElements}
                 </div>
