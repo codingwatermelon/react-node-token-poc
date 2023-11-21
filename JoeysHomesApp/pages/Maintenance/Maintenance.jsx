@@ -14,7 +14,7 @@ import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styl
 import { blue } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { useState } from "react";
-// search https://dev.to/mar1anna/create-a-search-bar-with-react-and-material-ui-4he
+// search https://github.com/Saleh-Mubashar/React-Search/blob/master/App.js
 import TextField from "@mui/material/TextField";
 import List from "./List";
 
@@ -134,6 +134,13 @@ export default function Maintenance() {
 
     // Function to call renderMaintenanceElements
     function renderList(maintenance) {
+        const [inputText, setInputText] = useState("");
+        let inputHandler = (e) => {
+            //convert input text to lower case
+            var lowerCase = e.target.value.toLowerCase();
+            setInputText(lowerCase);
+        };
+
         <div className="main">
             <h1>React Search</h1>
                 <div className="search">
@@ -153,12 +160,7 @@ export default function Maintenance() {
         </div>
 
 
-    const [inputText, setInputText] = useState("");
-    let inputHandler = (e) => {
-        //convert input text to lower case
-        var lowerCase = e.target.value.toLowerCase();
-        setInputText(lowerCase);
-    };
+    
     }
 
 
