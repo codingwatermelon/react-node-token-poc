@@ -170,6 +170,7 @@ export default function Maintenance() {
             <React.Suspense fallback={<h2>Loading maintenance tasks...</h2>}>
                 <Await resolve={dataPromise.maintenance}>
                     {renderList}
+                    <h1>Test</h1>
                 </Await>
             </React.Suspense>
         </div>
