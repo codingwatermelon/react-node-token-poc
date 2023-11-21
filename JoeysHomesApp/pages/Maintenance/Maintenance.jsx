@@ -14,6 +14,7 @@ import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styl
 import { blue } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { useState } from "react";
+// search https://dev.to/mar1anna/create-a-search-bar-with-react-and-material-ui-4he
 import TextField from "@mui/material/TextField";
 import List from "./List";
 
@@ -61,8 +62,10 @@ export default function Maintenance() {
         })
     }
 
-    function renderMaintenanceElements(maintenanceTasks) {
-        const displayedMaintenanceTasks = maintenanceTasks
+    function renderMaintenanceElements(props) {
+        const displayedMaintenanceTasks = props.input 
+            ? props.maintenance.filter(task => task.maintenance_name.startsWith(props.input))
+            : props.maintenance
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
             <div key={task.id}>
@@ -85,13 +88,6 @@ export default function Maintenance() {
                 </Link>
             </div>
         ))
-
-        const [inputText, setInputText] = useState("");
-        let inputHandler = (e) => {
-            //convert input text to lower case
-            var lowerCase = e.target.value.toLowerCase();
-            setInputText(lowerCase);
-        };
         
         return (
             <>
@@ -124,21 +120,6 @@ export default function Maintenance() {
                             className="van-type clear-filters"
                         >Clear filter</button>
                     ) : null}
-
-                </div>
-
-                <div className="main">
-                <h1>React Search</h1>
-                <div className="search">
-                    <TextField
-                    id="outlined-basic"
-                    onChange={inputHandler}
-                    variant="outlined"
-                    fullWidth
-                    label="Search"
-                    />
-                </div>
-                <List input={inputText} />
                 </div>
 
                 <div className="maintenance-list">
@@ -148,12 +129,45 @@ export default function Maintenance() {
         )
     }
 
+    // TODO Conditionally render certain tasks when search bar is being used
+    // By default, show all tasks until search bar is being used
+
+    // Function to call renderMaintenanceElements
+    function renderList(maintenance) {
+        <div className="main">
+            <h1>React Search</h1>
+                <div className="search">
+                    <TextField
+                    id="outlined-basic"
+                    onChange={inputHandler}
+                    variant="outlined"
+                    fullWidth
+                    label="Search"
+                    />
+                </div>
+
+            <renderMaintenanceElements 
+                input={inputText} 
+                tasks={maintenance}
+            />
+        </div>
+
+
+    const [inputText, setInputText] = useState("");
+    let inputHandler = (e) => {
+        //convert input text to lower case
+        var lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    };
+    }
+
+
     return (
         <div className="maintenance-list-container">
             <h1>Maintenance page</h1>
             <React.Suspense fallback={<h2>Loading maintenance tasks...</h2>}>
                 <Await resolve={dataPromise.maintenance}>
-                    {renderMaintenanceElements}
+                    {renderList}
                 </Await>
             </React.Suspense>
         </div>

@@ -120,6 +120,10 @@ footer {
     transform: translate(1px, 1px);
 }
 
+.search {
+    width: 40%;
+}
+
 /*** HOME PAGE ***/
 .home-container {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)), url("./assets/images/home-hero.png") no-repeat center center;
