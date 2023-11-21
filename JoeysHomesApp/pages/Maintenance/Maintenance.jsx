@@ -141,25 +141,25 @@ export default function Maintenance() {
             setInputText(lowerCase);
         };
 
-        <div className="main">
-            <h1>React Search</h1>
-                <div className="search">
-                    <TextField
-                    id="outlined-basic"
-                    onChange={inputHandler}
-                    variant="outlined"
-                    fullWidth
-                    label="Search"
-                    />
-                </div>
+        return(
+            <div className="main">
+                <h1>React Search</h1>
+                    <div className="search">
+                        <TextField
+                        id="outlined-basic"
+                        onChange={inputHandler}
+                        variant="outlined"
+                        fullWidth
+                        label="Search"
+                        />
+                    </div>
 
-            <renderMaintenanceElements 
-                input={inputText} 
-                tasks={maintenance}
-            />
-        </div>
-
-
+                <renderMaintenanceElements 
+                    input={inputText} 
+                    tasks={maintenance}
+                />
+            </div>
+        );
     
     }
 
