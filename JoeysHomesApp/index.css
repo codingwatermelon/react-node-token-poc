@@ -334,8 +334,8 @@ footer {
     font-weight: 500;
     border: none;
     border-radius: 5px;
-    background-color: #1a7272;
-    color: #3b3b3b;
+    background-color: #009292;
+    color: #7a7a7a;
     transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
