@@ -98,18 +98,43 @@ export default function Maintenance() {
                 </Link>
             </div>
         ))
+
+        const filters = ["cosmetic", "scheduled", "preventative", "emergency"];
+        
+        const filterButtons = filters.map(filter => (
+            <div key={filter}>
+                <button
+                    onClick={() => handleFilterChange("type", "simple")}
+                    className={
+                        `van-type simple 
+                    ${typeFilter === filter ? "selected" : ""}`
+                    }
+                >{filter}</button>
+            </div>
+        ))
+
         return (
             <>
-                <h1>React Search</h1>
-                    <div className="search">
-                        <TextField
-                            id="outlined-basic"
-                            onChange={inputHandler}
-                            variant="outlined"
-                            fullWidth
-                            label="Search"
-                        />
-                    </div>
+                <div className="search">
+                    <TextField
+                        id="outlined-basic"
+                        onChange={inputHandler}
+                        variant="outlined"
+                        fullWidth
+                        label="Search"
+                    />
+                </div>
+                <div className="van-list-filter-buttons">
+
+                    {filterButtons}
+                    
+                    {typeFilter ? (
+                        <button
+                            onClick={() => handleFilterChange("type", null)}
+                            className="van-type clear-filters"
+                        >Clear filter</button>
+                    ) : null}
+                </div>
                 <div className="maintenance-list">
                     {maintenanceElements}
                 </div>
