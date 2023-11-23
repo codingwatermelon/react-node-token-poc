@@ -89,7 +89,8 @@ export default function Maintenance() {
 
         const displayedMaintenanceTasks = typeFilter
             ? maintenanceTasks
-                .filter(task => task.maintenance_name.toLowerCase().startsWith(inputText) && task.maintenance_type === typeFilter)
+                .filter(task => task.maintenance_name.toLowerCase().startsWith(inputText)
+                .filter(task => task.maintenance_type === typeFilter))
             : maintenanceTasks
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
