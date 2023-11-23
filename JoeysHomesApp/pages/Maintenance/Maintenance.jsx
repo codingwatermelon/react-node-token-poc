@@ -80,7 +80,7 @@ export default function Maintenance() {
                 <button
                     onClick={() => handleFilterChange("type", filter)}
                     className={
-                        `van-type simple 
+                        `house-type ${filter} 
                     ${typeFilter === filter ? "selected" : ""}`
                     }
                 >{filter}</button>
@@ -127,14 +127,14 @@ export default function Maintenance() {
                         label="Search"
                     />
                 </div>
-                <div className="van-list-filter-buttons">
+                <div className="house-list-filter-buttons">
 
                     {filterButtons}
                     
                     {typeFilter ? (
                         <button
                             onClick={() => handleFilterChange("type", null)}
-                            className="van-type clear-filters"
+                            className="house-type clear-filters"
                         >Clear filter</button>
                     ) : null}
                 </div>

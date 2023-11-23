@@ -23,8 +23,8 @@ export default function HouseDetail() {
         const displayedHouses = house
 
         const houseElements = displayedHouses.map(house => (
-            <div key={house.property_id} className="van-tile">
-                <div className="van-info">
+            <div key={house.property_id} className="house-tile">
+                <div className="house-info">
                     <h3>{house.property_address}</h3>
                     <p>{house.property_description}</p>
                     <p><span>$</span>{house.base_value}<span>K</span></p>
@@ -38,14 +38,14 @@ export default function HouseDetail() {
         const type = location.state?.type || "all";
     
         return (
-            <div className="van-detail-container">
+            <div className="house-detail-container">
                 <Link
                     to={`..${search}`}
                     relative="path"
                     className="back-button"
                 >&larr; <span>Back to {type} houses</span></Link>
     
-                <div className="van-detail">
+                <div className="house-detail">
                     {houseElements}
                 </div>
     
@@ -54,7 +54,7 @@ export default function HouseDetail() {
     }
 
     return (
-        <div className="van-list-container">
+        <div className="house-list-container">
             <React.Suspense fallback={<h2>Loading house...</h2>}>
                 <Await resolve={dataPromise.house}>
                     {renderHouseElements}

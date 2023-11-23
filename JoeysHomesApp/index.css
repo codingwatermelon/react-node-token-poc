@@ -288,21 +288,22 @@ footer {
     font-size: 1.125rem;
 }
 
-/*** VAN PAGES ***/
-.van-list-container {
+/*** house PAGES ***/
+.house-list-container {
     padding-inline: 5px
 }
 
-.van-list-filter-buttons {
+.house-list-filter-buttons {
     display: flex;
     flex-wrap: wrap;
+    padding: 5px;
 }
 
-.van-list-filter-buttons > a {
+.house-list-filter-buttons > a {
     margin-right: 15px;
 }
 
-.van-list {
+.house-list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
@@ -311,22 +312,22 @@ footer {
     padding: 30px;
 }
 
-.van-tile a {
+.house-tile a {
     color: #161616;
     text-decoration: none;    
 }
 
-.van-tile img {
+.house-tile img {
     max-width: 75%;
     border-radius: 5px;
 }
 
-.van-list-container button {
+.house-list-container button {
     margin-right: 20px;
     cursor: pointer;
 }
 
-.van-type {
+.house-type {
     height: 34px;
     padding: 6px 26px;
     font-style: normal;
@@ -338,31 +339,31 @@ footer {
     transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.van-type:hover {
+.house-type:hover {
     color: #84ebff;
 }
 
-.van-type:focus {
+.house-type:focus {
     outline: none;
 }
 
-.van-type.selected {
+.house-type.selected {
     color: #84ebff;
 }
 
-.van-type.simple:hover, .van-type.simple.selected {
+.house-type.simple:hover, .house-type.simple.selected {
     background-color: #84ebff;
 }
 
-.van-type.rugged:hover, .van-type.rugged.selected {
+.house-type.rugged:hover, .house-type.rugged.selected {
     background-color: #1daf7e;
 }
 
-.van-type.luxury:hover, .van-type.luxury.selected {
+.house-type.luxury:hover, .house-type.luxury.selected {
     background-color: #161616;
 }
 
-.van-type.clear-filters {
+.house-type.clear-filters {
     margin-left: -20px;
     height: 34px;
     padding: 6px 26px;
@@ -375,34 +376,34 @@ footer {
     color: #4D4D4D;
 }
 
-i[class*='van-type-'] {
+i[class*='house-type-'] {
     padding: 7px 14px;
 }
 
-.van-detail-container {
+.house-detail-container {
     padding-inline: 27px;
 }
 
-.van-detail-container .back-button {
+.house-detail-container .back-button {
     color: black;
     text-decoration: none;
 }
 
-.van-detail-container .back-button:visited {
+.house-detail-container .back-button:visited {
     
 }
 
-.van-detail-container .back-button span {
+.house-detail-container .back-button span {
     text-decoration: underline;
 }
 
-.van-detail {
+.house-detail {
     display: flex;
     flex-direction: column;
     color: #161616;
 }
 
-.van-detail img {
+.house-detail img {
     border-radius: 5px;
     margin-block: 47px;
     max-width: 50%;
@@ -410,26 +411,26 @@ i[class*='van-type-'] {
     align-items: center;
 }
 
-.van-detail h2 {
+.house-detail h2 {
     font-size: 2rem;
     margin-bottom: 10px;
 }
 
-.van-detail > i {
+.house-detail > i {
     align-self: flex-start;
 }
 
-.van-detail .van-price {
+.house-detail .house-price {
     font-size: 1.25rem;
     margin-bottom: 10px;
 }
 
-.van-detail .van-price span {
+.house-detail .house-price span {
     font-weight: 700;
     font-size: 1.5rem;
 }
 
-.van-detail .link-button {
+.house-detail .link-button {
     background-color: #84ebff;
     color: white;
     font-size: 1.125rem;
@@ -453,20 +454,20 @@ i[class*='van-type-'] {
     font-weight: 600;
 }
 
-.host-van-link-wrapper {
+.host-house-link-wrapper {
     color: unset;
     text-decoration: unset;
 }
 
-.host-vans-list {
+.host-houses-list {
     padding-inline: 10px;
 }
 
-.host-vans-title {
+.host-houses-title {
     padding-inline: 15px;
 }
 
-.host-van-single {
+.host-house-single {
     display: grid;
     align-items: center;
     background-color: white;
@@ -475,64 +476,64 @@ i[class*='van-type-'] {
     padding-left: 10px;
 }
 
-.host-van-single-img {
+.host-house-single-img {
     height: 100px;
     border-radius: 5px;
     margin-right: 17px;
 }
 
-.host-van-info h3 {
+.host-house-info h3 {
     font-size: 20px;
     font-weight: 600;
     margin-block: 10px;
 }
 
-.host-van-info p {
+.host-house-info p {
     margin-block: 10px;
 }
 
-.host-van-detail-layout-container {
+.host-house-detail-layout-container {
     background-color: white;
     padding: 24px;
     margin: 30px 26px;
 }
 
-.host-van-detail {
+.host-house-detail {
     display: flex;
     align-items: center;
 }
 
-.host-van-detail > img {
+.host-house-detail > img {
     height: 160px;
     border-radius: 5px;
     margin-right: 20px;
 }
 
-.host-van-detail-info-text > h3 {
+.host-house-detail-info-text > h3 {
     margin-top: 24px;
     margin-bottom: 5px;
     font-size: 26px;
     font-weight: 700;
 }
 
-.host-van-detail-info-text > h4 {
+.host-house-detail-info-text > h4 {
     font-size: 20px;
     margin-block: 0;
 }
 
-.host-van-detail-nav {
+.host-house-detail-nav {
     display: flex;
     margin-block: 25px;
 }
 
-.host-van-detail-nav a {
+.host-house-detail-nav a {
     text-decoration: none;
     color: #4D4D4D;
     font-weight: 500;
     padding: 5px 20px;
 }
 
-.host-van-detail-nav a:first-of-type {
+.host-house-detail-nav a:first-of-type {
     text-decoration: none;
     color: #4D4D4D;
     font-weight: 500;
@@ -540,32 +541,32 @@ i[class*='van-type-'] {
     margin-left: -15px;
 }
 
-.host-van-detail-nav a:hover {
+.host-house-detail-nav a:hover {
     color: #161616;
     text-decoration: underline;
     font-weight: 700;
 }
 
-.host-van-detail-info > h4 {
+.host-house-detail-info > h4 {
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
 }
-.host-van-detail-info > h4 > span {
+.host-house-detail-info > h4 > span {
     font-weight: 500;
 }
 
-.host-van-price {
+.host-house-price {
     font-size: 24px;
     font-weight: 500;
 }
 
-.host-van-price > span {
+.host-house-price > span {
     font-size: 16px;
     color: #4D4D4D;
 }
 
-.host-van-detail-image {
+.host-house-detail-image {
     height: 100px;
     border-radius: 5px;
 }
@@ -694,17 +695,17 @@ i[class*='van-type-'] {
     color: #161616;
 }
 
-.host-dashboard-vans {
+.host-dashboard-houses {
     padding: 38px 26px;
 }
 
-.host-dashboard-vans > .top {
+.host-dashboard-houses > .top {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.host-dashboard-vans .host-vans-list {
+.host-dashboard-houses .host-houses-list {
     padding-inline: 0;
 }
 

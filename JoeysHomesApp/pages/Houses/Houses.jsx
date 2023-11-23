@@ -66,13 +66,13 @@ export default function Houses() {
         const displayedHouses = houses
 
         const houseElements = displayedHouses.map(house => (
-            <div key={house.property_id} className="van-tile">
+            <div key={house.property_id} className="house-tile">
                 <Link
                     to={`${house.property_id}`}
                     relative="path"
                 >
                     <Box sx={boxSX}>
-                        <div className="van-info">
+                        <div className="house-info">
                             <h3>{house.property_address}</h3>
                             <p>{house.property_description}</p>
                             <p><span>$</span>{house.base_value}<span>K</span></p>
@@ -87,25 +87,25 @@ export default function Houses() {
         ))
         return (
             <>
-                <div className="van-list-filter-buttons">
+                <div className="house-list-filter-buttons">
                     <button
                         onClick={() => handleFilterChange("type", "simple")}
                         className={
-                            `van-type simple 
+                            `house-type simple 
                         ${typeFilter === "simple" ? "selected" : ""}`
                         }
                     >Simple</button>
                     <button
                         onClick={() => handleFilterChange("type", "luxury")}
                         className={
-                            `van-type luxury 
+                            `house-type luxury 
                         ${typeFilter === "luxury" ? "selected" : ""}`
                         }
                     >Luxury</button>
                     <button
                         onClick={() => handleFilterChange("type", "rugged")}
                         className={
-                            `van-type rugged 
+                            `house-type rugged 
                         ${typeFilter === "rugged" ? "selected" : ""}`
                         }
                     >Rugged</button>
@@ -113,12 +113,12 @@ export default function Houses() {
                     {typeFilter ? (
                         <button
                             onClick={() => handleFilterChange("type", null)}
-                            className="van-type clear-filters"
+                            className="house-type clear-filters"
                         >Clear filter</button>
                     ) : null}
 
                 </div>
-                <div className="van-list">
+                <div className="house-list">
                     {houseElements}
                 </div>
             </>
@@ -126,7 +126,7 @@ export default function Houses() {
     }
 
     return (
-        <div className="van-list-container">
+        <div className="house-list-container">
             <h1>Houses</h1>
             <React.Suspense fallback={<h2>Loading houses...</h2>}>
                 <Await resolve={dataPromise.houses}>
