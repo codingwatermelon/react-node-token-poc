@@ -9,10 +9,9 @@ import {
 import { getMaintenance } from "../../api"
 import { format } from "date-fns"
 // material-ui
-import { styled, useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 // mui colors https://mui.com/material-ui/customization/color/
 import { blue } from '@mui/material/colors';
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { useState } from "react";
 // search https://github.com/Saleh-Mubashar/React-Search/blob/master/App.js
 import TextField from "@mui/material/TextField";
@@ -61,9 +60,6 @@ export default function Maintenance() {
         })
     }
 
-    // TODO Conditionally render certain tasks when search bar is being used
-    // By default, show all tasks until search bar is being used
-
     // Function to call renderMaintenanceElements
     function renderMaintenanceElements(maintenanceTasks) {
         const [inputText, setInputText] = useState("");
@@ -87,11 +83,13 @@ export default function Maintenance() {
             </div>
         ))
 
+        // filter by search text
         let displayedMaintenanceTasks = maintenanceTasks
             ? maintenanceTasks
                 .filter(task => task.maintenance_name.toLowerCase().startsWith(inputText))
             : maintenanceTasks
 
+        // filter by type (via filter buttons)
         displayedMaintenanceTasks = typeFilter
           ? displayedMaintenanceTasks
               .filter(task => task.maintenance_type === typeFilter)
@@ -120,7 +118,6 @@ export default function Maintenance() {
         ))
 
         
-
         return (
             <>
                 <div className="search">

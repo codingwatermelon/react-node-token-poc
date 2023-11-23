@@ -63,7 +63,25 @@ export default function Houses() {
     }
 
     function renderHouseElements(houses) {
+
+        const filters = ["TBD", "TBD", "TBD", "TBD"];
+
+        const filterButtons = filters.map(filter => (
+            <div key={filter}>
+                <button
+                    onClick={() => handleFilterChange("type", filter)}
+                    className={
+                        `house-type ${filter} 
+                    ${typeFilter === filter ? "selected" : ""}`
+                    }
+                >{filter}</button>
+            </div>
+        ))
+
         const displayedHouses = houses
+            ? houses
+                .filter(house => house.property_address === typeFilter)
+            : houses
 
         const houseElements = displayedHouses.map(house => (
             <div key={house.property_id} className="house-tile">
@@ -76,8 +94,6 @@ export default function Houses() {
                             <h3>{house.property_address}</h3>
                             <p>{house.property_description}</p>
                             <p><span>$</span>{house.base_value}<span>K</span></p>
-                            <p>{house.purchase_date}</p>
-                            <p>{house.property_id}</p>
                             <img src={house.image_path}/>
                         </div>
                     </Box>
@@ -85,30 +101,12 @@ export default function Houses() {
                 </Link>
             </div>
         ))
+        
         return (
             <>
                 <div className="house-list-filter-buttons">
-                    <button
-                        onClick={() => handleFilterChange("type", "simple")}
-                        className={
-                            `house-type simple 
-                        ${typeFilter === "simple" ? "selected" : ""}`
-                        }
-                    >Simple</button>
-                    <button
-                        onClick={() => handleFilterChange("type", "luxury")}
-                        className={
-                            `house-type luxury 
-                        ${typeFilter === "luxury" ? "selected" : ""}`
-                        }
-                    >Luxury</button>
-                    <button
-                        onClick={() => handleFilterChange("type", "rugged")}
-                        className={
-                            `house-type rugged 
-                        ${typeFilter === "rugged" ? "selected" : ""}`
-                        }
-                    >Rugged</button>
+                    
+                    {filterButtons}
 
                     {typeFilter ? (
                         <button
