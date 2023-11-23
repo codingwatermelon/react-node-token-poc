@@ -340,7 +340,7 @@ footer {
 }
 
 .house-type:hover {
-    color: #84ebff;
+    color: #1d6776;
 }
 
 .house-type:focus {
@@ -348,7 +348,7 @@ footer {
 }
 
 .house-type.selected {
-    color: #36464a;
+    color: #104a58;
 }
 
 .house-type.simple:hover, .house-type.simple.selected {
