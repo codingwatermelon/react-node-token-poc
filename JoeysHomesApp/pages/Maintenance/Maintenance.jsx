@@ -93,9 +93,9 @@ export default function Maintenance() {
             : maintenanceTasks
 
         displayedMaintenanceTasks = typeFilter
-          ? maintenanceTasks
+          ? displayedMaintenanceTasks
               .filter(task => task.maintenance_type === typeFilter)
-           : maintenanceTasks
+           : displayedMaintenanceTasks
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
             <div key={task.id}>
