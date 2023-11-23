@@ -87,7 +87,7 @@ export default function Maintenance() {
             </div>
         ))
 
-        const displayedMaintenanceTasks = maintenanceTasks
+        const displayedMaintenanceTasks = typeFilter
             ? maintenanceTasks
                 .filter(task => task.maintenance_name.toLowerCase().startsWith(inputText) && task.maintenance_type === typeFilter)
             : maintenanceTasks
