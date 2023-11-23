@@ -100,15 +100,13 @@ export default function Maintenance() {
         ))
 
         return(
-            <div className="main">
-                <h1>React Search</h1>
-                    
+
                 <>
                     <div className="maintenance-list">
                         {maintenanceElements}
                     </div>
                 </>
-            </div>
+            
         );
     
     }
