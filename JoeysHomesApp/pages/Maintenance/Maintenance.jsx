@@ -100,11 +100,11 @@ export default function Maintenance() {
         ))
 
         const filters = ["cosmetic", "scheduled", "preventative", "emergency"];
-        
+
         const filterButtons = filters.map(filter => (
             <div key={filter}>
                 <button
-                    onClick={() => handleFilterChange("type", "simple")}
+                    onClick={() => handleFilterChange("type", filter)}
                     className={
                         `van-type simple 
                     ${typeFilter === filter ? "selected" : ""}`
