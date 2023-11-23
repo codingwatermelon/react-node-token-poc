@@ -78,10 +78,11 @@ export default function Houses() {
             </div>
         ))
 
+        //const displayedHouses = houses
+        //    ? houses
+        //        .filter(house => house.property_address === typeFilter)
+        //    : houses
         const displayedHouses = houses
-            ? houses
-                .filter(house => house.property_address === typeFilter)
-            : houses
 
         const houseElements = displayedHouses.map(house => (
             <div key={house.property_id} className="house-tile">
