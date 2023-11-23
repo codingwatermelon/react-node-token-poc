@@ -64,7 +64,7 @@ export default function Houses() {
 
     function renderHouseElements(houses) {
 
-        const filters = ["TBD", "TBD", "TBD", "TBD"];
+        const filters = ["TBD1", "TBD2", "TBD3", "TBD4"];
 
         const filterButtons = filters.map(filter => (
             <div key={filter}>
@@ -101,7 +101,7 @@ export default function Houses() {
                 </Link>
             </div>
         ))
-        
+
         return (
             <>
                 <div className="house-list-filter-buttons">
