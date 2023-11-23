@@ -65,18 +65,9 @@ export default function Maintenance() {
     // By default, show all tasks until search bar is being used
 
     // Function to call renderMaintenanceElements
-    function renderList(maintenanceTasks) {
-        //const [inputText, setInputText] = useState("");
-        //let inputHandler = (e) => {
-        //    //convert input text to lower case
-        //    var lowerCase = e.target.value.toLowerCase();
-        //    setInputText(lowerCase);
-        //};
-
+    function renderMaintenanceElements(maintenanceTasks) {
         const displayedMaintenanceTasks = maintenanceTasks
-        //    ? props.maintenance.filter(task => task.maintenance_name.startsWith(TODOprops.input))
-        //    : props.maintenance
-    
+
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
             <div key={task.id}>
                 <Link
@@ -98,27 +89,52 @@ export default function Maintenance() {
                 </Link>
             </div>
         ))
+        return (
+            <>
+                <div className="van-list-filter-buttons">
+                    <button
+                        onClick={() => handleFilterChange("type", "simple")}
+                        className={
+                            `van-type simple 
+                        ${typeFilter === "simple" ? "selected" : ""}`
+                        }
+                    >Simple</button>
+                    <button
+                        onClick={() => handleFilterChange("type", "luxury")}
+                        className={
+                            `van-type luxury 
+                        ${typeFilter === "luxury" ? "selected" : ""}`
+                        }
+                    >Luxury</button>
+                    <button
+                        onClick={() => handleFilterChange("type", "rugged")}
+                        className={
+                            `van-type rugged 
+                        ${typeFilter === "rugged" ? "selected" : ""}`
+                        }
+                    >Rugged</button>
 
-        return(
+                    {typeFilter ? (
+                        <button
+                            onClick={() => handleFilterChange("type", null)}
+                            className="van-type clear-filters"
+                        >Clear filter</button>
+                    ) : null}
 
-                <>
-                    <div className="maintenance-list">
-                        {maintenanceElements}
-                    </div>
-                </>
-            
-        );
-    
+                </div>
+                <div className="maintenance-list">
+                    {maintenanceElements}
+                </div>
+            </>
+        )
     }
-
 
     return (
         <div className="maintenance-list-container">
             <h1>Maintenance page</h1>
             <React.Suspense fallback={<h2>Loading maintenance tasks...</h2>}>
                 <Await resolve={dataPromise.maintenance}>
-                    {renderList}
-                    <h1>Test</h1>
+                    {renderMaintenanceElements}
                 </Await>
             </React.Suspense>
         </div>
