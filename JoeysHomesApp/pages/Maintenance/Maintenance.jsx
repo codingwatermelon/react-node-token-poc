@@ -73,8 +73,23 @@ export default function Maintenance() {
             setInputText(lowerCase);
         };
 
+        const filters = ["cosmetic", "scheduled", "preventative", "emergency"];
+
+        const filterButtons = filters.map(filter => (
+            <div key={filter}>
+                <button
+                    onClick={() => handleFilterChange("type", filter)}
+                    className={
+                        `van-type simple 
+                    ${typeFilter === filter ? "selected" : ""}`
+                    }
+                >{filter}</button>
+            </div>
+        ))
+
         const displayedMaintenanceTasks = maintenanceTasks
-            ? maintenanceTasks.filter(task => task.maintenance_name.toLowerCase().startsWith(inputText))
+            ? maintenanceTasks
+                .filter(task => task.maintenance_name.toLowerCase().startsWith(inputText) && task.maintenance_type === typeFilter)
             : maintenanceTasks
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
@@ -99,19 +114,7 @@ export default function Maintenance() {
             </div>
         ))
 
-        const filters = ["cosmetic", "scheduled", "preventative", "emergency"];
-
-        const filterButtons = filters.map(filter => (
-            <div key={filter}>
-                <button
-                    onClick={() => handleFilterChange("type", filter)}
-                    className={
-                        `van-type simple 
-                    ${typeFilter === filter ? "selected" : ""}`
-                    }
-                >{filter}</button>
-            </div>
-        ))
+        
 
         return (
             <>
