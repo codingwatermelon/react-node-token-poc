@@ -66,13 +66,39 @@ export default function Maintenance() {
     // By default, show all tasks until search bar is being used
 
     // Function to call renderMaintenanceElements
-    function renderList(maintenance) {
+    function renderList(maintenanceTasks) {
         const [inputText, setInputText] = useState("");
         let inputHandler = (e) => {
             //convert input text to lower case
             var lowerCase = e.target.value.toLowerCase();
             setInputText(lowerCase);
         };
+
+        const displayedMaintenanceTasks = maintenanceTasks
+            ? props.maintenance.filter(task => task.maintenance_name.startsWith(props.input))
+            : props.maintenance
+    
+        const maintenanceElements = displayedMaintenanceTasks.map(task => (
+            <div key={task.id}>
+                <Link
+                    to={task.id}
+                    state={{
+                        search: `?${searchParams.toString()}`,
+                        type: typeFilter
+                    }}
+                >
+                    <Box sx={boxSX}>
+                        <div>
+                            <h2>{format(new Date(task.due_date_epoch * 1000), "MMMM do, yyyy")}</h2>
+                            <h3>{task.maintenance_name}</h3>
+                            <h3>{task.maintenance_type}</h3>
+                            <p><span>$</span>{task.cost}</p>
+                        </div>
+                    </Box>
+                
+                </Link>
+            </div>
+        ))
 
         return(
             <div className="main">
@@ -86,11 +112,11 @@ export default function Maintenance() {
                         label="Search"
                         />
                     </div>
-
-                <renderMaintenanceElements 
-                    input={inputText} 
-                    tasks={maintenance}
-                />
+                <>
+                    <div className="maintenance-list">
+                        {maintenanceElements}
+                    </div>
+                </>
             </div>
         );
     
