@@ -334,8 +334,8 @@ footer {
     font-weight: 500;
     border: none;
     border-radius: 5px;
-    background-color: #57daf4;
-    color: #4D4D4D;
+    background-color: #a6aaaa;
+    color: #2f2f2f;
     transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -348,7 +348,7 @@ footer {
 }
 
 .house-type.selected {
-    color: #84ebff;
+    color: #36464a;
 }
 
 .house-type.simple:hover, .house-type.simple.selected {
