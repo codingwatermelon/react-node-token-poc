@@ -89,8 +89,8 @@ export default function Maintenance() {
 
         const displayedMaintenanceTasks = typeFilter
             ? maintenanceTasks
-                .filter(task => task.maintenance_name.toLowerCase().startsWith(inputText)
-                .filter(task => task.maintenance_type === typeFilter))
+                .filter(task => task.maintenance_name.toLowerCase().startsWith(inputText))
+                .filter(task => task.maintenance_type === typeFilter)
             : maintenanceTasks
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
@@ -125,7 +125,7 @@ export default function Maintenance() {
                         onChange={inputHandler}
                         variant="outlined"
                         fullWidth
-                        label="Search"
+                        label="Search by task name"
                     />
                 </div>
                 <div className="house-list-filter-buttons">
