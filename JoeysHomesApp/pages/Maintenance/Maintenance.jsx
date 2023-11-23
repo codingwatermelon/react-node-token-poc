@@ -66,15 +66,15 @@ export default function Maintenance() {
 
     // Function to call renderMaintenanceElements
     function renderList(maintenanceTasks) {
-        const [inputText, setInputText] = useState("");
-        let inputHandler = (e) => {
-            //convert input text to lower case
-            var lowerCase = e.target.value.toLowerCase();
-            setInputText(lowerCase);
-        };
+        //const [inputText, setInputText] = useState("");
+        //let inputHandler = (e) => {
+        //    //convert input text to lower case
+        //    var lowerCase = e.target.value.toLowerCase();
+        //    setInputText(lowerCase);
+        //};
 
         const displayedMaintenanceTasks = maintenanceTasks
-        //    ? props.maintenance.filter(task => task.maintenance_name.startsWith(props.input))
+        //    ? props.maintenance.filter(task => task.maintenance_name.startsWith(TODOprops.input))
         //    : props.maintenance
     
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
@@ -102,15 +102,7 @@ export default function Maintenance() {
         return(
             <div className="main">
                 <h1>React Search</h1>
-                    <div className="search">
-                        <TextField
-                        id="outlined-basic"
-                        onChange={inputHandler}
-                        variant="outlined"
-                        fullWidth
-                        label="Search"
-                        />
-                    </div>
+                    
                 <>
                     <div className="maintenance-list">
                         {maintenanceElements}
