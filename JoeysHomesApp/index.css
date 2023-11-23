@@ -335,12 +335,12 @@ footer {
     border: none;
     border-radius: 5px;
     background-color: #009292;
-    color: #7a7a7a;
+    color: #1d6776;
     transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .house-type:hover {
-    color: #1d6776;
+    color: #123f48;
 }
 
 .house-type:focus {
