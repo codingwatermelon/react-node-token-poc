@@ -74,6 +74,9 @@ export default function Maintenance() {
         };
 
         const displayedMaintenanceTasks = maintenanceTasks
+            ? maintenanceTasks.filter(task => task.maintenance_name.startsWith(inputText))
+            : maintenanceTasks
+    
 
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
             <div key={task.id}>
