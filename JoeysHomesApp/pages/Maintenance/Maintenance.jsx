@@ -16,11 +16,6 @@ import { useState } from "react";
 // search https://github.com/Saleh-Mubashar/React-Search/blob/master/App.js
 import TextField from "@mui/material/TextField";
 
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
 // sx prop doc https://mui.com/system/getting-started/the-sx-prop/
 // box doc https://mui.com/material-ui/react-box/
 // mui template inspiration https://mui.com/store/previews/berry-react-material-admin-free/
@@ -64,12 +59,6 @@ export default function Maintenance() {
             return prevParams
         })
     }
-
-    const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-      };
 
     // Function to call renderMaintenanceElements
     function renderMaintenanceElements(maintenanceTasks) {
@@ -131,20 +120,6 @@ export default function Maintenance() {
         
         return (
             <>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={age}
-                        label="Age"
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
                 <div className="search">
                     <TextField
                         id="outlined-basic"
