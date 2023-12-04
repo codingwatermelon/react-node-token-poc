@@ -57,13 +57,10 @@ app.get("/api/maintenance/:id", (req, res) => {
     })
 })
 
-app.post("/login", (req, res) => {
+app.post("/api/login", (req, res) => {
   // TODO Use hashed version of password here
   const { email, password } = JSON.parse(req.requestBody)
 
-  // This is an extremely naive version of authentication. Please don't
-  // do this in the real world, and never save raw text passwords
-  // in your database 😇
   const foundUser = schema.users.findBy({ email, password })
   if (!foundUser) {
       return new Response(401, {}, { message: "No user with those credentials found!" })
