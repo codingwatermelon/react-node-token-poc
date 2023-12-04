@@ -37,9 +37,6 @@ export async function loginUser(creds) {
     )
     console.log("res")
     console.log(res)
-    const data = await res.json()
-    console.log("data")
-    console.log(data)
 
     if (!res.ok) {
         throw {
@@ -48,6 +45,10 @@ export async function loginUser(creds) {
             status: res.status
         }
     }
+
+    const data = await res.json()
+    console.log("data")
+    console.log(data)
 
     return data
 }

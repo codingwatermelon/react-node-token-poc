@@ -59,15 +59,25 @@ app.get("/api/maintenance/:id", (req, res) => {
 
 app.post("/api/login", (req, res) => {
   // TODO Use hashed version of password here
+  console.log("req")
   console.log(req)
   console.log(req.body)
   
-  const { email, password } = JSON.parse(req.body)
+  //const { email, password } = JSON.parse(req.body)
+  const creds = req.body
 
-  const foundUser = schema.users.findBy({ email, password })
-  if (!foundUser) {
-      return new Response(401, {}, { message: "No user with those credentials found!" })
-  }
+  //const foundUser = schema.users.findBy({ email, password })
+  //if (!foundUser) {
+  //    return new Response(401, {}, { message: "No user with those credentials found!" })
+  //}
+
+  api.loginUser(creds)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
 
   // At the very least, don't send the password back to the client 😅
   //foundUser.password = undefined
