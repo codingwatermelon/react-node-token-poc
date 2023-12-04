@@ -35,6 +35,7 @@ export async function loginUser(creds) {
     const res = await fetch("http://192.168.64.3:5000/api/login",
         { method: "post", body: creds }
     )
+    console.log("test")
     const data = await res.json()
 
     if (!res.ok) {
