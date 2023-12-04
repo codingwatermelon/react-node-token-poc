@@ -32,18 +32,6 @@ export function loader() {
     return defer({ houses: getHouses() })
 }
 
-/**
- * Challenge: remove manual error handling code and any
- * React state code we no longer need, as well as set up
- * errorElement handling for the following routes:
- * - /vans
- * - /vans/:id
- * - /host/vans
- * - /host/vans/:id
- * 
- * Remember: we created an <Error /> component awhile back
- * that you should be able to reuse.
- */
 
 export default function Houses() {
     const [searchParams, setSearchParams] = useSearchParams()

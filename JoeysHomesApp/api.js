@@ -20,7 +20,7 @@ export async function getMaintenance(id) {
     const res = await fetch(url)
     if (!res.ok) {
         throw {
-            message: "Failed to fetch houses",
+            message: "Failed to fetch maintenance tasks",
             statusText: res.statusText,
             status: res.status,
         }

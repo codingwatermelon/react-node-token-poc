@@ -63,7 +63,3 @@ export default function HouseDetail() {
         </div>
     )
 }
-
-//<i className={`van-type ${house.type} selected`}>
-//    {house.type}
-//</i>
