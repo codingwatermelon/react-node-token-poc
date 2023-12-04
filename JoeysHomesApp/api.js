@@ -31,6 +31,7 @@ export async function getMaintenance(id) {
 }
 
 export async function loginUser(creds) {
+    console.log("creds")
     console.log(creds)
     const res = await fetch("http://192.168.64.3:5000/api/login",
         { method: "post", body: JSON.stringify(creds) }
