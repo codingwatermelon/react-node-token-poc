@@ -67,13 +67,6 @@ const router = createBrowserRouter(createRoutesFromElements(
   </Route>
 ))
 
-//<Route
-//      path="login"
-//      element={<Login />}
-//      loader={loginLoader}
-//      action={loginAction}
-//    />
-
 function App() {
   return (
     <RouterProvider router={router} />
