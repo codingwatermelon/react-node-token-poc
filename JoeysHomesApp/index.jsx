@@ -12,7 +12,7 @@ import Maintenance, { loader as maintenanceLoader }  from "./pages/Maintenance/M
 import Houses, { loader as housesLoader } from "./pages/Houses/Houses"
 import HouseDetail, { loader as houseDetailLoader } from "./pages/Houses/HouseDetail"
 import NotFound from "./pages/NotFound"
-//import Login, { loader as loginLoader, action as loginAction } from "./pages/Login"
+import Login, { loader as loginLoader, action as loginAction } from "./pages/Login"
 import Layout from "./components/Layout"
 import Error from "./components/Error"
 //import { requireAuth } from "./utils"
@@ -36,9 +36,13 @@ const router = createBrowserRouter(createRoutesFromElements(
         element={<Income />}
       />
     </Route>
-    
     <Route path="about" element={<About />} />
-    
+    <Route
+      path="login"
+      element={<Login />}
+      loader={loginLoader}
+      action={loginAction}
+    />
     <Route
       path="maintenance"
       element={<Maintenance />}

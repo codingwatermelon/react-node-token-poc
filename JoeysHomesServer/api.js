@@ -62,7 +62,27 @@ const getMaintenance = (maintenanceId) => {
   })
 }
 
+const loginUser = (creds) => {
+  return new Promise(function(resolve, reject) {
+    
+    const email = creds.email
+    const password = creds.password
+
+    console.log(creds.email)
+
+    pool.query('select * from Users where email = $1', [email], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      console.log(results.rows)
+      resolve(results.rows)
+    })
+
+  })
+}
+
 module.exports = {
   getHouses,
   getMaintenance,
+  loginUser
 }

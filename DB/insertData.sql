@@ -15,3 +15,5 @@ insert into PropertiesMaintenance (property_id, maintenance_name, cost, maintena
 insert into PropertiesMaintenance (property_id, maintenance_name, cost, maintenance_type, due_date) VALUES (3, 'HVAC inspection', 100, 'preventative', '2023-11-30');
 insert into PropertiesMaintenance (property_id, maintenance_name, cost, maintenance_type, due_date) VALUES (4, 'Siding installation', 1000, 'cosmetic', '2023-12-31');
 insert into PropertiesMaintenance (property_id, maintenance_name, cost, maintenance_type, due_date) VALUES (5, 'Annual septic pump', 250, 'scheduled', '2023-11-30');
+
+insert into Users (email, password) VALUES ('jack', 'test');
