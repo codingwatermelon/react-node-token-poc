@@ -35,7 +35,11 @@ export async function loginUser(creds) {
     const res = await fetch("http://192.168.64.3:5000/api/login",
         { method: "post", body: JSON.stringify(creds) }
     )
+    console.log("res")
+    console.log(res)
     const data = await res.json()
+    console.log("data")
+    console.log(data)
 
     if (!res.ok) {
         throw {
