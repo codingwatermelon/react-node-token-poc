@@ -35,6 +35,7 @@ export async function loginUser(creds) {
         { method: "post", body: creds }
     )
     
+    console.log(res)
     const data = await res.json()
     console.log("test")
 
