@@ -60,9 +60,9 @@ app.get("/api/maintenance/:id", (req, res) => {
 app.post("/api/login", (req, res) => {
   // TODO Use hashed version of password here
   console.log(req)
-  console.log(req.requestBody)
+  console.log(req.body)
   
-  const { email, password } = JSON.parse(req.requestBody)
+  const { email, password } = JSON.parse(req.body)
 
   const foundUser = schema.users.findBy({ email, password })
   if (!foundUser) {
