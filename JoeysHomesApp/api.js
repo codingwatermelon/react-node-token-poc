@@ -37,7 +37,7 @@ export async function loginUser(creds) {
         { method: "post", body: JSON.stringify(creds) }
     )
     console.log("res (loginUser client)")
-    console.log(res.body)
+    console.log(res.body.getReader())
 
     if (!res.ok) {
         throw {
@@ -46,6 +46,14 @@ export async function loginUser(creds) {
             status: res.status
         }
     }
+
+    //fetch("./tortoise.png")
+    //// Retrieve its body as ReadableStream
+    //.then((response) => response.body)
+    //.then((body) => {
+    //  const reader = body.getReader();
+    //  // …
+    //});
 
     const data = await res.json()
     console.log("data (loginUser client)")
