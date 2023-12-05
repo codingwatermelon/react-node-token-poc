@@ -31,12 +31,12 @@ export async function getMaintenance(id) {
 }
 
 export async function loginUser(creds) {
-    console.log("creds")
+    console.log("creds (loginUser client)")
     console.log(creds)
     const res = await fetch("http://192.168.64.3:5000/api/login",
         { method: "post", body: JSON.stringify(creds) }
     )
-    console.log("res")
+    console.log("res (loginUser client)")
     console.log(res)
 
     if (!res.ok) {
@@ -48,7 +48,7 @@ export async function loginUser(creds) {
     }
 
     const data = await res.json()
-    console.log("data")
+    console.log("data (loginUser client)")
     console.log(data)
 
     return data
