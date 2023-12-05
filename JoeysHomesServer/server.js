@@ -28,6 +28,8 @@ app.get("/api/houses", (req, res) => {
 
 app.get("/api/houses/:id", (req, res) => {
   
+  console.log(req)
+  
   api.getHouses(req.params.id)
     .then(response => {
       res.status(200).send(response);
@@ -74,7 +76,7 @@ app.post("/api/login", (req, res) => {
   //if (!foundUser) {
   //    return new Response(401, {}, { message: "No user with those credentials found!" })
   //}
-  
+
   api.loginUser(creds)
     .then(response => {
       res.json(response);
