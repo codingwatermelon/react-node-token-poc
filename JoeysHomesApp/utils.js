@@ -6,6 +6,7 @@ export async function requireAuth(request) {
 
     console.log("isLoggedIn")
     console.log(isLoggedIn)
+    console.log(typeof isLoggedIn)
 
     if (!isLoggedIn) {
         console.log("not logged in, pathname")
