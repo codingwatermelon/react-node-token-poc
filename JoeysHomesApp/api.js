@@ -34,9 +34,13 @@ export async function loginUser(creds) {
     console.log("creds (loginUser client)")
     console.log(creds)
     console.log(JSON.stringify(creds))
-    
+
     const res = await fetch("http://192.168.64.3:5000/api/login",
-        { method: "post", body: JSON.stringify(creds) }
+        {   method: "post", 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(creds) }
     )
     console.log("res (loginUser client) [promise]")
     console.log(res)
