@@ -47,7 +47,7 @@ export async function loginUser(creds) {
         }
     }
 
-    const data = await res.json()
+    const data = await res.body.json()
     console.log("data (loginUser client)")
     console.log(data)
 
