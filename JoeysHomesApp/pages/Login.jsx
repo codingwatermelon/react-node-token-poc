@@ -26,6 +26,7 @@ export async function action({ request }) {
         // TODO Do I need to get client info (email/password) returned here?
         localStorage.setItem("loggedin", true)
         // TODO Since localStorage is set to loggedin, then check auth on different protected pages
+        // TODO If user is logged in, then upon subsequent requests to login page, then stay on current page
         return redirect(pathname)
     } catch(err) {
         return err.message
