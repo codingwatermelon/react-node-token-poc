@@ -42,7 +42,6 @@ const boxSX = {
 
 export async function loader({ request }) {
     await requireAuth(request)
-    console.log("testing 1")
     return defer({ maintenance: getMaintenance() })
 }
 

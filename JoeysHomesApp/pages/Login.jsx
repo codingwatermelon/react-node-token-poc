@@ -23,7 +23,9 @@ export async function action({ request }) {
         const data = await loginUser({ email, password })
         console.log("data (Login client)")
         console.log(data)
+        // TODO Do I need to get client info (email/password) returned here?
         localStorage.setItem("loggedin", true)
+        // TODO Since localStorage is set to loggedin, then check auth on different protected pages
         return redirect(pathname)
     } catch(err) {
         return err.message

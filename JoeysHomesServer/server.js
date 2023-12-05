@@ -73,6 +73,9 @@ app.post("/api/login", (req, res) => {
 
   api.loginUser(creds)
     .then(response => {
+      console.log("response")
+      console.log(response)
+
       res.json(response);
     })
     .catch(error => {
