@@ -19,6 +19,8 @@ export async function action({ request }) {
     const pathname = new URL(request.url)
         .searchParams.get("redirectTo") || "/"
     
+    console.log("pathname (action)")
+    console.log(pathname)
     try {
         const data = await loginUser({ email, password })
         console.log("data (Login client)")
