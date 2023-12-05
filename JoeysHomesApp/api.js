@@ -31,9 +31,6 @@ export async function getMaintenance(id) {
 }
 
 export async function loginUser(creds) {
-    console.log("creds (loginUser client)")
-    console.log(creds)
-    console.log(JSON.stringify(creds))
 
     const res = await fetch("http://192.168.64.3:5000/api/login",
         {   method: "post", 
@@ -42,8 +39,6 @@ export async function loginUser(creds) {
             },
             body: JSON.stringify(creds) }
     )
-    console.log("res (loginUser client) [promise]")
-    console.log(res)
 
     if (!res.ok) {
         throw {
@@ -53,17 +48,7 @@ export async function loginUser(creds) {
         }
     }
 
-    //fetch("./tortoise.png")
-    //// Retrieve its body as ReadableStream
-    //.then((response) => response.body)
-    //.then((body) => {
-    //  const reader = body.getReader();
-    //  // …
-    //});
-
     const data = await res.json()
-    console.log("data (loginUser client)")
-    console.log(data)
 
     return data
 }

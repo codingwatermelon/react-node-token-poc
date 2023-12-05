@@ -62,17 +62,9 @@ const getMaintenance = (maintenanceId) => {
   })
 }
 
-const loginUser = (creds) => {
+const loginUser = (email, password) => {
   return new Promise(function(resolve, reject) {
     
-    console.log("creds (loginUser server)")
-    console.log(creds)
-    const email = creds.email
-    const password = creds.password
-
-    console.log("email (loginUser server)")
-    console.log(creds.email)
-
     pool.query('select * from Users where email = $1', [email], (error, results) => {
       if (error) {
         reject(error)
