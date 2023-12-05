@@ -13,6 +13,8 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/api/houses", (req, res) => {
   
   api.getHouses()
