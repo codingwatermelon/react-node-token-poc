@@ -9,6 +9,7 @@ import {
 import { getHouses } from "../../api"
 import { blue } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { requireAuth } from "../../utils"
 
 const boxSX = {
     p: 2.25, 
@@ -28,7 +29,8 @@ const boxSX = {
     }
 }
 
-export function loader() {
+export async function loader({ request }) {
+    await requireAuth(request)
     return defer({ houses: getHouses() })
 }
 
