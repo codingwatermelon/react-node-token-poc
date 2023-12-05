@@ -74,9 +74,7 @@ app.post("/api/login", (req, res) => {
   //if (!foundUser) {
   //    return new Response(401, {}, { message: "No user with those credentials found!" })
   //}
-  console.log("res.json (/api/login)")
-  console.log(res.json())
-
+  
   api.loginUser(creds)
     .then(response => {
       res.json(response);
