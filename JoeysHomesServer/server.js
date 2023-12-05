@@ -63,15 +63,15 @@ app.get("/api/maintenance/:id", (req, res) => {
 
 app.post("/api/login", (req, res) => {
   // TODO Use hashed version of password here
-  const { email, password } = JSON.parse(req.body)
-  //const creds = req.body
+  //const { email, password } = JSON.parse(req.body)
+  const creds = req.body
 
   //const foundUser = schema.users.findBy({ email, password })
   //if (!foundUser) {
   //    return new Response(401, {}, { message: "No user with those credentials found!" })
   //}
 
-  api.loginUser(email, password)
+  api.loginUser(creds)
     .then(response => {
       res.json(response);
     })
