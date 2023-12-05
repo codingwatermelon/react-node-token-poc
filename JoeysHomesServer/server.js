@@ -73,7 +73,7 @@ app.post("/api/login", (req, res) => {
 
   api.loginUser(creds)
     .then(response => {
-      res.status(200).send(response);
+      res.json(response);
     })
     .catch(error => {
       res.status(500).send(error);

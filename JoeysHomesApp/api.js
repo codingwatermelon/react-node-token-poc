@@ -37,7 +37,7 @@ export async function loginUser(creds) {
         { method: "post", body: JSON.stringify(creds) }
     )
     console.log("res (loginUser client)")
-    console.log(res)
+    console.log(res.body)
 
     if (!res.ok) {
         throw {
