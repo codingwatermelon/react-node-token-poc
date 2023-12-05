@@ -60,7 +60,8 @@ app.get("/api/maintenance/:id", (req, res) => {
 app.post("/api/login", (req, res) => {
   // TODO Use hashed version of password here
   console.log("req (/api/login)")
-  //console.log(req)
+  console.log(req)
+  console.log("req.body (/api/login)")
   console.log(req.body)
   
   //const { email, password } = JSON.parse(req.body)
