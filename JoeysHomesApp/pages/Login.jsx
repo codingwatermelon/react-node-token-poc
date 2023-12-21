@@ -4,7 +4,8 @@ import {
     useNavigation,
     Form,
     redirect,
-    useActionData
+    useActionData,
+    useHistory
 } from "react-router-dom"
 import { loginUser } from "../api"
 
@@ -41,10 +42,11 @@ export default function Login() {
     const navigation = useNavigation()
 
     const isLoggedIn = (localStorage.getItem("loggedin") === "true")
+    const history = useHistory();
     
     // Redirect to account page if user is logged in already
     if (isLoggedIn) {
-        return redirect("account")
+        history.push('/account'); // Redirect to new page
     }
     else {
         return (
