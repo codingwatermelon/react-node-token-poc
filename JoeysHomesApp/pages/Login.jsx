@@ -42,10 +42,10 @@ export default function Login() {
     const navigation = useNavigation()
 
     const isLoggedIn = (localStorage.getItem("loggedin") === "true")
-    const navigate = useNavigate();
     
     // Redirect to account page if user is logged in already
     if (isLoggedIn) {
+        const navigate = useNavigate();
         navigate('/account'); // Redirect to new page
     }
     else {
