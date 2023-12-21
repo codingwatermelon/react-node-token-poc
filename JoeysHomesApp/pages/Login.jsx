@@ -25,10 +25,10 @@ export async function action({ request }) {
         const data = await loginUser({ email, password })
         console.log("data (Login client)")
         console.log(data)
-        // TODO Do I need to get client info (email/password) returned here?
+        // TODO Do I need to get client info (email/password) returned here? Probably not
+        // TODO Change 'loggedin' to fingerprint which ties to DB
         localStorage.setItem("loggedin", true)
-        // TODO Since localStorage is set to loggedin, then check auth on different protected pages
-        // TODO If user is logged in, then upon subsequent requests to login page, then stay on current page
+        // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
         return redirect(pathname)
     } catch(err) {
         return err.message
@@ -40,7 +40,16 @@ export default function Login() {
     const message = useLoaderData()
     const navigation = useNavigation()
 
+    const isLoggedIn = (localStorage.getItem("loggedin") === "true")
+
     return (
+        <>
+        { isLoggedIn ? (
+            <h1>
+            Test
+            </h1>
+        
+        ) : 
         <div className="login-container">
             <h1>Sign in to your account</h1>
             {message && <h3 className="red">{message}</h3>}
@@ -71,5 +80,8 @@ export default function Login() {
                 </button>
             </Form>
         </div>
+        
+        }
+        </>
     )
 }
