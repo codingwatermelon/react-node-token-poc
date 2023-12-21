@@ -41,15 +41,13 @@ export default function Login() {
     const navigation = useNavigation()
 
     const isLoggedIn = (localStorage.getItem("loggedin") === "true")
+    
+    // Redirect to account page if user is logged in already
+    if (isLoggedIn) {
+        return redirect("account")
+    }
 
     return (
-        <>
-        { isLoggedIn ? (
-            <h1>
-            Test
-            </h1>
-        
-        ) : 
         <div className="login-container">
             <h1>Sign in to your account</h1>
             {message && <h3 className="red">{message}</h3>}
@@ -79,9 +77,6 @@ export default function Login() {
                     }
                 </button>
             </Form>
-        </div>
-        
-        }
-        </>
+        </div>   
     )
 }

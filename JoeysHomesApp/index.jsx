@@ -8,6 +8,7 @@ import {
   Link
 } from "react-router-dom"
 import About from "./pages/About"
+import Account from "./pages/Account"
 import Maintenance, { loader as maintenanceLoader }  from "./pages/Maintenance/Maintenance"
 import Houses, { loader as housesLoader } from "./pages/Houses/Houses"
 import HouseDetail, { loader as houseDetailLoader } from "./pages/Houses/HouseDetail"
@@ -61,6 +62,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       errorElement={<Error />}
       loader={houseDetailLoader}
     />
+    <Route path="account" element={<Account />} />
     
 
     <Route path="*" element={<NotFound />} />
