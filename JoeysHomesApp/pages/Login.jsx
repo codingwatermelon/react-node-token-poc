@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
     useLoaderData,
     useNavigation,
@@ -46,7 +46,9 @@ export default function Login() {
     
     // Redirect to account page if user is logged in already
     if (isLoggedIn) {
-        navigate('/account'); // Redirect to new page
+        useEffect(() => { 
+            navigate('/account'); // Redirect to new page
+        }, []);
     }
     else {
         return (
