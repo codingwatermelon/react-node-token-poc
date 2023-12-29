@@ -53,6 +53,13 @@ export async function loginUser(creds) {
     // Check if data is one row and only one row, otherwise error
     console.log("data")
     console.log(data)
+    if (!data) {
+        throw {
+            message: 'User not found',
+            statusText: 'User not found',
+            status: '404'
+        }
+    }
 
     return data
 }
