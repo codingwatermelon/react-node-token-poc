@@ -66,8 +66,9 @@ const loginUser = (creds) => {
   return new Promise(function(resolve, reject) {
     
     const email = creds.email
+    const password = creds.password
     
-    pool.query('select * from Users where email = $1', [email], (error, results) => {
+    pool.query('select * from Users where email = $1 and password = $2', [email, password], (error, results) => {
       if (error) {
         reject(error)
       }

@@ -47,7 +47,7 @@ export default function Login() {
     // Redirect to account page if user is logged in already
     if (isLoggedIn) {
         useEffect(() => { 
-            navigate('/account'); // Redirect to new page
+            navigate('/account');
         }, []);
     }
     else {

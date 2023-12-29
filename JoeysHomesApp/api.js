@@ -49,6 +49,8 @@ export async function loginUser(creds) {
     }
 
     const data = await res.json()
+
+    // Check if data is one row and only one row, otherwise error
     console.log("data")
     console.log(data)
 
