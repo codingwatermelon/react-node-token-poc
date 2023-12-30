@@ -1,10 +1,20 @@
 const express = require('express')
+const cors = require("cors")
+
 const app = express()
 const port = 5000
 
+const corsOptions = {
+  origin: "http://localhost:8081"
+};
+
 const api = require('./api')
 
+app.use(cors(corsOptions));
 app.use(express.json())
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+
 app.use(function (req, res, next) {
   // TODO might have to restrict this
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -13,7 +23,22 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(express.urlencoded({ extended: true }));
+// database
+const db = require("./app/models");
+const Role = db.role;
+
+// TODO uncomment/comment this as needed
+initial();
+db.sequelize.sync();
+// force: true will drop the table if it already exists
+//db.sequelize.sync({force: true}).then(() => {
+//  console.log('Drop and Resync Database with { force: true }');
+//  initial();
+//});
+
+// auth routes
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
 
 app.get("/api/houses", (req, res) => {
   
@@ -95,5 +120,19 @@ app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
 
-
-
+function initial() {
+  Role.create({
+    id: 1,
+    name: "user"
+  });
+ 
+  Role.create({
+    id: 2,
+    name: "moderator"
+  });
+ 
+  Role.create({
+    id: 3,
+    name: "admin"
+  });
+}

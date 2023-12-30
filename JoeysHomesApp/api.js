@@ -49,7 +49,6 @@ export async function loginUser(creds) {
     }
 
     const data = await res.json()
-
     
     console.log("data")
     console.log(data)
@@ -57,8 +56,8 @@ export async function loginUser(creds) {
     // Check if data is one row and only one row, otherwise error
     if (data.length == 0) {
         throw {
-            message: `User '${creds.username}' not found`,
-            statusText: `User '${creds.username}' not found`,
+            message: `User '${creds.email}' not found`,
+            statusText: `User '${creds.email}' not found`,
             status: '404'
         }
     }
