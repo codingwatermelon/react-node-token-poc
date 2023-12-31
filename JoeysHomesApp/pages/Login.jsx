@@ -72,7 +72,7 @@ export default function Login() {
                         type="email"
                         placeholder="Email address"
                     />
-                    <div style={{ position: 'relative' }}>
+                    
                     <input
                         name="password"
                         type={showPassword ? 'text' : 'password'}
@@ -86,7 +86,6 @@ export default function Login() {
                     >
                     {showPassword ? <FiEyeOff /> : <FiEye />} {/* Toggle icon */}
                     </button>
-                    </div>
                     <button
                         disabled={navigation.state === "submitting"}
                     >
