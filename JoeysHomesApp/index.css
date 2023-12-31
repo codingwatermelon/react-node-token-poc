@@ -632,6 +632,11 @@ i[class*='house-type-'] {
     cursor: not-allowed;
 }
 
+.login-form > Link {
+    align-items: center;
+    color: rgb(0, 116, 205);
+}
+
 .red {
     color: #cc0000;
 }

@@ -74,7 +74,7 @@ export default function Signup() {
                     />
                     <input
                         name="confirmpassword"
-                        type="confirmpassword"
+                        type="password"
                         placeholder="Confirm Password"
                     />
                     <button
