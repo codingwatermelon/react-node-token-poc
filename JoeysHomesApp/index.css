@@ -632,7 +632,11 @@ i[class*='house-type-'] {
     cursor: not-allowed;
 }
 
-Link > p {
+.login-form-link {
+
+}
+
+.login-form-link > p {
     align-items: center;
     color: #3460fd;
 }
