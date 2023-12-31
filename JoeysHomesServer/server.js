@@ -4,6 +4,17 @@ const cors = require("cors")
 const app = express()
 const port = 5000
 
+const corsOptions = {
+  origin: "http://192.168.64.3:5000"
+};
+
+const api = require('./api');
+
+//app.use(cors(corsOptions));
+app.use(express.json())
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+
 app.use(function (req, res, next) {
   // TODO might have to restrict this
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -11,19 +22,6 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With');
   next();
 });
-
-const corsOptions = {
-  origin: "http://192.168.64.3:5000"
-};
-
-const api = require('./api');
-
-app.use(cors(corsOptions));
-app.use(express.json())
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
-
-
 
 // database
 const db = require("./app/models");
