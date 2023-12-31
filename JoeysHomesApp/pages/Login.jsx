@@ -79,6 +79,7 @@ export default function Login() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
+                        position="relative"
                     />
                     <button
                     style={{ position: 'absolute', right: 5, top: 10, background: 'none', border: 'none' }}
