@@ -83,7 +83,7 @@ export default function Login() {
                     </button>
                 </Form>
                 <Link to="/signup">
-                        <p>No account yet? Sign up here</p>
+                        <p style="color=#3460fd">No account yet? Sign up here</p>
                 </Link>
             </div>   
         )
