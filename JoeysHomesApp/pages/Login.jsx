@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import {
     useLoaderData,
     useNavigation,
@@ -9,6 +9,7 @@ import {
     Link
 } from "react-router-dom"
 import { loginUser } from "../api"
+import { FiEye, FiEyeOff } from 'react-icons/fi'; // If using icons
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message")
@@ -43,6 +44,9 @@ export default function Login() {
     const navigation = useNavigation()
     const navigate = useNavigate();
 
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
     const isLoggedIn = (localStorage.getItem("loggedin") === "true")
     
     // Redirect to account page if user is logged in already
@@ -70,9 +74,14 @@ export default function Login() {
                     />
                     <input
                         name="password"
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
                     />
+                    <button onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? <FiEyeOff /> : <FiEye />} {/* Toggle icon */}
+                    </button>
                     <button
                         disabled={navigation.state === "submitting"}
                     >
