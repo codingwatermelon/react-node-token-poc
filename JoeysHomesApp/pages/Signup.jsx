@@ -7,7 +7,7 @@ import {
     useActionData,
     useNavigate
 } from "react-router-dom"
-import { loginUser } from "../api"
+import { signupUser } from "../api"
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message")
@@ -23,7 +23,7 @@ export async function action({ request }) {
     console.log("pathname (action)")
     console.log(pathname)
     try {
-        const data = await loginUser({ email, password })
+        const data = await signupUser({ email, password })
         console.log("data (Login client)")
         console.log(data)
         // TODO Do I need to get client info (email/password) returned here? Probably not
@@ -36,7 +36,7 @@ export async function action({ request }) {
     }
 }
 
-export default function Login() {
+export default function Signup() {
     const errorMessage = useActionData()
     const message = useLoaderData()
     const navigation = useNavigation()
@@ -44,16 +44,15 @@ export default function Login() {
 
     const isLoggedIn = (localStorage.getItem("loggedin") === "true")
     
-    // Redirect to account page if user is logged in already
+    // Sign user out if user is logged in already and wants to register a new account for whatever reason
     if (isLoggedIn) {
-        useEffect(() => { 
-            navigate('/account');
-        }, []);
+        localStorage.setItem("loggedin", false)
     }
     else {
+        // TODO I want to make the input fields disjointed like in a real world sign up page
         return (
             <div className="login-container">
-                <h1>Sign in to your account</h1>
+                <h1>Register your account</h1>
                 {message && <h3 className="red">{message}</h3>}
                 {errorMessage && <h3 className="red">{errorMessage}</h3>}
 
@@ -72,17 +71,19 @@ export default function Login() {
                         type="password"
                         placeholder="Password"
                     />
+                    <input
+                        name="confirmpassword"
+                        type="confirmpassword"
+                        placeholder="Confirm Password"
+                    />
                     <button
                         disabled={navigation.state === "submitting"}
                     >
                         {navigation.state === "submitting"
-                            ? "Logging in..."
-                            : "Log in"
+                            ? "Processing..."
+                            : "Sign up"
                         }
                     </button>
-                    <Link to="signup">
-                        <p>No account yet? Sign up here</p>
-                    </Link>
                 </Form>
             </div>   
         )
