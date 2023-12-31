@@ -5,10 +5,10 @@ const app = express()
 const port = 5000
 
 const corsOptions = {
-  origin: "http://192.168.64.3:5000"
+  origin: "http://192.168.64.3:5000/api/auth/signup"
 };
 
-const api = require('./api')
+const api = require('./api');
 
 app.use(cors(corsOptions));
 app.use(express.json())
