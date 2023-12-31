@@ -29,7 +29,8 @@ const Role = db.role;
 
 // TODO uncomment/comment this as needed
 db.sequelize.sync();
-initial();
+//initial();
+
 // force: true will drop the table if it already exists
 //db.sequelize.sync({force: true}).then(() => {
 //  console.log('Drop and Resync Database with { force: true }');
