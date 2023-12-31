@@ -4,13 +4,13 @@ const cors = require("cors")
 const app = express()
 const port = 5000
 
-const corsOptions = {
-  origin: "http://192.168.64.3:8081"
-};
+//const corsOptions = {
+//  origin: "http://192.168.64.3:8081"
+//};
 
 const api = require('./api')
 
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 app.use(express.json())
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
