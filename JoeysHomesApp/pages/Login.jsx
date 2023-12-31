@@ -72,6 +72,7 @@ export default function Login() {
                         type="email"
                         placeholder="Email address"
                     />
+                    <div style={{ position: 'relative' }}>
                     <input
                         name="password"
                         type={showPassword ? 'text' : 'password'}
@@ -79,9 +80,13 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
                     />
-                    <button onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? <FiEyeOff /> : <FiEye />} {/* Toggle icon */}
+                    <button
+                    style={{ position: 'absolute', right: 5, top: 10, background: 'none', border: 'none' }}
+                    onClick={() => setShowPassword(!showPassword)}
+                    >
+                    {showPassword ? <FiEyeOff /> : <FiEye />} {/* Toggle icon */}
                     </button>
+                    </div>
                     <button
                         disabled={navigation.state === "submitting"}
                     >
