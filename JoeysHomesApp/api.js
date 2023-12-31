@@ -81,7 +81,13 @@ export async function signupUser(creds) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(creds) }
+            body: {
+                "username": creds.email,
+                "email": creds.email,
+                "password": creds.password,
+                "roles": ["user"]
+            }
+        }
     )
 
     if (!res.ok) {
@@ -98,20 +104,20 @@ export async function signupUser(creds) {
     console.log(data)
 
     // Check if data is one row and only one row, otherwise error
-    if (data.length == 0) {
-        throw {
-            message: `User '${creds.email}' not found`,
-            statusText: `User '${creds.email}' not found`,
-            status: '404'
-        }
-    }
-    else if (data.length > 1) {
-        throw {
-            message: `Internal server error, check DB`,
-            statusText: `Internal server error, check DB`,
-            status: '500'
-        }
-    }
+    //if (data.length == 0) {
+    //    throw {
+    //        message: `User '${creds.email}' not found`,
+    //        statusText: `User '${creds.email}' not found`,
+    //        status: '404'
+    //    }
+    //}
+    //else if (data.length > 1) {
+    //    throw {
+    //        message: `Internal server error, check DB`,
+    //        statusText: `Internal server error, check DB`,
+    //        status: '500'
+    //    }
+    //}
 
     return data
 }
