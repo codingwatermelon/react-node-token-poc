@@ -5,7 +5,7 @@ const app = express()
 const port = 5000
 
 const corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://192.168.64.3:8081"
 };
 
 const api = require('./api')
