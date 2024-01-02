@@ -33,6 +33,9 @@ export async function getMaintenance(id) {
 // TODO Modify to use new routes
 export async function loginUser(creds) {
 
+    console.log("test")
+    console.log(JSON.stringify(creds))
+
     const res = await fetch("http://192.168.64.3:5000/api/login",
         {   method: "post", 
             headers: {

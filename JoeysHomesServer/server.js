@@ -87,35 +87,35 @@ app.get("/api/maintenance/:id", (req, res) => {
     })
 })
 
-//app.post("/api/login", (req, res) => {
-//  // TODO Use hashed version of password here
-//  //const { email, password } = JSON.parse(req.body)
-//  const creds = req.body
-//
-//  //const foundUser = schema.users.findBy({ email, password })
-//  //if (!foundUser) {
-//  //    return new Response(401, {}, { message: "No user with those credentials found!" })
-//  //}
-//
-//  api.loginUser(creds)
-//    .then(response => {
-//      console.log("response")
-//      console.log(response)
-//
-//      res.json(response);
-//    })
-//    .catch(error => {
-//      res.status(500).send(error);
-//    })
-//
-//  // At the very least, don't send the password back to the client 😅
-//  //foundUser.password = undefined
-//  //return {
-//  //    user: foundUser,
-//  //    token: "Enjoy your pizza, here's your tokens."
-//  //}
-//
-//})
+app.post("/api/login", (req, res) => {
+  // TODO Use hashed version of password here
+  //const { email, password } = JSON.parse(req.body)
+  const creds = req.body
+
+  //const foundUser = schema.users.findBy({ email, password })
+  //if (!foundUser) {
+  //    return new Response(401, {}, { message: "No user with those credentials found!" })
+  //}
+
+  api.loginUser(creds)
+    .then(response => {
+      console.log("response")
+      console.log(response)
+
+      res.json(response);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
+
+  // At the very least, don't send the password back to the client 😅
+  //foundUser.password = undefined
+  //return {
+  //    user: foundUser,
+  //    token: "Enjoy your pizza, here's your tokens."
+  //}
+
+})
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
