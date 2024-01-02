@@ -79,17 +79,19 @@ export async function loginUser(creds) {
 // TODO Modify to use new routes
 export async function signupUser(creds) {
 
+    const signupUserBody = {
+        "username": creds.email,
+        "email": creds.email,
+        "password": creds.password,
+        "roles": ["user"]
+    }
+
     const res = await fetch("http://192.168.64.3:5000/api/auth/signup",
         {   method: "post", 
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {
-                "username": creds.email,
-                "email": creds.email,
-                "password": creds.password,
-                "roles": ["user"]
-            }
+            body: JSON.stringify(signupUserBody)
         }
     )
 
