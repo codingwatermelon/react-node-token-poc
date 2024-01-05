@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import {
     useLoaderData,
     useNavigation,
@@ -8,8 +8,7 @@ import {
     useNavigate,
     Link
 } from "react-router-dom"
-import { loginUser } from "../api"
-import { FiEye, FiEyeOff } from 'react-icons/fi'; // If using icons
+import { signupUser } from "../functions"
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message")
@@ -17,20 +16,30 @@ export function loader({ request }) {
 
 export async function action({ request }) {
     const formData = await request.formData()
+
     const email = formData.get("email")
     const password = formData.get("password")
+    const confirmpassword = formData.get("confirmpassword")
+
+    if (password != confirmpassword) {
+        return "Passwords don't match, try again"
+    }
+
     const pathname = new URL(request.url)
         .searchParams.get("redirectTo") || "/"
     
     console.log("pathname (action)")
     console.log(pathname)
+
     try {
-        const data = await loginUser({ email, password })
+        const data = await signupUser({ email, password })
         console.log("data (Login client)")
         console.log(data)
         // TODO Do I need to get client info (email/password) returned here? Probably not
         // TODO Change 'loggedin' to fingerprint which ties to DB
+
         localStorage.setItem("loggedin", true)
+        
         // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
         return redirect(pathname)
     } catch(err) {
@@ -38,27 +47,23 @@ export async function action({ request }) {
     }
 }
 
-export default function Login() {
+export default function Signup() {
     const errorMessage = useActionData()
     const message = useLoaderData()
     const navigation = useNavigation()
     const navigate = useNavigate();
 
-    const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-
     const isLoggedIn = (localStorage.getItem("loggedin") === "true")
     
-    // Redirect to account page if user is logged in already
+    // Sign user out if user is logged in already and wants to register a new account for whatever reason
     if (isLoggedIn) {
-        useEffect(() => { 
-            navigate('/account');
-        }, []);
+        localStorage.setItem("loggedin", false)
     }
     else {
+        // TODO I want to make the input fields disjointed like in a real world sign up page
         return (
             <div className="login-container">
-                <h1>Sign in to your account</h1>
+                <h1>Register your account</h1>
                 {message && <h3 className="red">{message}</h3>}
                 {errorMessage && <h3 className="red">{errorMessage}</h3>}
 
@@ -72,34 +77,25 @@ export default function Login() {
                         type="email"
                         placeholder="Email address"
                     />
-                    
                     <input
                         name="password"
-                        type={showPassword ? 'text' : 'password'}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
                         placeholder="Password"
                     />
-                    <button
-                    style={{ position: 'absolute', right: 5, top: 10, background: 'none', border: 'none' }}
-                    onClick={() => setShowPassword(!showPassword)}
-                    >
-                    {showPassword ? <FiEyeOff /> : <FiEye />} {/* Toggle icon */}
-                    </button>
+                    <input
+                        name="confirmpassword"
+                        type="password"
+                        placeholder="Confirm Password"
+                    />
                     <button
                         disabled={navigation.state === "submitting"}
                     >
                         {navigation.state === "submitting"
-                            ? "Logging in..."
-                            : "Log in"
+                            ? "Processing..."
+                            : "Sign up"
                         }
                     </button>
                 </Form>
-                <Link 
-                    to="/signup"
-                    className="login-form-link">
-                        <p>No account yet? Sign up here</p>
-                </Link>
             </div>   
         )
     }

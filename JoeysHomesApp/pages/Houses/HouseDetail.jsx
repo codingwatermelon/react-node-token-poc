@@ -8,7 +8,7 @@ import {
     useLocation,
     useParams
 } from "react-router-dom"
-import { getHouses } from "../../api"
+import { getHouses } from "../../functions"
 import { requireAuth } from "../../utils"
 
 export async function loader({ params, request }) {

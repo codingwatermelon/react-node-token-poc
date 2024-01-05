@@ -6,7 +6,7 @@ import {
     defer,
     Await
 } from "react-router-dom"
-import { getMaintenance } from "../../api"
+import { getMaintenance } from "../../functions"
 import { format } from "date-fns"
 // material-ui
 // mui colors https://mui.com/material-ui/customization/color/

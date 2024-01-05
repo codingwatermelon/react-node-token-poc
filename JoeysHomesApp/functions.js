@@ -79,6 +79,8 @@ export async function loginUser(creds) {
 // TODO Modify to use new routes
 export async function signupUser(creds) {
 
+    // Note: Need to JSON.stringify() this, otherwise will get a CORS error (which actually isn't a CORS error) but somehow is detected as one in the browser
+    // This makes the object readable, otherwise it will show as '[object Object]' in the req for some reason
     const signupUserBody = {
         "username": creds.email,
         "email": creds.email,

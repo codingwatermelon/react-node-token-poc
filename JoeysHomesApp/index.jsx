@@ -8,19 +8,22 @@ import {
   Link
 } from "react-router-dom"
 import About from "./pages/About"
-import Account from "./pages/Account"
 import Maintenance, { loader as maintenanceLoader }  from "./pages/Maintenance/Maintenance"
 import Houses, { loader as housesLoader } from "./pages/Houses/Houses"
 import HouseDetail, { loader as houseDetailLoader } from "./pages/Houses/HouseDetail"
 import NotFound from "./pages/NotFound"
-import Login, { loader as loginLoader, action as loginAction } from "./pages/Login"
-import Signup, { loader as signupLoader, action as signupAction } from "./pages/Signup"
 import Layout from "./components/Layout"
 import Error from "./components/Error"
 //import { requireAuth } from "./utils"
 import Dashboard from "./pages/Default/Dashboard"
 import Income from "./pages/Default/Income"
 import DefaultLayout from "./components/DefaultLayout"
+
+//import Login, { loader as loginLoader, action as loginAction } from "./pages/old_Login"
+//import Signup, { loader as signupLoader, action as signupAction } from "./pages/old_Signup"
+import Profile from "./components/auth/Profile"
+import Login from "./components/auth/Login"
+import Register from "./components/auth/Register"
 
 
 //import "./server"
@@ -39,12 +42,6 @@ const router = createBrowserRouter(createRoutesFromElements(
       />
     </Route>
     <Route path="about" element={<About />} />
-    <Route
-      path="login"
-      element={<Login />}
-      loader={loginLoader}
-      action={loginAction}
-    />
     <Route
       path="signup"
       element={<Signup />}
@@ -69,7 +66,9 @@ const router = createBrowserRouter(createRoutesFromElements(
       errorElement={<Error />}
       loader={houseDetailLoader}
     />
-    <Route path="account" element={<Account />} />
+    <Route exact path="/login" component={Login} />
+    <Route exact path="/register" component={Register} />
+    <Route exact path="/profile" component={Profile} />
     
 
     <Route path="*" element={<NotFound />} />

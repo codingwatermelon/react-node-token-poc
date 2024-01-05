@@ -37,10 +37,6 @@ db.sequelize.sync();
 //  initial();
 //});
 
-// auth routes
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
-
 app.get("/api/houses", (req, res) => {
   
   api.getHouses()
@@ -87,12 +83,16 @@ app.get("/api/maintenance/:id", (req, res) => {
     })
 })
 
+// auth routes
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
+
 app.post("/api/login", (req, res) => {
   // TODO Use hashed version of password here
   //const { email, password } = JSON.parse(req.body)
   console.log("/api/login body")
   console.log(req.body)
-  
+
   const creds = req.body
 
   //const foundUser = schema.users.findBy({ email, password })
