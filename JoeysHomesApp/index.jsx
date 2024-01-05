@@ -43,12 +43,6 @@ const router = createBrowserRouter(createRoutesFromElements(
     </Route>
     <Route path="about" element={<About />} />
     <Route
-      path="signup"
-      element={<Signup />}
-      loader={signupLoader}
-      action={signupAction}
-    />
-    <Route
       path="maintenance"
       element={<Maintenance />}
       errorElement={<Error />}
