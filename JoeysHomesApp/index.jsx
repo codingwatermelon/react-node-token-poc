@@ -61,8 +61,8 @@ const router = createBrowserRouter(createRoutesFromElements(
       loader={houseDetailLoader}
     />
     <Route exact path="/login" element={<Login />} />
-    <Route exact path="/register" component={Register} />
-    <Route exact path="/profile" component={Profile} />
+    <Route exact path="/register" element={<Register />} />
+    <Route exact path="/profile" element={<Profile />} />
     
 
     <Route path="*" element={<NotFound />} />
