@@ -15,7 +15,9 @@ const required = (value) => {
   }
 };
 
-const Login = (props) => {
+
+export default function Login(props) {
+//const Login = (props) => {
   const form = useRef();
   const checkBtn = useRef();
 
@@ -120,6 +122,4 @@ const Login = (props) => {
       </div>
     </div>
   );
-};
-
-export default Login;
+}

@@ -60,7 +60,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       errorElement={<Error />}
       loader={houseDetailLoader}
     />
-    <Route exact path="/login" component={Login} />
+    <Route exact path="/login" element={<Login />} />
     <Route exact path="/register" component={Register} />
     <Route exact path="/profile" component={Profile} />
     
