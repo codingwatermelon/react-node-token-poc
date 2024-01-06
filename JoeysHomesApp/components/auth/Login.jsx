@@ -30,9 +30,14 @@ export async function action({ request }) {
 
     // TODO Validate fields are correct before proceeding
     const userNameRegex = /[A-Za-z0-9]+/
+    console.log(typeof username)
 
     if (!(userNameRegex.test(username))) {
+        console.log("test 1")
         return "Username is invalid"
+    }
+    else {
+        console.log("test")
     }
 
     try {
