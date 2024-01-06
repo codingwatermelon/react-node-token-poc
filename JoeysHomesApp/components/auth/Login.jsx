@@ -19,7 +19,7 @@ export function loader({ request }) {
 export async function action({ request }) {
     const formData = await request.formData()
     
-    const email = formData.get("email")
+    const username = formData.get("username")
     const password = formData.get("password")
 
     const pathname = new URL(request.url)
@@ -83,9 +83,9 @@ export default function Login() {
                     replace
                 >
                     <input
-                        name="email"
-                        type="email"
-                        placeholder="Email address"
+                        name="username"
+                        type="string"
+                        placeholder="Username"
                     />
                     
                     <input
