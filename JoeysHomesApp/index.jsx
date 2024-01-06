@@ -22,7 +22,7 @@ import DefaultLayout from "./components/DefaultLayout"
 //import Login, { loader as loginLoader, action as loginAction } from "./pages/old_Login"
 //import Signup, { loader as signupLoader, action as signupAction } from "./pages/old_Signup"
 import Profile from "./components/auth/Profile"
-import Login from "./pages/badForm_Login"
+import Login from "./components/auth/Login"
 import Register from "./components/auth/Register"
 
 
