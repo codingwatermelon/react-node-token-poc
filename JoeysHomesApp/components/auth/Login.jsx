@@ -32,7 +32,11 @@ export async function action({ request }) {
     const userNameRegex = /[A-Za-z0-9]+/g
 
     if (!(userNameRegex.test(username))) {
+        console.log("username is invalid")
         return "Username is invalid"
+    }
+    else {
+        console.log("wtf")
     }
 
     try {
