@@ -22,7 +22,7 @@ import DefaultLayout from "./components/DefaultLayout"
 //import Login, { loader as loginLoader, action as loginAction } from "./pages/old_Login"
 //import Signup, { loader as signupLoader, action as signupAction } from "./pages/old_Signup"
 import Profile from "./components/auth/Profile"
-import Login from "./components/auth/Login"
+import Login, { loader as loginLoader, action as loginAction } from "./components/auth/Login"
 import Register from "./components/auth/Register"
 
 
@@ -60,7 +60,12 @@ const router = createBrowserRouter(createRoutesFromElements(
       errorElement={<Error />}
       loader={houseDetailLoader}
     />
-    <Route exact path="/login" element={<Login />} />
+    <Route
+      path="login"
+      element={<Login />}
+      loader={loginLoader}
+      action={loginAction}
+    />
     <Route exact path="/register" element={<Register />} />
     <Route exact path="/profile" element={<Profile />} />
     
