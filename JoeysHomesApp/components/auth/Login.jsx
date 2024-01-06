@@ -1,124 +1,121 @@
-import React, { useState, useRef } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-
+import React, { useEffect, useState } from "react"
+import {
+    useLoaderData,
+    useNavigation,
+    Form,
+    redirect,
+    useActionData,
+    useNavigate,
+    Link
+} from "react-router-dom"
+import { loginUser } from "../../functions"
+import { FiEye, FiEyeOff } from 'react-icons/fi'; // If using icons
 import AuthService from "../../services/auth.service";
 
-// TODO I shouldn't pass props into this, and I need to fix props.history
+export function loader({ request }) {
+    return new URL(request.url).searchParams.get("message")
+}
+
+export async function action({ request }) {
+    const formData = await request.formData()
+    
+    const email = formData.get("email")
+    const password = formData.get("password")
+
+    const pathname = new URL(request.url)
+        .searchParams.get("redirectTo") || "/"
+    
+    console.log("pathname (action)")
+    console.log(pathname)
+
+    // TODO Validate fields are correct before proceeding
+
+    try {
+        //const data = await loginUser({ email, password })
+
+        AuthService.login(username, password).then(
+            () => {
+                return redirect(pathname)
+            },
+            (err) => {
+                return err.message
+            }
+        );
+        
+        // TODO Do I need to get client info (email/password) returned here? Probably not
+        // TODO Change 'loggedin' to fingerprint which ties to DB
+        //localStorage.setItem("token", true)
+        // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
+        
+    } catch(err) {
+        return err.message
+    }
+}
+
 export default function Login() {
-//const Login = (props) => {
-  const form = useRef();
-  const checkBtn = useRef();
+    const errorMessage = useActionData()
+    const message = useLoaderData()
+    const navigation = useNavigation()
+    const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
-  const required = (value) => {
-    if (!value) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This field is required!
-        </div>
-      );
-    }
-  };
-  
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
+    //const token = localStorage.getItem("token")
+    // TODO verify token is valid (non expired and sufficient to access requested resources)
 
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
+    // Redirect to account page if user is logged in already
+    //if (isLoggedIn) {
+    //    useEffect(() => { 
+    //        navigate('/account');
+    //    }, []);
+    //}
+    //else {
+        return (
+            <div className="login-container">
+                <h1>Sign in to your account</h1>
+                {message && <h3 className="red">{message}</h3>}
+                {errorMessage && <h3 className="red">{errorMessage}</h3>}
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    setMessage("");
-    setLoading(true);
-
-    form.current.validateAll();
-
-    if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(username, password).then(
-        () => {
-          window.location.reload();
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
-          setLoading(false);
-          setMessage(resMessage);
-        }
-      );
-    } else {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="col-md-12">
-      <div className="card card-container">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
-
-        <Form onSubmit={handleLogin} ref={form}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <Input
-              type="text"
-              className="form-control"
-              name="username"
-              value={username}
-              onChange={onChangeUsername}
-              validations={[required]}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <Input
-              type="password"
-              className="form-control"
-              name="password"
-              value={password}
-              onChange={onChangePassword}
-              validations={[required]}
-            />
-          </div>
-
-          <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
-              {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )}
-              <span>Login</span>
-            </button>
-          </div>
-
-          {message && (
-            <div className="form-group">
-              <div className="alert alert-danger" role="alert">
-                {message}
-              </div>
-            </div>
-          )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
-      </div>
-    </div>
-  );
+                <Form 
+                    method="post" 
+                    className="login-form" 
+                    replace
+                >
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder="Email address"
+                    />
+                    
+                    <input
+                        name="password"
+                        type={showPassword ? 'text' : 'password'}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Password"
+                    />
+                    <button
+                    style={{ position: 'absolute', right: 5, top: 10, background: 'none', border: 'none' }}
+                    onClick={() => setShowPassword(!showPassword)}
+                    >
+                    {showPassword ? <FiEyeOff /> : <FiEye />} {/* Toggle icon */}
+                    </button>
+                    <button
+                        disabled={navigation.state === "submitting"}
+                    >
+                        {navigation.state === "submitting"
+                            ? "Logging in..."
+                            : "Log in"
+                        }
+                    </button>
+                </Form>
+                <Link 
+                    to="/signup"
+                    className="login-form-link">
+                        <p>No account yet? Sign up here</p>
+                </Link>
+            </div>   
+        )
+    //}
 }
