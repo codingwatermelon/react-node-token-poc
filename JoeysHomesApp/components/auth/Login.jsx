@@ -29,6 +29,11 @@ export async function action({ request }) {
     console.log(pathname)
 
     // TODO Validate fields are correct before proceeding
+    const userNameRegex = /[A-Za-z0-9]+/
+
+    if (!userNameRegex.test(username)) {
+        return "Username is invalid"
+    }
 
     try {
         //const data = await loginUser({ email, password })
