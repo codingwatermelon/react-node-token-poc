@@ -15,8 +15,8 @@ const required = (value) => {
   }
 };
 
-
-export default function Login(props) {
+// TODO I shouldn't pass props into this, and I need to fix props.history
+export default function Login() {
 //const Login = (props) => {
   const form = useRef();
   const checkBtn = useRef();
@@ -47,7 +47,6 @@ export default function Login(props) {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(username, password).then(
         () => {
-          props.history.push("/profile");
           window.location.reload();
         },
         (error) => {

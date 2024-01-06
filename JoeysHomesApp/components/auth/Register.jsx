@@ -47,7 +47,7 @@ const vpassword = (value) => {
 };
 
 //const Register = (props) => {
-export default function Register(props) {
+export default function Register() {
   const form = useRef();
   const checkBtn = useRef();
 
