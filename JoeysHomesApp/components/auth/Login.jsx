@@ -5,16 +5,6 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "../../services/auth.service";
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
-
 // TODO I shouldn't pass props into this, and I need to fix props.history
 export default function Login() {
 //const Login = (props) => {
@@ -26,6 +16,16 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  const required = (value) => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This field is required!
+        </div>
+      );
+    }
+  };
+  
   const onChangeUsername = (e) => {
     const username = e.target.value;
     setUsername(username);
