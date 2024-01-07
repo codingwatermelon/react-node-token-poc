@@ -42,6 +42,7 @@ export async function action({ request }) {
     try {
         //const data = await loginUser({ email, password })
 
+        // TODO Do I need authservice.login to be an async function like above?
         AuthService.login(username, password).then(
             () => {
                 return redirect(pathname)
@@ -70,7 +71,10 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
-    //const token = localStorage.getItem("token")
+    const token = AuthService.getCurrentUser()
+    console.log("curr token")
+    console.log(token)
+    
     // TODO verify token is valid (non expired and sufficient to access requested resources)
 
     // Redirect to account page if user is logged in already
