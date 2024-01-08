@@ -61,27 +61,39 @@ app.get("/api/houses/:id", (req, res) => {
     })
 })
 
-app.get("/api/maintenance", (req, res) => {
-  
-  api.getMaintenance()
-    .then(response => {
-      res.json(response);
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    })
-})
+//app.get("/api/maintenance", (req, res) => {
+//  
+//  api.getMaintenance()
+//    .then(response => {
+//      res.json(response);
+//    })
+//    .catch(error => {
+//      res.status(500).send(error);
+//    })
+//})
 
-app.get("/api/maintenance/:id", (req, res) => {
-  
-  api.getMaintenance(req.params.id)
-    .then(response => {
-      res.status(200).send(response);
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    })
-})
+//app.get("/api/maintenance/:id", (req, res) => {
+//  
+//  api.getMaintenance(req.params.id)
+//    .then(response => {
+//      res.status(200).send(response);
+//    })
+//    .catch(error => {
+//      res.status(500).send(error);
+//    })
+//})
+
+app.get(
+  "/api/maintenance",
+  [authJwt.verifyToken],
+  controller.maintenance
+);
+
+app.get(
+  "/api/maintenance/:id",
+  [authJwt.verifyToken],
+  controller.maintenanceWithID
+);
 
 // auth routes
 require('./app/routes/auth.routes')(app);

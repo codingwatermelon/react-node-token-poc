@@ -35,9 +35,6 @@ export async function action({ request }) {
         console.log("username is invalid")
         return "Username is invalid"
     }
-    else {
-        console.log("wtf")
-    }
 
     try {
         //const data = await loginUser({ email, password })
@@ -68,13 +65,10 @@ export default function Login() {
     const navigation = useNavigation()
     const navigate = useNavigate();
 
-    const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-
     const token = AuthService.getCurrentUser()
     console.log("curr token")
     console.log(token)
-    
+
     // TODO verify token is valid (non expired and sufficient to access requested resources)
 
     // Redirect to account page if user is logged in already
@@ -103,17 +97,9 @@ export default function Login() {
                     
                     <input
                         name="password"
-                        type={showPassword ? 'text' : 'password'}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
                         placeholder="Password"
                     />
-                    <button
-                    style={{ position: 'absolute', right: 5, top: 10, background: 'none', border: 'none' }}
-                    onClick={() => setShowPassword(!showPassword)}
-                    >
-                    {showPassword ? <FiEyeOff /> : <FiEye />} {/* Toggle icon */}
-                    </button>
                     <button
                         disabled={navigation.state === "submitting"}
                     >
