@@ -30,6 +30,8 @@ export async function getMaintenance(id) {
           status: res.status,
       }
   }
+
+  console.log(res)
   
   const data = await res.json()
   return data
