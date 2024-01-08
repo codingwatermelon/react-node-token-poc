@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require("cors")
+const { authJwt } = require("./middleware");
 
 const app = express()
 const port = 5000
