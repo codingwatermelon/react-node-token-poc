@@ -23,7 +23,7 @@ export async function getMaintenance(id) {
   //const res = await fetch(url)
   const res = await api.get(url);
 
-  if (!res.ok) {
+  if (!res.status == 200) {
       throw {
           message: "Failed to fetch maintenance tasks",
           statusText: res.statusText,
