@@ -16,11 +16,31 @@ const getAdminBoard = () => {
   return api.get("/test/admin");
 };
 
+export async function getMaintenance(id) {
+
+  const url = id ? `/maintenance/${id}` : "/maintenance"
+  
+  //const res = await fetch(url)
+  const res = await api.get(url);
+
+  if (!res.ok) {
+      throw {
+          message: "Failed to fetch maintenance tasks",
+          statusText: res.statusText,
+          status: res.status,
+      }
+  }
+  
+  const data = await res.json()
+  return data
+}
+
+
 const UserService = {
   getPublicContent,
   getUserBoard,
   getModeratorBoard,
-  getAdminBoard,
+  getAdminBoard
 };
 
 export default UserService;

@@ -14,22 +14,6 @@ export async function getHouses(id) {
     return data
 }
 
-export async function getMaintenance(id) {
-    const url = id ? `http://192.168.64.3:5000/api/maintenance/${id}` : "http://192.168.64.3:5000/api/maintenance"
-    console.log(url)
-    const res = await fetch(url)
-    if (!res.ok) {
-        throw {
-            message: "Failed to fetch maintenance tasks",
-            statusText: res.statusText,
-            status: res.status,
-        }
-    }
-    
-    const data = await res.json()
-    return data
-}
-
 // TODO Modify to use new routes
 export async function loginUser(creds) {
 

@@ -11,7 +11,10 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const token = TokenService.getLocalAccessToken();
+    console.log("getting localaccesstoken")
+    // TODO I think axios is not getting used when maintenance page is accessed, therefore x-access-token is not being set
     if (token) {
+      console.log("setting x-access-token")
       // config.headers["Authorization"] = 'Bearer ' + token;  // for Spring Boot back-end
       config.headers["x-access-token"] = token; // for Node.js Express back-end
     }
