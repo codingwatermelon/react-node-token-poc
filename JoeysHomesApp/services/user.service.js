@@ -33,7 +33,9 @@ export async function getMaintenance(id) {
 
   console.log(res)
   
-  const data = await res.data.json()
+  //const data = await res.json()
+  const data = await JSON.parse(res.data)
+
   return data
 }
 
