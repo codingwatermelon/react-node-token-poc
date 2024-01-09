@@ -37,19 +37,19 @@ export async function getMaintenance(id) {
 }
 
 // TODO How do I verify the token is not expired
-export async function requireAuth(request) {
-    const pathname = new URL(request.url).pathname
-    // TODO verify that token is not expired and sufficient to access the requested resource
-    const res = await api.get("/verifyauth");
-    console.log("requireauth res")
-    console.log(res)
-
-    if (!res) {
-        throw redirect(
-            `/login?message=You must log in first.&redirectTo=${pathname}`
-        )
-    }
-}
+//export async function requireAuth(request) {
+//    const pathname = new URL(request.url).pathname
+//    // TODO verify that token is not expired and sufficient to access the requested resource
+//    const res = await api.get("/verifyauth");
+//    console.log("requireauth res")
+//    console.log(res)
+//
+//    if (!res) {
+//        throw redirect(
+//            `/login?message=You must log in first.&redirectTo=${pathname}`
+//        )
+//    }
+//}
 
 
 
