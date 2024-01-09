@@ -42,7 +42,6 @@ export async function action({ request }) {
         // TODO Do I need authservice.login to be an async function like above?
         const data = AuthService.login(username, password)
         
-        window.location.reload();
         return redirect(pathname);
 
         
