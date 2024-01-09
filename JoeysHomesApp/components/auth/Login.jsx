@@ -40,11 +40,11 @@ export async function action({ request }) {
         //const data = await loginUser({ email, password })
 
         // TODO Do I need authservice.login to be an async function like above?
-        const data = AuthService.login(username, password)
+        const data = await AuthService.login(username, password)
         
         console.log("data from login")
         console.log(data)
-        
+
         return redirect(pathname);
 
         
