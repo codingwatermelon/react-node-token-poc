@@ -33,7 +33,7 @@ export async function action({ request }) {
 
     if (!(userNameRegex.test(username))) {
         console.log("username is invalid")
-        return "Username is invalid"
+        return "Username can only be letters and numbers"
     }
 
     try {
@@ -54,7 +54,12 @@ export async function action({ request }) {
         // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
         
     } catch(err) {
-        return err.message
+        if (err.status == 404) {
+            return "Username or password is incorrect, try again"
+        }
+        else {
+            return err.message
+        }
     }
 }
 
