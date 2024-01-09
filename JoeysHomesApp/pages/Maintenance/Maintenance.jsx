@@ -50,6 +50,7 @@ export default function Maintenance() {
     const dataPromise = useLoaderData()
 
     const typeFilter = searchParams.get("type")
+    window.location.reload();
 
     function handleFilterChange(key, value) {
         setSearchParams(prevParams => {
