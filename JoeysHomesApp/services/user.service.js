@@ -22,6 +22,7 @@ export async function getMaintenance(id) {
   const url = id ? `/maintenance/${id}` : "/maintenance"
   //const res = await fetch(url)
   const res = await api.get(url);
+  console.log("called getMaintenance")
 
   if (!res.status == 200) {
       throw {
