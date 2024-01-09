@@ -42,8 +42,7 @@ export async function action({ request }) {
         // TODO Do I need authservice.login to be an async function like above?
         const data = AuthService.login(username, password)
         
-        window.location.href = pathname;
-        //return redirect(pathname);
+        return redirect(pathname);
 
         
         // TODO Do I need to get client info (email/password) returned here? Probably not
