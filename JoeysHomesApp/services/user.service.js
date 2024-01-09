@@ -40,7 +40,7 @@ export async function getMaintenance(id) {
 export async function requireAuth(request) {
     const pathname = new URL(request.url).pathname
     // TODO verify that token is not expired and sufficient to access the requested resource
-    const res = await api.get("/api/verifyauth");
+    const res = await api.get("/verifyauth");
     console.log("requireauth res")
     console.log(res)
 
