@@ -1,11 +1,10 @@
 import React from "react"
-import { Link, useRouteError, isRouteErrorResponse } from "react-router-dom"
+import { Link, useRouteError, isRouteErrorResponse, useLocation } from "react-router-dom"
 
 export default function Error() {
     const error = useRouteError()
-    
-    console.log(error)
 
+    // Handle router errors
     if (isRouteErrorResponse(error)) {
         return (
             <>
@@ -17,11 +16,12 @@ export default function Error() {
     else {
         // If error is 403 Forbidden, then route user back to Login and mention that their session has timed out
         if (error.response.status == 403) {
+            const location = `/login?message=Session expired&redirectTo=${useLocation().pathname}`;
             return (
                 <>
                 <h1>Your session has timed out.</h1>
                 <Link
-                    to="/login"
+                    to={location}
                 >
                     <h2>Click here to log in again</h2>
                 </Link>
