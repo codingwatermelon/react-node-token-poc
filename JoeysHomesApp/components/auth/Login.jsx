@@ -18,7 +18,6 @@ export function loader({ request }) {
 
 export async function action({ request }) {
     const formData = await request.formData()
-    const navigate = useNavigate()
     
     const username = formData.get("username")
     const password = formData.get("password")
@@ -42,8 +41,8 @@ export async function action({ request }) {
 
         // TODO Do I need authservice.login to be an async function like above?
         const data = AuthService.login(username, password)
-
-        return navigate(pathname);
+        
+        return redirect(pathname);
 
         
         // TODO Do I need to get client info (email/password) returned here? Probably not

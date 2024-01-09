@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
     Link,
     useSearchParams,
@@ -51,6 +51,10 @@ export default function Maintenance() {
 
     const typeFilter = searchParams.get("type")
 
+    useEffect(() => {
+        window.location.reload();
+    }, []);
+    
     function handleFilterChange(key, value) {
         setSearchParams(prevParams => {
             if (value === null) {
