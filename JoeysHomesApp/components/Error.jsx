@@ -18,6 +18,7 @@ export default function Error() {
     }
     else {
         // TODO If error is 403 Forbidden, then route user back to Login and mention that their session has timed out
+        console.log(error)
         return (
             <>
             <h1>Error: {error.message}</h1>
