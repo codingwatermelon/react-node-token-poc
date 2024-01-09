@@ -40,13 +40,9 @@ export async function action({ request }) {
         //const data = await loginUser({ email, password })
 
         // TODO Do I need authservice.login to be an async function like above?
-        AuthService.login(username, password)
-        .then(res => {
-            return redirect(pathname)
-        })
-        .catch(error => {
-            return error.message;
-        })
+        const data = AuthService.login(username, password)
+        
+        return redirect(pathname);
         
         // TODO Do I need to get client info (email/password) returned here? Probably not
         // TODO Change 'loggedin' to fingerprint which ties to DB
