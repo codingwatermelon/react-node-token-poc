@@ -98,6 +98,11 @@ app.get(
   controller.maintenanceWithID
 );
 
+app.get(
+  "/api/verifyauth",
+  [authJwt.verifyToken]
+);
+
 // auth routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
