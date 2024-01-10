@@ -18,14 +18,14 @@ export default function Error() {
         if (error.response.status == 403) {
             const location = `/login?message=Session expired&redirectTo=${useLocation().pathname}`;
             return (
-                <>
-                <h1>Your session has timed out.</h1>
-                <Link
-                    to={location}
-                >
-                    <h2>Click here to log in again</h2>
-                </Link>
-                </>
+                <div className="session-expired">
+                    <h1>Your session has timed out.</h1>
+                    <Link
+                        to={location}
+                    >
+                        <h2>Click here to log in again</h2>
+                    </Link>
+                </div>
             )
         }
     }

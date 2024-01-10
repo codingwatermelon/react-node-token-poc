@@ -840,3 +840,13 @@ img.graph {
 .income-summary-green {
     color: #00c714;
 }
+
+.session-expired {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.session-expired h2 {
+    color: #006cbe;
+}

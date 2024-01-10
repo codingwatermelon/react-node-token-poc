@@ -56,6 +56,7 @@ export async function action({ request }) {
     } catch(err) {
         if (err.name == "AxiosError") {
             if (err.response.status == 404) {
+                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
                 return "Username or password is incorrect, try again"
             }
         }
