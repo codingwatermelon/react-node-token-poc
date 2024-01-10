@@ -14,16 +14,18 @@ export default function Header() {
     // Currently, only the setCurrentUser(undefined) in the logOut method is updating the Header component properly
     const [currentUser, setCurrentUser] = useState(undefined);
 
-//    useEffect(() => {
-//        const user = AuthService.getCurrentUser();
-//
-//        if (user) {
-//            setCurrentUser(user);
-//            //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-//            //setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-//        }
-//
-//    }, []);
+    // This useEffect runs on the first render of the page (i.e., also if the page gets reloaded)
+    // I need this to run every time the currentUser changes. If I put currentUser as a dependency, then this runs in an infinite loop
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+            setCurrentUser(user);
+            //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+            //setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+        }
+
+    }, []);
 
     const logOut = () => {
         AuthService.logout();
