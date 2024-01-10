@@ -14,7 +14,9 @@ export default function Error() {
     // Handle router errors
     if (isRouteErrorResponse(error)) {
         return (
+            <>
             {defaultError}
+            </>
         )
     }
     else {
@@ -35,8 +37,10 @@ export default function Error() {
             }
         }
         else {
-            return(
+            return (
+                <>
                 {defaultError}
+                </>
             )
         }
     }
