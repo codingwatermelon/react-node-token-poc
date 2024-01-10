@@ -842,9 +842,10 @@ img.graph {
 }
 
 .session-expired {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
     align-items: center;
-    margin-bottom: 32px;
 }
 
 .session-expired h2 {
