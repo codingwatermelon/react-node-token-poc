@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link, NavLink } from "react-router-dom"
 import AuthService from "../services/auth.service";
 
+import EventBus from "./common/EventBus";
 
 export default function Header() {
     const activeStyles = {
