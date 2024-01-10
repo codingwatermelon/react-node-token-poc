@@ -1,5 +1,7 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Link, NavLink } from "react-router-dom"
+import AuthService from "../services/auth.service";
+
 
 export default function Header() {
     const activeStyles = {
@@ -7,10 +9,26 @@ export default function Header() {
         textDecoration: "underline",
         color: "#161616"
     }
-    
-    function fakeLogOut() {
-        localStorage.removeItem("loggedin")
-    }
+
+    const [currentUser, setCurrentUser] = useState(undefined);
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser();
+
+        if (user) {
+            setCurrentUser(user);
+            //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+            //setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+        }
+
+    }, []);
+
+    const logOut = () => {
+        AuthService.logout();
+        //setShowModeratorBoard(false);
+        //setShowAdminBoard(false);
+        setCurrentUser(undefined);
+    };
     
     return (
         <header>
@@ -34,7 +52,34 @@ export default function Header() {
                         className="login-icon"
                     />
                 </Link>
-                <button onClick={fakeLogOut}>X</button>
+                {currentUser ? (
+                <div className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                    <Link to={"/profile"} className="nav-link">
+                        {currentUser.username}
+                    </Link>
+                    </li>
+                    <li className="nav-item">
+                    <a href="/login" className="nav-link" onClick={logOut}>
+                        LogOut
+                    </a>
+                    </li>
+                </div>
+                ) : (
+                <div className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                    <Link to={"/login"} className="nav-link">
+                        Login
+                    </Link>
+                    </li>
+
+                    <li className="nav-item">
+                    <Link to={"/register"} className="nav-link">
+                        Sign Up
+                    </Link>
+                    </li>
+                </div>
+                )}
             </nav>
         </header>
     )
