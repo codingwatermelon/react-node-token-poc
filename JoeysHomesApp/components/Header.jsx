@@ -10,18 +10,20 @@ export default function Header() {
         color: "#161616"
     }
 
+    // TODO When I press 'Log in' from /login, I need the Header component to update with the new current user
+    // Currently, only the setCurrentUser(undefined) in the logOut method is updating the Header component properly
     const [currentUser, setCurrentUser] = useState(undefined);
 
-    useEffect(() => {
-        const user = AuthService.getCurrentUser();
-
-        if (user) {
-            setCurrentUser(user);
-            //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-            //setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-        }
-
-    }, []);
+//    useEffect(() => {
+//        const user = AuthService.getCurrentUser();
+//
+//        if (user) {
+//            setCurrentUser(user);
+//            //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+//            //setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+//        }
+//
+//    }, []);
 
     const logOut = () => {
         AuthService.logout();
