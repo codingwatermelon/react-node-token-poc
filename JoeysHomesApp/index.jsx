@@ -25,6 +25,8 @@ import Profile from "./components/auth/Profile"
 import Login, { loader as loginLoader, action as loginAction } from "./components/auth/Login"
 import Register from "./components/auth/Register"
 
+import { AuthProvider } from './components/common/AuthContext';
+
 
 //import "./server"
 //import "../JoeysHomesServer/server"
@@ -82,4 +84,10 @@ function App() {
 
 ReactDOM
   .createRoot(document.getElementById('root'))
-  .render(<App />);
+  .render(
+    <React.StrictMode>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </React.StrictMode>
+  );

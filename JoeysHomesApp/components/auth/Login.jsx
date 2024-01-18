@@ -12,6 +12,8 @@ import { loginUser } from "../../functions"
 import { FiEye, FiEyeOff } from 'react-icons/fi'; // If using icons
 import AuthService from "../../services/auth.service";
 
+import { useAuth } from '../common/AuthContext';
+
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message")
 }
@@ -37,13 +39,19 @@ export async function action({ request }) {
     }
 
     try {
-        //const data = await loginUser({ email, password })
-
-        // TODO Do I need authservice.login to be an async function like above?
         const data = await AuthService.login(username, password)
-        
+
+        // TODO Check if data is valid, then setIsAuthenticated accordingly
+
         console.log("data from login")
         console.log(data)
+
+        const { dispatch } = useAuth();
+
+        // After successful login
+        const handleLogin = (data) => {
+            dispatch({ type: 'LOGIN', payload: data });
+        };
 
         return redirect(pathname);
 
