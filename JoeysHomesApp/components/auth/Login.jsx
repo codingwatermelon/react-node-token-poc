@@ -19,10 +19,12 @@ export function loader({ request }) {
 }
 
 export async function action({ request }) {
+    const { dispatch } = useAuth();
     const formData = await request.formData()
     
     const username = formData.get("username")
     const password = formData.get("password")
+    
 
     const pathname = new URL(request.url)
         .searchParams.get("redirectTo") || "/"
@@ -45,8 +47,6 @@ export async function action({ request }) {
 
         console.log("data from login")
         console.log(data)
-
-        const { dispatch } = useAuth();
 
         // After successful login
         const handleLogin = (data) => {
