@@ -18,14 +18,22 @@ export function loader({ request }) {
     return new URL(request.url).searchParams.get("message")
 }
 
+// TODO I probably need to change this because 
+// 1) I can't call useAuth because of the Rules of Hooks
+// 2) this runs upon every "action", so I can't put in a password eye thing either
+
+//export function handleSubmit (formData) {
+//
+//}
+
+// TODO, create other function to be called when submit button is clicked, then call handleLogin from perplexity code
 export async function action({ request }) {
-    const { dispatch } = useAuth();
+    
     const formData = await request.formData()
     
     const username = formData.get("username")
     const password = formData.get("password")
     
-
     const pathname = new URL(request.url)
         .searchParams.get("redirectTo") || "/"
     
@@ -48,10 +56,7 @@ export async function action({ request }) {
         console.log("data from login")
         console.log(data)
 
-        // After successful login
-        const handleLogin = (data) => {
-            dispatch({ type: 'LOGIN', payload: data });
-        };
+        
 
         return redirect(pathname);
 
@@ -75,14 +80,62 @@ export async function action({ request }) {
 }
 
 export default function Login() {
-    const errorMessage = useActionData()
+    //const errorMessage = useActionData()
     const message = useLoaderData()
     const navigation = useNavigation()
     const navigate = useNavigate();
+    const { dispatch } = useAuth();
 
     const token = AuthService.getCurrentUser()
     console.log("curr token")
     console.log(token)
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    // After the user submits the login form
+    const handleLogin = (e) => {
+        e.preventDefault();
+        // Perform the login logic, for example, by calling an authentication API
+        const userNameRegex = /^[A-Za-z0-9]+$/g
+
+        if (!(userNameRegex.test(username))) {
+            console.log("username is invalid")
+            return "Username can only be letters and numbers"
+        }
+
+        try {
+            const data = AuthService.login(username, password)
+
+            // TODO Check if data is valid, then setIsAuthenticated accordingly
+
+            console.log("data from login")
+            console.log(data)
+
+            
+            // If the login is successful, dispatch a LOGIN action with the user data
+            dispatch({ type: 'LOGIN', payload: { username, password } });
+            //return redirect(pathname);
+
+            
+            // TODO Do I need to get client info (email/password) returned here? Probably not
+            // TODO Change 'loggedin' to fingerprint which ties to DB
+            //localStorage.setItem("token", true)
+            // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
+            
+        } catch(err) {
+            if (err.name == "AxiosError") {
+                if (err.response.status == 404) {
+                    // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
+                    return "Username or password is incorrect, try again"
+                }
+            }
+            else {
+                return err.message
+            }
+        }
+        
+    };
 
     // TODO verify token is valid (non expired and sufficient to access requested resources)
 
@@ -101,22 +154,28 @@ export default function Login() {
 
                 <Form 
                     method="post" 
-                    className="login-form" 
+                    className="login-form"
+                    onSubmit={handleLogin}
                     replace
                 >
                     <input
                         name="username"
                         type="string"
                         placeholder="Username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     
                     <input
                         name="password"
                         type="password"
                         placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     <button
                         disabled={navigation.state === "submitting"}
+                        type="submit"
                     >
                         {navigation.state === "submitting"
                             ? "Logging in..."
