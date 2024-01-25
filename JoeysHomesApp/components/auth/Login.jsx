@@ -27,57 +27,57 @@ export function loader({ request }) {
 //}
 
 // TODO, create other function to be called when submit button is clicked, then call handleLogin from perplexity code
-export async function action({ request }) {
-    
-    const formData = await request.formData()
-    
-    const username = formData.get("username")
-    const password = formData.get("password")
-    
-    const pathname = new URL(request.url)
-        .searchParams.get("redirectTo") || "/"
-    
-    console.log("pathname (action)")
-    console.log(pathname)
-
-    // TODO Validate fields are correct before proceeding
-    const userNameRegex = /^[A-Za-z0-9]+$/g
-
-    if (!(userNameRegex.test(username))) {
-        console.log("username is invalid")
-        return "Username can only be letters and numbers"
-    }
-
-    try {
-        const data = await AuthService.login(username, password)
-
-        // TODO Check if data is valid, then setIsAuthenticated accordingly
-
-        console.log("data from login")
-        console.log(data)
-
-        
-
-        return redirect(pathname);
-
-        
-        // TODO Do I need to get client info (email/password) returned here? Probably not
-        // TODO Change 'loggedin' to fingerprint which ties to DB
-        //localStorage.setItem("token", true)
-        // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
-        
-    } catch(err) {
-        if (err.name == "AxiosError") {
-            if (err.response.status == 404) {
-                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
-                return "Username or password is incorrect, try again"
-            }
-        }
-        else {
-            return err.message
-        }
-    }
-}
+//export async function action({ request }) {
+//    
+//    const formData = await request.formData()
+//    
+//    const username = formData.get("username")
+//    const password = formData.get("password")
+//    
+//    const pathname = new URL(request.url)
+//        .searchParams.get("redirectTo") || "/"
+//    
+//    console.log("pathname (action)")
+//    console.log(pathname)
+//
+//    // TODO Validate fields are correct before proceeding
+//    const userNameRegex = /^[A-Za-z0-9]+$/g
+//
+//    if (!(userNameRegex.test(username))) {
+//        console.log("username is invalid")
+//        return "Username can only be letters and numbers"
+//    }
+//
+//    try {
+//        const data = await AuthService.login(username, password)
+//
+//        // TODO Check if data is valid, then setIsAuthenticated accordingly
+//
+//        console.log("data from login")
+//        console.log(data)
+//
+//        
+//
+//        return redirect(pathname);
+//
+//        
+//        // TODO Do I need to get client info (email/password) returned here? Probably not
+//        // TODO Change 'loggedin' to fingerprint which ties to DB
+//        //localStorage.setItem("token", true)
+//        // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
+//        
+//    } catch(err) {
+//        if (err.name == "AxiosError") {
+//            if (err.response.status == 404) {
+//                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
+//                return "Username or password is incorrect, try again"
+//            }
+//        }
+//        else {
+//            return err.message
+//        }
+//    }
+//}
 
 export default function Login() {
     //const errorMessage = useActionData()
@@ -111,7 +111,6 @@ export default function Login() {
 
             console.log("data from login")
             console.log(data)
-
             
             // If the login is successful, dispatch a LOGIN action with the user data
             dispatch({ type: 'LOGIN', payload: { username, password } });
