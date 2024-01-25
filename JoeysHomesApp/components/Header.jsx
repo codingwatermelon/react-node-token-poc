@@ -14,6 +14,9 @@ export default function Header() {
 
     const { isAuthenticated } = useContext(AuthContext);
 
+    console.log('header isauthenticated')
+    console.log(isAuthenticated)
+    
     // TODO When I press 'Log in' from /login, I need the Header component to update with the new current user
     // Currently, only the setCurrentUser(undefined) in the logOut method is updating the Header component properly
     //const [currentUser, setCurrentUser] = useState(undefined);
