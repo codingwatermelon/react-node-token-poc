@@ -6,6 +6,7 @@ import {
     redirect,
     useActionData,
     useNavigate,
+    useLocation,
     Link
 } from "react-router-dom"
 import { loginUser } from "../../functions"
@@ -85,6 +86,7 @@ export default function Login() {
     const navigation = useNavigation()
     const navigate = useNavigate();
     const { dispatch } = useAuth();
+    const location = useLocation();
 
     const token = AuthService.getCurrentUser()
     console.log("curr token")
@@ -98,7 +100,9 @@ export default function Login() {
         e.preventDefault();
         // Perform the login logic, for example, by calling an authentication API
         const userNameRegex = /^[A-Za-z0-9]+$/g
-
+        const pathname = new URL(location.pathname)
+            .searchParams.get("redirectTo") || "/"
+        
         if (!(userNameRegex.test(username))) {
             console.log("username is invalid")
             return "Username can only be letters and numbers"
@@ -114,7 +118,7 @@ export default function Login() {
             
             // If the login is successful, dispatch a LOGIN action with the user data
             dispatch({ type: 'LOGIN', payload: { username, password } });
-            //return redirect(pathname);
+            return redirect(pathname);
 
             
             // TODO Do I need to get client info (email/password) returned here? Probably not
