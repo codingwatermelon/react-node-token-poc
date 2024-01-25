@@ -118,7 +118,7 @@ export default function Login() {
             console.log(data)
             
             // If the login is successful, dispatch a LOGIN action with the user data
-            dispatch({ type: 'LOGIN', payload: { username, password } });
+            dispatch({ type: 'LOGIN', payload: { username } });
             return redirect(pathname);
 
             

@@ -11,12 +11,14 @@ const initialState = {
 const authReducer = (state, action) => {
   switch (action.type) {
     case 'LOGIN':
+      console.log("login reducer")
       return {
         ...state,
         isAuthenticated: true,
         user: action.payload,
       };
     case 'LOGOUT':
+      console.log("logout reducer")
       return {
         ...state,
         isAuthenticated: false,
