@@ -149,7 +149,6 @@ export default function Login() {
             <div className="login-container">
                 <h1>Sign in to your account</h1>
                 {message && <h3 className="red">{message}</h3>}
-                {errorMessage && <h3 className="red">{errorMessage}</h3>}
 
                 <Form 
                     method="post" 
