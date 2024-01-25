@@ -98,9 +98,10 @@ export default function Login() {
     // After the user submits the login form
     const handleLogin = (e) => {
         e.preventDefault();
+        const baseUrl = '192.168.64.3:5173'
         // Perform the login logic, for example, by calling an authentication API
         const userNameRegex = /^[A-Za-z0-9]+$/g
-        const pathname = new URL(location.pathname)
+        const pathname = new URL(location.pathname, baseUrl)
             .searchParams.get("redirectTo") || "/"
         
         if (!(userNameRegex.test(username))) {
