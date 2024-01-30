@@ -37,6 +37,7 @@ import { AuthProvider } from './components/common/AuthContext';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
+    <Header/>
     <Route element={<DefaultLayout />} >
       <Route
         index
@@ -76,6 +77,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     
 
     <Route path="*" element={<NotFound />} />
+    <Footer/>
   </Route>
 ))
 
@@ -90,9 +92,7 @@ ReactDOM
   .render(
     <React.StrictMode>
       <AuthProvider>
-        <Header/>
         <App />
-        <Footer/>
       </AuthProvider>
     </React.StrictMode>
   );
