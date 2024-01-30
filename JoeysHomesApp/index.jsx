@@ -26,6 +26,9 @@ import Profile from "./components/auth/Profile"
 import Login, { loader as loginLoader } from "./components/auth/Login"
 import Register from "./components/auth/Register"
 
+import Header from "./components/Header"
+import Footer from "./components/Footer"
+
 import { AuthProvider } from './components/common/AuthContext';
 
 
