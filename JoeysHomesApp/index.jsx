@@ -35,9 +35,8 @@ import { AuthProvider } from './components/common/AuthContext';
 //import "./server"
 //import "../JoeysHomesServer/server"
 
-const router = createBrowserRouter(createRoutesFromElements(
+const Router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
-    <Header/>
     <Route element={<DefaultLayout />} >
       <Route
         index
@@ -77,22 +76,27 @@ const router = createBrowserRouter(createRoutesFromElements(
     
 
     <Route path="*" element={<NotFound />} />
-    <Footer/>
   </Route>
 ))
 
-function App() {
-  return (
-    <RouterProvider router={router} />
-  )
-}
+//function App() {
+//  return (
+//    <RouterProvider router={router} />
+//  )
+//}
 
 ReactDOM
   .createRoot(document.getElementById('root'))
   .render(
     <React.StrictMode>
       <AuthProvider>
-        <App />
+        <Router>
+          <div>
+            <Header/>
+            
+            <Footer/>
+          </div>
+        </Router>
       </AuthProvider>
     </React.StrictMode>
   );
