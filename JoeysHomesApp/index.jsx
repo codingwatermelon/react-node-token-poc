@@ -33,7 +33,7 @@ import { AuthProvider } from './components/common/AuthContext';
 //import "../JoeysHomesServer/server"
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <div>
+  <Route path="/" element={<Layout />}>
     <Route element={<DefaultLayout />} >
       <Route
         index
@@ -73,7 +73,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     
 
     <Route path="*" element={<NotFound />} />
-  </div>
+  </Route>
 ))
 
 function App() {
