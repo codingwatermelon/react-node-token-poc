@@ -37,7 +37,7 @@ export default function Header() {
 //            //setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
 //        }
 //
-//    }, []);
+//    }, []); 
 //
 //    const logOut = () => {
 //        AuthService.logout();
