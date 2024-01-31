@@ -20,6 +20,10 @@ export const AuthLayout = () => {
     const outlet = useOutlet();
 
     return (
-        <AuthProvider>{outlet}</AuthProvider>
+        <AuthProvider>
+            <Header/>
+            {outlet}
+            <Footer/>
+        </AuthProvider>
     );
 }
