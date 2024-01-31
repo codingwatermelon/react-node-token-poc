@@ -119,8 +119,11 @@ export default function Login() {
             console.log(data)
             
             // If the login is successful, dispatch a LOGIN action with the user data
-            //dispatch({ type: 'LOGIN', payload: { username } });
-            window.location.reload();
+            dispatch({ type: 'LOGIN', payload: { username } });
+            
+            // This refreshes the window, but not state. Header still says "Login" instead of showing the current user's name
+            //window.location.reload();
+            
             return redirect(pathname);
 
             
