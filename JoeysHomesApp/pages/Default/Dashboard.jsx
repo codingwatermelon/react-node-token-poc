@@ -3,13 +3,14 @@ import { Link, defer, Await, useLoaderData } from "react-router-dom"
 //import { getHouses } from "../../../JoeysHomesServer/api"
 //import { requireAuth } from "../../utils"
 import { BsStarFill } from "react-icons/bs"
-
+import Header from "../../components/Header"
 
 export default function Dashboard() {
     const income = 2260
 
     return (
         <>
+        <Header />
             <section className="host-dashboard-earnings">
                 <div className="info">
                 <Link to="income">
