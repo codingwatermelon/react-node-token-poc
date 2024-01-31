@@ -1,16 +1,25 @@
 import React from "react"
-import { Outlet } from "react-router-dom"
+import { useLoaderData, useOutlet } from "react-router-dom"
 import Header from "./Header"
 import Footer from "./Footer"
 
-export default function Layout() {
+import { AuthProvider } from "./common/AuthContext"
+
+//export default function Layout() {
+//    return (
+//        <AuthProvider>
+//            <Header />
+//            <main>
+//                <Outlet />
+//            </main>
+//            <Footer />
+//        </AuthProvider>
+//    )
+//}
+export const AuthLayout = () => {
+    const outlet = useOutlet();
+
     return (
-        <div className="site-wrapper">
-            <Header />
-            <main>
-                <Outlet />
-            </main>
-            <Footer />
-        </div>
-    )
+        <AuthProvider>{outlet}</AuthProvider>
+    );
 }

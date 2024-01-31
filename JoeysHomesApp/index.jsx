@@ -12,7 +12,7 @@ import Maintenance, { loader as maintenanceLoader }  from "./pages/Maintenance/M
 import Houses, { loader as housesLoader } from "./pages/Houses/Houses"
 import HouseDetail, { loader as houseDetailLoader } from "./pages/Houses/HouseDetail"
 import NotFound from "./pages/NotFound"
-import Layout from "./components/Layout"
+import AuthLayout from "./components/Layout"
 import Error from "./components/Error"
 //import { requireAuth } from "./utils"
 import Dashboard from "./pages/Default/Dashboard"
@@ -34,9 +34,7 @@ import Header from "./components/Header"
 //import "../JoeysHomesServer/server"
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element={<Layout />}>
-    <Route element={<Header />} 
-    />
+  <Route path="/" element={<AuthLayout />}>
     <Route element={<DefaultLayout />} >
       <Route
         index
