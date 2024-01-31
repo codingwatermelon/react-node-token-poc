@@ -110,6 +110,7 @@ export default function Login() {
         }
 
         try {
+            // TODO error handling here
             const data = AuthService.login(username, password)
 
             // TODO Check if data is valid, then setIsAuthenticated accordingly
@@ -118,7 +119,8 @@ export default function Login() {
             console.log(data)
             
             // If the login is successful, dispatch a LOGIN action with the user data
-            dispatch({ type: 'LOGIN', payload: { username } });
+            //dispatch({ type: 'LOGIN', payload: { username } });
+            window.location.reload();
             return redirect(pathname);
 
             
