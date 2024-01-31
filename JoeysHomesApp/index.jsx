@@ -28,12 +28,15 @@ import Register from "./components/auth/Register"
 
 import { AuthProvider } from './components/common/AuthContext';
 
+import Header from "./components/Header"
 
 //import "./server"
 //import "../JoeysHomesServer/server"
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
+    <Route element={<Header />} 
+    />
     <Route element={<DefaultLayout />} >
       <Route
         index
