@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useLoaderData, useOutlet } from "react-router-dom"
+import Outlet, { useLoaderData, useOutlet } from "react-router-dom"
 import Header from "./Header"
 import Footer from "./Footer"
 import { AuthContext } from "./common/AuthContext";
