@@ -26,15 +26,11 @@ import Profile from "./components/auth/Profile"
 import Login, { loader as loginLoader } from "./components/auth/Login"
 import Register from "./components/auth/Register"
 
-import { AuthProvider } from './components/common/AuthContext';
-
-import Header from "./components/Header"
-
 //import "./server"
 //import "../JoeysHomesServer/server"
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element={<AuthLayout />}>
+  <Route path="/" element={<Layout />}>
     <Route element={<DefaultLayout />} >
       <Route
         index
