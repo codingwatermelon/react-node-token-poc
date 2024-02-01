@@ -36,12 +36,12 @@ export default function Header() {
 //
 //    }, []); 
 //
-//    const logOut = () => {
-//        AuthService.logout();
-//        //setShowModeratorBoard(false);
-//        //setShowAdminBoard(false);
-//        setCurrentUser(undefined);
-//    };
+    const logOut = () => {
+        AuthService.logout();
+        //setShowModeratorBoard(false);
+        //setShowAdminBoard(false);
+        setCurrentUser(undefined);
+    };
     
     return (
         
