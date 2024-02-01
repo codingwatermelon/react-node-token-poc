@@ -1,29 +1,38 @@
-import React from "react"
+import React, { useState } from "react"
 import { useLoaderData, useOutlet } from "react-router-dom"
 import Header from "./Header"
 import Footer from "./Footer"
+import { AuthContext } from "./common/AuthContext";
 
-import { AuthProvider } from "./common/AuthContext"
+export default function Layout() {
 
-//export default function Layout() {
-//    return (
-//        <AuthProvider>
-//            <Header />
-//            <main>
-//                <Outlet />
-//            </main>
-//            <Footer />
-//        </AuthProvider>
-//    )
-//}
-export const AuthLayout = () => {
-    const outlet = useOutlet();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const changeHeader = () => {
+        setIsAuthenticated(!isAuthenticated);
+    };
 
     return (
-        <AuthProvider>
-            <Header/>
-            {outlet}
-            <Footer/>
-        </AuthProvider>
-    );
+        
+        <div className="site-wrapper">
+        <AuthContext.Provider value={{ isAuthenticated, changeHeader }}>
+        <Header />
+        <main>
+            <Outlet />
+        </main>
+        <Footer />
+        </AuthContext.Provider>
+        </div>
+    )
 }
+//export const AuthLayout = () => {
+//    const outlet = useOutlet();
+//
+//    return (
+//        <AuthProvider>
+//            <Header/>
+//            {outlet}
+//            <Footer/>
+//        </AuthProvider>
+//    );
+//}

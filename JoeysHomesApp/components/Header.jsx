@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
 import AuthService from "../services/auth.service";
-
 import { AuthContext } from "./common/AuthContext";
 
 
@@ -11,16 +10,14 @@ export default function Header() {
         textDecoration: "underline",
         color: "#161616"
     }
-
-    const { isAuthenticated, user } = useContext(AuthContext);
+    
+    const { isAuthenticated, changeHeader } = useContext(AuthContext);
 
     // TODO This is returning as undefined
     // I think I need to revamp this whole thing lol
     console.log('header isauthenticated')
     console.log(isAuthenticated)
 
-    console.log('header user')
-    console.log(user)
 
     // TODO When I press 'Log in' from /login, I need the Header component to update with the new current user
     // Currently, only the setCurrentUser(undefined) in the logOut method is updating the Header component properly
@@ -47,6 +44,7 @@ export default function Header() {
 //    };
     
     return (
+        
         <header>
             <Link className="site-logo" to="/">Joey's Homes</Link>
             <nav>
@@ -99,5 +97,6 @@ export default function Header() {
 
             </nav>
         </header>
+        
     )
 }

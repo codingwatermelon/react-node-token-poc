@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import {
     useLoaderData,
     useNavigation,
@@ -7,13 +7,14 @@ import {
     useActionData,
     useNavigate,
     useLocation,
+
     Link
 } from "react-router-dom"
 import { loginUser } from "../../functions"
 import { FiEye, FiEyeOff } from 'react-icons/fi'; // If using icons
 import AuthService from "../../services/auth.service";
 
-import { useAuth } from '../common/AuthContext';
+import { AuthContext } from '../common/AuthContext';
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message")
@@ -85,7 +86,6 @@ export default function Login() {
     const message = useLoaderData()
     const navigation = useNavigation()
     const navigate = useNavigate();
-    const { dispatch } = useAuth();
     const location = useLocation();
 
     const token = AuthService.getCurrentUser()
@@ -94,6 +94,8 @@ export default function Login() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const { isAuthenticated, changeHeader } = useContext(AuthContext);
 
     // After the user submits the login form
     const handleLogin = (e) => {
@@ -119,7 +121,8 @@ export default function Login() {
             console.log(data)
             
             // If the login is successful, dispatch a LOGIN action with the user data
-            dispatch({ type: 'LOGIN', payload: { username } });
+            //dispatch({ type: 'LOGIN', payload: { username } });
+
             
             // This refreshes the window, but not state. Header still says "Login" instead of showing the current user's name
             //window.location.reload();
@@ -184,6 +187,7 @@ export default function Login() {
                     <button
                         disabled={navigation.state === "submitting"}
                         type="submit"
+                        onClick={changeHeader}
                     >
                         {navigation.state === "submitting"
                             ? "Logging in..."
