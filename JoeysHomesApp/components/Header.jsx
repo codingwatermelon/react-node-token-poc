@@ -74,7 +74,7 @@ export default function Header() {
                     </Link>
                     </li>
                     <li className="nav-item">
-                    <a href="/login" className="nav-link" onClick={logout}>
+                    <a href="/login" className="nav-link">
                         LogOut
                     </a>
                     </li>
