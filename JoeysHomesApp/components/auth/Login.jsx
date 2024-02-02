@@ -97,7 +97,18 @@ export default function Login() {
 
     const { isAuthenticated, changeHeader } = useContext(AuthContext);
 
+    useEffect(() => {
+        if (isAuthenticated) {
+            const baseUrl = 'http://192.168.64.3:5173'
+            const pathname = new URL(location.pathname, baseUrl)
+            .searchParams.get("redirectTo") || "/"
+
+            navigate(pathname);
+        }
+    }, [navigate, isAuthenticated]);
+
     // After the user submits the login form
+    // TODO redirect doesn't seem to be working. Tried changing this from const to function
     async function handleLogin (e) {
         e.preventDefault();
         const baseUrl = 'http://192.168.64.3:5173'
@@ -122,14 +133,14 @@ export default function Login() {
             
             // If the login is successful, dispatch a LOGIN action with the user data
             //dispatch({ type: 'LOGIN', payload: { username } });
-
+            changeHeader
             
             // This refreshes the window, but not state. Header still says "Login" instead of showing the current user's name
             //window.location.reload();
-            console.log("pathname to redirect")
-            console.log(pathname)
+            //console.log("pathname to redirect")
+            //console.log(pathname)
             
-            return redirect(pathname);
+            //return redirect(pathname);
 
             
             // TODO Do I need to get client info (email/password) returned here? Probably not
@@ -189,7 +200,6 @@ export default function Login() {
                     <button
                         disabled={navigation.state === "submitting"}
                         type="submit"
-                        onClick={changeHeader}
                     >
                         {navigation.state === "submitting"
                             ? "Logging in..."
