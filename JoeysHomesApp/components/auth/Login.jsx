@@ -106,7 +106,7 @@ export default function Login() {
             navigate(pathname);
         }
     }, [navigate, isAuthenticated]);
-    
+
     // After the user submits the login form
     // TODO redirect doesn't seem to be working. Tried changing this from const to function
     async function handleLogin (e) {
@@ -133,7 +133,6 @@ export default function Login() {
             
             // If the login is successful, dispatch a LOGIN action with the user data
             //dispatch({ type: 'LOGIN', payload: { username } });
-
             
             // This refreshes the window, but not state. Header still says "Login" instead of showing the current user's name
             //window.location.reload();
@@ -200,7 +199,6 @@ export default function Login() {
                     <button
                         disabled={navigation.state === "submitting"}
                         type="submit"
-                        onClick={changeHeader}
                     >
                         {navigation.state === "submitting"
                             ? "Logging in..."
