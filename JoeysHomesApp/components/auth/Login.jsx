@@ -131,16 +131,17 @@ export default function Login() {
             console.log("data from login")
             console.log(data)
             
+            //if (data) {}
             // If the login is successful, dispatch a LOGIN action with the user data
             //dispatch({ type: 'LOGIN', payload: { username } });
-            changeHeader
+            //changeHeader
             
             // This refreshes the window, but not state. Header still says "Login" instead of showing the current user's name
             //window.location.reload();
             //console.log("pathname to redirect")
             //console.log(pathname)
             
-            //return redirect(pathname);
+            return redirect(pathname);
 
             
             // TODO Do I need to get client info (email/password) returned here? Probably not
@@ -200,6 +201,7 @@ export default function Login() {
                     <button
                         disabled={navigation.state === "submitting"}
                         type="submit"
+                        onSubmit={changeHeader}
                     >
                         {navigation.state === "submitting"
                             ? "Logging in..."
