@@ -113,7 +113,7 @@ export default function Login() {
 
         try {
             // TODO error handling here
-            const data = AuthService.login(username, password)
+            const data = await AuthService.login(username, password)
 
             // TODO Check if data is valid, then setIsAuthenticated accordingly
 
