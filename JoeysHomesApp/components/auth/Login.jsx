@@ -178,7 +178,6 @@ export default function Login() {
                 <Form 
                     method="post" 
                     className="login-form"
-                    onSubmit={handleLogin}
                     replace
                 >
                     <input
@@ -204,6 +203,7 @@ export default function Login() {
                             ? "Logging in..."
                             : "Log in"
                         }
+                        onClick={handleLogin}
                     </button>
                 </Form>
                 <Link 
