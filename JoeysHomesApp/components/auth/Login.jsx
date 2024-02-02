@@ -126,6 +126,8 @@ export default function Login() {
             
             // This refreshes the window, but not state. Header still says "Login" instead of showing the current user's name
             //window.location.reload();
+            console.log("pathname to redirect")
+            console.log(pathname)
             
             return redirect(pathname);
 
