@@ -98,7 +98,7 @@ export default function Login() {
     const { isAuthenticated, changeHeader } = useContext(AuthContext);
 
     // After the user submits the login form
-    const handleLogin = async (e) => {
+    async function handleLogin (e) {
         e.preventDefault();
         const baseUrl = 'http://192.168.64.3:5173'
         // Perform the login logic, for example, by calling an authentication API
