@@ -198,12 +198,13 @@ export default function Login() {
                     <button
                         disabled={navigation.state === "submitting"}
                         type="submit"
+                        onClick={handleLogin}
                     >
                         {navigation.state === "submitting"
                             ? "Logging in..."
                             : "Log in"
                         }
-                        onClick={handleLogin}
+                        
                     </button>
                 </Form>
                 <Link 
