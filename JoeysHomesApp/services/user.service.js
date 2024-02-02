@@ -1,5 +1,4 @@
 import api from "./api";
-import { redirect } from "react-router-dom"
 
 const getPublicContent = () => {
   return api.get("/test/all");
@@ -32,26 +31,9 @@ export async function getMaintenance(id) {
       }
   }
 
-  //const data = await res.json()
   const data = await res.data;
   return data
 }
-
-// TODO How do I verify the token is not expired
-//export async function requireAuth(request) {
-//    const pathname = new URL(request.url).pathname
-//    // TODO verify that token is not expired and sufficient to access the requested resource
-//    const res = await api.get("/verifyauth");
-//    console.log("requireauth res")
-//    console.log(res)
-//
-//    if (!res) {
-//        throw redirect(
-//            `/login?message=You must log in first.&redirectTo=${pathname}`
-//        )
-//    }
-//}
-
 
 
 const UserService = {
