@@ -25,8 +25,8 @@ const login = (username, password) => {
       if (response.data.accessToken) {
         TokenService.setUser(response.data);
       }
-      changeHeader
-      
+      changeHeader()
+
       return response.data;
     });
 };
