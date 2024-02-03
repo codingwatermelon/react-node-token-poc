@@ -55,6 +55,7 @@ export async function action({ request }) {
 
         console.log("data from login")
         console.log(data)
+        changeHeader()
 
         
 

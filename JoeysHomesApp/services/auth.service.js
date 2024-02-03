@@ -24,10 +24,10 @@ const login = (username, password) => {
       if (response.data.accessToken) {
         TokenService.setUser(response.data);
       }
-      changeHeader()
 
       return response.data;
     });
+    // TODO Add error response here
 };
 
 const logout = () => {
