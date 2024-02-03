@@ -14,7 +14,6 @@ const register = (username, email, password) => {
 // TODO Set isauthenticated here?
 
 const login = (username, password) => {
-  const { isAuthenticated, changeHeader } = useContext(AuthContext);
 
   return api
     .post("/auth/signin", {
