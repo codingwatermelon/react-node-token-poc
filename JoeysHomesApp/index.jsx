@@ -23,7 +23,7 @@ import DefaultLayout from "./components/DefaultLayout"
 //import Signup, { loader as signupLoader, action as signupAction } from "./pages/old_Signup"
 import Profile from "./components/auth/Profile"
 //import Login, { loader as loginLoader, action as loginAction } from "./components/auth/Login"
-import Login, { loader as loginLoader } from "./components/auth/Login"
+import Login, { loader as loginLoader, action as loginAction } from "./components/auth/Login"
 import Register from "./components/auth/Register"
 
 //import "./server"
@@ -64,6 +64,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       path="login"
       element={<Login />}
       loader={loginLoader}
+      action={loginAction}
     />
     <Route exact path="/register" element={<Register />} />
     <Route exact path="/profile" element={<Profile />} />
