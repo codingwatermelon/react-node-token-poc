@@ -109,7 +109,7 @@ export default function Login() {
 
     // After the user submits the login form
     // TODO redirect doesn't seem to be working. Tried changing this from const to function
-    async function handleLogin (e) {
+    const handleLogin = async (e) => {
         e.preventDefault();
         const baseUrl = 'http://192.168.64.3:5173'
         // Perform the login logic, for example, by calling an authentication API
@@ -139,7 +139,8 @@ export default function Login() {
             console.log("pathname to redirect")
             console.log(pathname)
             
-            return redirect(pathname);
+            //return redirect(pathname);
+            navigate(pathname);
 
             
             // TODO Do I need to get client info (email/password) returned here? Probably not
@@ -178,6 +179,8 @@ export default function Login() {
                 <Form 
                     method="post" 
                     className="login-form"
+                    // TODO this isn't working
+                    onSubmit={handleLogin}
                     replace
                 >
                     <input
@@ -198,13 +201,12 @@ export default function Login() {
                     <button
                         disabled={navigation.state === "submitting"}
                         type="submit"
-                        onClick={handleLogin}
+                        // TODO if I use onClick={handleLogin} it doesn't work either
                     >
                         {navigation.state === "submitting"
                             ? "Logging in..."
                             : "Log in"
                         }
-                        
                     </button>
                 </Form>
                 <Link 
