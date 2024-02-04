@@ -32,54 +32,55 @@ import Register from "./components/auth/Register"
 // TODO Add usecontext here so that I can pass it into the login action?
 import { useAuth } from "./components/common/AuthContext"
 
-const authContext = useAuth();
-
-const router = createBrowserRouter(createRoutesFromElements(
-  <Route path="/" element={<Layout />}>
-    <Route element={<DefaultLayout />} >
-      <Route
-        index
-        element={<Dashboard />}
-      />
-      <Route
-        path="income"
-        element={<Income />}
-      />
-    </Route>
-    <Route path="about" element={<About />} />
-    <Route
-      path="maintenance"
-      element={<Maintenance />}
-      errorElement={<Error />}
-      loader={maintenanceLoader}
-    />
-    <Route
-      path="houses"
-      element={<Houses />}
-      errorElement={<Error />}
-      loader={housesLoader}
-    />
-    <Route 
-      path="houses/:id" 
-      element={<HouseDetail />} 
-      errorElement={<Error />}
-      loader={houseDetailLoader}
-    />
-    <Route
-      path="login"
-      element={<Login />}
-      loader={loginLoader}
-      action={loginAction(authContext)}
-    />
-    <Route exact path="/register" element={<Register />} />
-    <Route exact path="/profile" element={<Profile />} />
-    
-
-    <Route path="*" element={<NotFound />} />
-  </Route>
-))
 
 function App() {
+  const authContext = useAuth();
+
+  const router = createBrowserRouter(createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route element={<DefaultLayout />} >
+        <Route
+          index
+          element={<Dashboard />}
+        />
+        <Route
+          path="income"
+          element={<Income />}
+        />
+      </Route>
+      <Route path="about" element={<About />} />
+      <Route
+        path="maintenance"
+        element={<Maintenance />}
+        errorElement={<Error />}
+        loader={maintenanceLoader}
+      />
+      <Route
+        path="houses"
+        element={<Houses />}
+        errorElement={<Error />}
+        loader={housesLoader}
+      />
+      <Route 
+        path="houses/:id" 
+        element={<HouseDetail />} 
+        errorElement={<Error />}
+        loader={houseDetailLoader}
+      />
+      <Route
+        path="login"
+        element={<Login />}
+        loader={loginLoader}
+        action={loginAction(authContext)}
+      />
+      <Route exact path="/register" element={<Register />} />
+      <Route exact path="/profile" element={<Profile />} />
+      
+  
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  ))
+
   return (
     <RouterProvider router={router} />
   )
