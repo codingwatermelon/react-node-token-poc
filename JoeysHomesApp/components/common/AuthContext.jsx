@@ -22,18 +22,18 @@ export const AuthProvider = ({ children }) => {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const login = (loginData) => {
+  const loginAuth = (loginData) => {
     // Perform the login logic, then update the user in the context
     setIsAuthenticated(true);
   };
 
-  const logout = () => {
+  const logoutAuth = () => {
     // Perform the logout logic, then update the user in the context to null
     setIsAuthenticated(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, loginAuth, logoutAuth }}>
       {children}
     </AuthContext.Provider>
   );

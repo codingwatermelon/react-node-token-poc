@@ -27,7 +27,7 @@ export default function Layout() {
     return (
         
         <div className="site-wrapper">
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, loginAuth, logoutAuth }}>
         <Header />
         <main>
             <Outlet />
