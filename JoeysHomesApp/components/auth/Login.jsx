@@ -58,7 +58,8 @@ export async function action({ request }) {
 
         
 
-        return redirect(pathname);
+        //return redirect(pathname);
+        return "test"
 
         
         // TODO Do I need to get client info (email/password) returned here? Probably not
@@ -97,6 +98,10 @@ export default function Login() {
 
     console.log("errorMessage")
     console.log(errorMessage)
+
+    if (errorMessage == "test") {
+        return redirect("/")
+    }
 
     useEffect(() => {
         if (isAuthenticated) {
