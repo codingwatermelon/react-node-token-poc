@@ -95,6 +95,9 @@ export default function Login() {
 
     const { isAuthenticated, changeHeader } = useContext(AuthContext);
 
+    console.log("errorMessage")
+    console.log(errorMessage)
+
     useEffect(() => {
         if (isAuthenticated) {
             const baseUrl = 'http://192.168.64.3:5173'
