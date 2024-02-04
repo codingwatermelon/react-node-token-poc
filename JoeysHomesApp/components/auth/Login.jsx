@@ -31,6 +31,7 @@ export function loader({ request }) {
 export const action = (context) => async ({ request }) => {
     const isAuthenticated = context;
 
+    // This is returning undefined upon form submission
     console.log("action isAuthenticated (context)")
     console.log(isAuthenticated)
 
@@ -64,8 +65,8 @@ export const action = (context) => async ({ request }) => {
         
         
 
-        //return redirect(pathname);
-        return "test"
+        return redirect(pathname);
+        //return "test"
 
         
         // TODO Do I need to get client info (email/password) returned here? Probably not
