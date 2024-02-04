@@ -6,16 +6,28 @@ import { AuthContext } from "./common/AuthContext";
 
 export default function Layout() {
 
+//    const [isAuthenticated, setIsAuthenticated] = useState(false);
+//
+//    const changeHeader = () => {
+//        setIsAuthenticated(!isAuthenticated);
+//    };
+
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const changeHeader = () => {
-        setIsAuthenticated(!isAuthenticated);
+    const loginAuth = (loginData) => {
+        // Perform the login logic, then update the user in the context
+        setIsAuthenticated(true);
+    };
+
+    const logoutAuth = () => {
+        // Perform the logout logic, then update the user in the context to null
+        setIsAuthenticated(false);
     };
 
     return (
         
         <div className="site-wrapper">
-        <AuthContext.Provider value={{ isAuthenticated, changeHeader }}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
         <Header />
         <main>
             <Outlet />

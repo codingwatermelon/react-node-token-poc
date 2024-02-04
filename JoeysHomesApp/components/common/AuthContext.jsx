@@ -7,6 +7,38 @@ export const useAuth = () => {
   return useContext(AuthContext);
 };
 
+//export const AuthProvider = ({ children }) => {
+//  const [state, dispatch] = useReducer(authReducer, initialState);
+//
+//  return (
+//    <AuthContext.Provider value={{ state, dispatch }}>
+//      {children}
+//    </AuthContext.Provider>
+//  );
+//};
+
+export const AuthProvider = ({ children }) => {
+  //const [user, setUser] = useState(null);
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const login = (loginData) => {
+    // Perform the login logic, then update the user in the context
+    setIsAuthenticated(true);
+  };
+
+  const logout = () => {
+    // Perform the logout logic, then update the user in the context to null
+    setIsAuthenticated(false);
+  };
+
+  return (
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
 //const initialState = {
 //  isAuthenticated: false,
 //  user: null,
@@ -33,13 +65,4 @@ export const useAuth = () => {
 //  }
 //};
 //
-//export const AuthProvider = ({ children }) => {
-//  const [state, dispatch] = useReducer(authReducer, initialState);
-//
-//  return (
-//    <AuthContext.Provider value={{ state, dispatch }}>
-//      {children}
-//    </AuthContext.Provider>
-//  );
-//};
-//
+

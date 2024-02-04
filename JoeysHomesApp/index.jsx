@@ -23,20 +23,15 @@ import DefaultLayout from "./components/DefaultLayout"
 //import Signup, { loader as signupLoader, action as signupAction } from "./pages/old_Signup"
 import Profile from "./components/auth/Profile"
 //import Login, { loader as loginLoader, action as loginAction } from "./components/auth/Login"
-import Login, { loader as loginLoader, action as loginAction } from "./components/auth/Login"
+import Login, { loader as loginLoader } from "./components/auth/Login"
 import Register from "./components/auth/Register"
 
 //import "./server"
 //import "../JoeysHomesServer/server"
 
 // TODO Add usecontext here so that I can pass it into the login action?
-import { AuthContext } from "./components/common/AuthContext"
-
 
 function App() {
-  // This is not working because this is rendering before Layout is rendering, therefore default values do not exist yet
-  const context = useContext(AuthContext);
-  //const { isAuthenticated, changeHeader } = useAuth();
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout />}>
@@ -73,7 +68,6 @@ function App() {
         path="login"
         element={<Login />}
         loader={loginLoader}
-        action={loginAction(context)}
       />
       <Route exact path="/register" element={<Register />} />
       <Route exact path="/profile" element={<Profile />} />

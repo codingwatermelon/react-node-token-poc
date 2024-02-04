@@ -14,7 +14,8 @@ import { loginUser } from "../../functions"
 import { FiEye, FiEyeOff } from 'react-icons/fi'; // If using icons
 import AuthService from "../../services/auth.service";
 
-import { AuthContext } from '../common/AuthContext';
+//import { AuthContext } from '../common/AuthContext';
+import { useAuth } from "../common/AuthContext"
 
 export function loader({ request }) {
     return new URL(request.url).searchParams.get("message")
@@ -28,64 +29,59 @@ export function loader({ request }) {
 
 // TODO, create other function to be called when submit button is clicked, then call handleLogin from perplexity code
 //export async function action({ request }) {
-export const action = (context) => async ({ request }) => {
-    const isAuthenticated = context;
-
-    // This is returning undefined upon form submission
-    console.log("action isAuthenticated (context)")
-    console.log(isAuthenticated)
-
-    const formData = await request.formData()
-    
-    const username = formData.get("username")
-    const password = formData.get("password")
-    
-    const pathname = new URL(request.url)
-        .searchParams.get("redirectTo") || "/"
-    
-    console.log("pathname (action)")
-    console.log(pathname)
-
-    // TODO Validate fields are correct before proceeding
-    const userNameRegex = /^[A-Za-z0-9]+$/g
-
-    if (!(userNameRegex.test(username))) {
-        console.log("username is invalid")
-        return "Username can only be letters and numbers"
-    }
-
-    try {
-        const data = await AuthService.login(username, password)
-
-        // TODO Check if data is valid, then setIsAuthenticated accordingly
-
-        console.log("data from login")
-        console.log(data)
-
-        
-        
-
-        return redirect(pathname);
-        //return "test"
-
-        
-        // TODO Do I need to get client info (email/password) returned here? Probably not
-        // TODO Change 'loggedin' to fingerprint which ties to DB
-        //localStorage.setItem("token", true)
-        // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
-        
-    } catch(err) {
-        if (err.name == "AxiosError") {
-            if (err.response.status == 404) {
-                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
-                return "Username or password is incorrect, try again"
-            }
-        }
-        else {
-            return err.message
-        }
-    }
-}
+////export const action = (context) => async ({ request }) => {
+//
+//    const formData = await request.formData()
+//    
+//    const username = formData.get("username")
+//    const password = formData.get("password")
+//    
+//    const pathname = new URL(request.url)
+//        .searchParams.get("redirectTo") || "/"
+//    
+//    console.log("pathname (action)")
+//    console.log(pathname)
+//
+//    // TODO Validate fields are correct before proceeding
+//    const userNameRegex = /^[A-Za-z0-9]+$/g
+//
+//    if (!(userNameRegex.test(username))) {
+//        console.log("username is invalid")
+//        return "Username can only be letters and numbers"
+//    }
+//
+//    try {
+//        const data = await AuthService.login(username, password)
+//
+//        // TODO Check if data is valid, then setIsAuthenticated accordingly
+//
+//        console.log("data from login")
+//        console.log(data)
+//
+//        
+//        
+//
+//        return redirect(pathname);
+//        //return "test"
+//
+//        
+//        // TODO Do I need to get client info (email/password) returned here? Probably not
+//        // TODO Change 'loggedin' to fingerprint which ties to DB
+//        //localStorage.setItem("token", true)
+//        // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
+//        
+//    } catch(err) {
+//        if (err.name == "AxiosError") {
+//            if (err.response.status == 404) {
+//                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
+//                return "Username or password is incorrect, try again"
+//            }
+//        }
+//        else {
+//            return err.message
+//        }
+//    }
+//}
 
 export default function Login() {
     const errorMessage = useActionData()
@@ -101,7 +97,8 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const { isAuthenticated, changeHeader } = useContext(AuthContext);
+    //const { isAuthenticated, changeHeader } = useContext(AuthContext);
+    const { loginAuth } = useAuth();
 
     console.log("errorMessage")
     console.log(errorMessage)
@@ -122,58 +119,60 @@ export default function Login() {
 
     // After the user submits the login form
     // TODO redirect doesn't seem to be working. Tried changing this from const to function
-    //const handleLogin = async (e) => {
-    //    e.preventDefault();
-    //    const baseUrl = 'http://192.168.64.3:5173'
-    //    // Perform the login logic, for example, by calling an authentication API
-    //    const userNameRegex = /^[A-Za-z0-9]+$/g
-    //    const pathname = new URL(location.pathname, baseUrl)
-    //        .searchParams.get("redirectTo") || "/"
-    //    
-    //    if (!(userNameRegex.test(username))) {
-    //        console.log("username is invalid")
-    //        return "Username can only be letters and numbers"
-    //    }
-//
-    //    try {
-    //        // TODO error handling here
-    //        const data = await AuthService.login(username, password)
-//
-    //        // TODO Check if data is valid, then setIsAuthenticated accordingly
-//
-    //        console.log("data from login")
-    //        console.log(data)
-    //        
-    //        // If the login is successful, dispatch a LOGIN action with the user data
-    //        //dispatch({ type: 'LOGIN', payload: { username } });
-    //        
-    //        // This refreshes the window, but not state. Header still says "Login" instead of showing the current user's name
-    //        //window.location.reload();
-    //        console.log("pathname to redirect")
-    //        console.log(pathname)
-    //        
-    //        //return redirect(pathname);
-    //        navigate(pathname);
-//
-    //        
-    //        // TODO Do I need to get client info (email/password) returned here? Probably not
-    //        // TODO Change 'loggedin' to fingerprint which ties to DB
-    //        //localStorage.setItem("token", true)
-    //        // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
-    //        
-    //    } catch(err) {
-    //        if (err.name == "AxiosError") {
-    //            if (err.response.status == 404) {
-    //                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
-    //                return "Username or password is incorrect, try again"
-    //            }
-    //        }
-    //        else {
-    //            return err.message
-    //        }
-    //    }
-    //    
-    //};
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        const baseUrl = 'http://192.168.64.3:5173'
+        // Perform the login logic, for example, by calling an authentication API
+        const userNameRegex = /^[A-Za-z0-9]+$/g
+        const pathname = new URL(location.pathname, baseUrl)
+            .searchParams.get("redirectTo") || "/"
+        
+        if (!(userNameRegex.test(username))) {
+            console.log("username is invalid")
+            return "Username can only be letters and numbers"
+        }
+
+        try {
+            // TODO error handling here
+            const data = await AuthService.login(username, password)
+
+            // TODO Check if data is valid, then setIsAuthenticated accordingly
+
+            console.log("data from login")
+            console.log(data)
+
+            loginAuth(username, password)
+            
+            // If the login is successful, dispatch a LOGIN action with the user data
+            //dispatch({ type: 'LOGIN', payload: { username } });
+            
+            // This refreshes the window, but not state. Header still says "Login" instead of showing the current user's name
+            //window.location.reload();
+            console.log("pathname to redirect")
+            console.log(pathname)
+            
+            return redirect(pathname);
+            //navigate(pathname);
+
+            
+            // TODO Do I need to get client info (email/password) returned here? Probably not
+            // TODO Change 'loggedin' to fingerprint which ties to DB
+            //localStorage.setItem("token", true)
+            // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
+            
+        } catch(err) {
+            if (err.name == "AxiosError") {
+                if (err.response.status == 404) {
+                    // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
+                    return "Username or password is incorrect, try again"
+                }
+            }
+            else {
+                return err.message
+            }
+        }
+        
+    };
 
     // TODO verify token is valid (non expired and sufficient to access requested resources)
 
@@ -193,6 +192,7 @@ export default function Login() {
                 <Form 
                     method="post" 
                     className="login-form"
+                    onSubmit={handleLogin}
                     replace
                 >
                     <input
