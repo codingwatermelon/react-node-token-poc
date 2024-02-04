@@ -29,7 +29,7 @@ export function loader({ request }) {
 // TODO, create other function to be called when submit button is clicked, then call handleLogin from perplexity code
 //export async function action({ request }) {
 export const action = (context) => async ({ request }) => {
-    const { isAuthenticated, changeHeader } = context;
+    const isAuthenticated = context;
     const formData = await request.formData()
     
     const username = formData.get("username")

@@ -30,11 +30,11 @@ import Register from "./components/auth/Register"
 //import "../JoeysHomesServer/server"
 
 // TODO Add usecontext here so that I can pass it into the login action?
-import { useAuth } from "./components/common/AuthContext"
+import { AuthContext } from "./components/common/AuthContext"
 
 
 function App() {
-  const authContext = useAuth();
+  const { isAuthenticated, changeHeader } = useContext(AuthContext);
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout />}>
@@ -71,7 +71,7 @@ function App() {
         path="login"
         element={<Login />}
         loader={loginLoader}
-        action={loginAction(authContext)}
+        action={loginAction(isAuthenticated)}
       />
       <Route exact path="/register" element={<Register />} />
       <Route exact path="/profile" element={<Profile />} />
