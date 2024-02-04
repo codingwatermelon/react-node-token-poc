@@ -30,6 +30,10 @@ export function loader({ request }) {
 //export async function action({ request }) {
 export const action = (context) => async ({ request }) => {
     const isAuthenticated = context;
+    
+    console.log("action isAuthenticated")
+    console.log(isAuthenticated)
+
     const formData = await request.formData()
     
     const username = formData.get("username")
@@ -58,8 +62,7 @@ export const action = (context) => async ({ request }) => {
         console.log(data)
 
         
-        console.log("isAuthenticated")
-        console.log(isAuthenticated)
+        
 
         //return redirect(pathname);
         return "test"
