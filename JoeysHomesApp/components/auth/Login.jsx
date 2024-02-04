@@ -27,8 +27,9 @@ export function loader({ request }) {
 // Also, probably shouldn't load this if the user is logged in anyways
 
 // TODO, create other function to be called when submit button is clicked, then call handleLogin from perplexity code
-export async function action({ request }) {
-    
+//export async function action({ request }) {
+export const action = (context) => async ({ request }) => {
+    const { isAuthenticated, changeHeader } = context;
     const formData = await request.formData()
     
     const username = formData.get("username")
@@ -57,6 +58,8 @@ export async function action({ request }) {
         console.log(data)
 
         
+        console.log("isAuthenticated")
+        console.log(isAuthenticated)
 
         //return redirect(pathname);
         return "test"

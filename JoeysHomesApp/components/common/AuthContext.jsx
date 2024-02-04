@@ -3,6 +3,10 @@ import React, { createContext, useContext, useReducer } from 'react';
 
 export const AuthContext = createContext();
 
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
 //const initialState = {
 //  isAuthenticated: false,
 //  user: null,
@@ -39,6 +43,3 @@ export const AuthContext = createContext();
 //  );
 //};
 //
-//export const useAuth = () => {
-//  return useContext(AuthContext);
-//};
