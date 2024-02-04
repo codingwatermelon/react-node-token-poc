@@ -107,15 +107,15 @@ export default function Login() {
         return redirect("/")
     }
 
-    useEffect(() => {
-        if (isAuthenticated) {
-            const baseUrl = 'http://192.168.64.3:5173'
-            const pathname = new URL(location.pathname, baseUrl)
-            .searchParams.get("redirectTo") || "/"
-
-            navigate(pathname);
-        }
-    }, [navigate, isAuthenticated]);
+    //useEffect(() => {
+    //    if (isAuthenticated) {
+    //        const baseUrl = 'http://192.168.64.3:5173'
+    //        const pathname = new URL(location.pathname, baseUrl)
+    //        .searchParams.get("redirectTo") || "/"
+//
+    //        navigate(pathname);
+    //    }
+    //}, [navigate, isAuthenticated]);
 
     // After the user submits the login form
     // TODO redirect doesn't seem to be working. Tried changing this from const to function
