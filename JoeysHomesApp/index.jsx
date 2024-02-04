@@ -34,7 +34,8 @@ import { AuthContext } from "./components/common/AuthContext"
 
 
 function App() {
-  const { isAuthenticated, changeHeader } = useContext(AuthContext);
+  // This is not working because this is rendering before Layout is rendering, therefore default values do not exist yet
+  const context = useContext(AuthContext);
   //const { isAuthenticated, changeHeader } = useAuth();
 
   const router = createBrowserRouter(createRoutesFromElements(
@@ -72,7 +73,7 @@ function App() {
         path="login"
         element={<Login />}
         loader={loginLoader}
-        action={loginAction(isAuthenticated)}
+        action={loginAction(context)}
       />
       <Route exact path="/register" element={<Register />} />
       <Route exact path="/profile" element={<Profile />} />

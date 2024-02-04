@@ -30,8 +30,8 @@ export function loader({ request }) {
 //export async function action({ request }) {
 export const action = (context) => async ({ request }) => {
     const isAuthenticated = context;
-    
-    console.log("action isAuthenticated")
+
+    console.log("action isAuthenticated (context)")
     console.log(isAuthenticated)
 
     const formData = await request.formData()
