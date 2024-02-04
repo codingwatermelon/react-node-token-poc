@@ -30,7 +30,7 @@ import Register from "./components/auth/Register"
 //import "../JoeysHomesServer/server"
 
 // TODO Add usecontext here so that I can pass it into the login action?
-import { useAuth } from "./components/common/AuthContext"
+import { AuthContext } from "./components/common/AuthContext"
 
 
 function App() {
