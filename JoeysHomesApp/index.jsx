@@ -35,7 +35,7 @@ import { useAuth } from "./components/common/AuthContext"
 
 function App() {
   //const isAuthenticated = useContext(AuthContext);
-  const isAuthenticated = useAuth();
+  const { isAuthenticated, changeHeader } = useAuth();
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Layout />}>
