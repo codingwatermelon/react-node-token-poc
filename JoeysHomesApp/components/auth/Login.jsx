@@ -151,8 +151,8 @@ export default function Login() {
             console.log("pathname to redirect")
             console.log(pathname)
             
-            return redirect(pathname);
-            //navigate(pathname);
+            //return redirect(pathname);
+            navigate(pathname);
 
             
             // TODO Do I need to get client info (email/password) returned here? Probably not
