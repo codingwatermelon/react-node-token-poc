@@ -128,7 +128,7 @@ export default function Login() {
         //    .searchParams.get("redirectTo") || "/"
 
         const pathname = new URLSearchParams(window.location.search)
-            .params.get("redirectTo") || "/"
+            .get("redirectTo") || "/"
         
         if (!(userNameRegex.test(username))) {
             console.log("username is invalid")
