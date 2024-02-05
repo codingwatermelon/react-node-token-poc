@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, useRouteError, isRouteErrorResponse, useLocation } from "react-router-dom"
-import { useAuth } from "../common/AuthContext"
+import { useAuth } from "./common/AuthContext"
 
 export default function Error() {
     const error = useRouteError()
