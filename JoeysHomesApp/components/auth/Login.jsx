@@ -124,6 +124,7 @@ export default function Login() {
         const baseUrl = 'http://192.168.64.3:5173'
         // Perform the login logic, for example, by calling an authentication API
         const userNameRegex = /^[A-Za-z0-9]+$/g
+        
         const pathname = new URL(location.pathname, baseUrl)
             .searchParams.get("redirectTo") || "/"
         
@@ -141,6 +142,7 @@ export default function Login() {
             console.log("data from login")
             console.log(data)
 
+            // Set isAuthenticated context for usage in Header etc.
             loginAuth(username, password)
             
             // If the login is successful, dispatch a LOGIN action with the user data
@@ -150,7 +152,9 @@ export default function Login() {
             //window.location.reload();
             console.log("pathname to redirect")
             console.log(pathname)
+            console.log(new URL(location.pathname, baseUrl))
             
+            // Now I just need to fix redirecting after successful auth
             //return redirect(pathname);
             navigate(pathname);
 
