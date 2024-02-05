@@ -1,8 +1,10 @@
 import React from "react"
 import { Link, useRouteError, isRouteErrorResponse, useLocation } from "react-router-dom"
+import { useAuth } from "../common/AuthContext"
 
 export default function Error() {
     const error = useRouteError()
+    const { logoutAuth } = useAuth();
 
     const defaultError = (
         <>
@@ -24,6 +26,7 @@ export default function Error() {
         if ('response' in error) {
             if (error.response.status == 403) {
                 const location = `/login?message=Session expired&redirectTo=${useLocation().pathname}`;
+                logoutAuth()
                 return (
                     <div className="session-expired">
                         <h1>Your session has timed out.</h1>

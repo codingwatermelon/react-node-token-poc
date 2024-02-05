@@ -124,9 +124,6 @@ export default function Login() {
         // Perform the login logic, for example, by calling an authentication API
         const userNameRegex = /^[A-Za-z0-9]+$/g
         
-        //const pathname = new URL(location.pathname, baseUrl)
-        //    .searchParams.get("redirectTo") || "/"
-
         const pathname = new URLSearchParams(window.location.search)
             .get("redirectTo") || "/"
         
