@@ -95,7 +95,7 @@ export default function Login() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    
+
     const { isAuthenticated, loginAuth } = useAuth();
 
     //useEffect(() => {
@@ -157,7 +157,9 @@ export default function Login() {
     };
 
     // TODO verify token is valid (non expired and sufficient to access requested resources)
-
+    console.log("isAuthenticated")
+    console.log(isAuthenticated)
+    
     // Redirect to account page if user is logged in already
     if (isAuthenticated) {
         useEffect(() => { 
