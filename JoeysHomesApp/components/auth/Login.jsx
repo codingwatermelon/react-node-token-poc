@@ -121,11 +121,13 @@ export default function Login() {
     // TODO redirect doesn't seem to be working. Tried changing this from const to function
     const handleLogin = async (e) => {
         e.preventDefault();
-        const baseUrl = 'http://192.168.64.3:5173'
         // Perform the login logic, for example, by calling an authentication API
         const userNameRegex = /^[A-Za-z0-9]+$/g
         
-        const pathname = new URL(location.pathname, baseUrl)
+        //const pathname = new URL(location.pathname, baseUrl)
+        //    .searchParams.get("redirectTo") || "/"
+
+        const pathname = new URLSearchParams(window.location.search)
             .searchParams.get("redirectTo") || "/"
         
         if (!(userNameRegex.test(username))) {
@@ -152,7 +154,6 @@ export default function Login() {
             //window.location.reload();
             console.log("pathname to redirect")
             console.log(pathname)
-            console.log(new URL(location.pathname, baseUrl))
             
             // Now I just need to fix redirecting after successful auth
             //return redirect(pathname);
