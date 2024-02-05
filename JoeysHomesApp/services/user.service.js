@@ -35,12 +35,17 @@ export async function getMaintenance(id) {
   return data
 }
 
+// TODO Add generic call to Axios in order to update access token if it is expired and set auth status accordingly
+export async function getAuthStatus() {
+  return api.get("/authstatus")
+}
 
 const UserService = {
   getPublicContent,
   getUserBoard,
   getModeratorBoard,
-  getAdminBoard
+  getAdminBoard,
+  getAuthStatus
 };
 
 export default UserService;
