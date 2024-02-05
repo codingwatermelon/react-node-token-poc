@@ -84,7 +84,6 @@ export function loader({ request }) {
 //}
 
 export default function Login() {
-    const errorMessage = useActionData()
     const message = useLoaderData()
     const navigation = useNavigation()
     const navigate = useNavigate();
@@ -98,14 +97,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
 
     //const { isAuthenticated, changeHeader } = useContext(AuthContext);
-    const { loginAuth } = useAuth();
-
-    console.log("errorMessage")
-    console.log(errorMessage)
-
-    if (errorMessage == "test") {
-        return redirect("/")
-    }
+    const { isAuthenticated, loginAuth } = useAuth();
 
     //useEffect(() => {
     //    if (isAuthenticated) {
@@ -118,7 +110,6 @@ export default function Login() {
     //}, [navigate, isAuthenticated]);
 
     // After the user submits the login form
-    // TODO redirect doesn't seem to be working. Tried changing this from const to function
     const handleLogin = async (e) => {
         e.preventDefault();
         // Perform the login logic, for example, by calling an authentication API
@@ -179,12 +170,12 @@ export default function Login() {
     // TODO verify token is valid (non expired and sufficient to access requested resources)
 
     // Redirect to account page if user is logged in already
-    //if (isLoggedIn) {
-    //    useEffect(() => { 
-    //        navigate('/account');
-    //    }, []);
-    //}
-    //else {
+    if (isAuthenticated) {
+        useEffect(() => { 
+            navigate('/profile');
+        }, []);
+    }
+    else {
         return (
             <div className="login-container">
                 <h1>Sign in to your account</h1>
@@ -230,5 +221,5 @@ export default function Login() {
                 </Link>
             </div>   
         )
-    //}
+    }
 }
