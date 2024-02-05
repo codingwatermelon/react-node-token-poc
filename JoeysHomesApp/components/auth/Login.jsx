@@ -95,8 +95,7 @@ export default function Login() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
-    //const { isAuthenticated, changeHeader } = useContext(AuthContext);
+    
     const { isAuthenticated, loginAuth } = useAuth();
 
     //useEffect(() => {
@@ -134,17 +133,7 @@ export default function Login() {
 
             // Set isAuthenticated context for usage in Header etc.
             loginAuth(username, password)
-            
-            // If the login is successful, dispatch a LOGIN action with the user data
-            //dispatch({ type: 'LOGIN', payload: { username } });
-            
-            // This refreshes the window, but not state. Header still says "Login" instead of showing the current user's name
-            //window.location.reload();
-            console.log("pathname to redirect")
-            console.log(pathname)
-            
-            // Now I just need to fix redirecting after successful auth
-            //return redirect(pathname);
+        
             navigate(pathname);
 
             
@@ -180,7 +169,6 @@ export default function Login() {
             <div className="login-container">
                 <h1>Sign in to your account</h1>
                 {message && <h3 className="red">{message}</h3>}
-                {errorMessage && <h3 className="red">{errorMessage}</h3>}
 
                 <Form 
                     method="post" 
@@ -206,7 +194,6 @@ export default function Login() {
                     <button
                         disabled={navigation.state === "submitting"}
                         type="submit"
-                        // TODO if I use onClick={handleLogin} it doesn't work either
                     >
                         {navigation.state === "submitting"
                             ? "Logging in..."
