@@ -22,9 +22,14 @@ export const AuthProvider = ({ children }) => {
   //const [user, setUser] = useState(null);
 
   // TODO Set initial state based on auth status from backend (because it resets to false if page is reloaded/refreshed or the url is modified manually)
-  const test = getAuthStatus()
-  console.log("authStatus")
-  console.log(test)
+  // Perhaps I need to use a useEffect here
+  useEffect(() => {
+      const test = getAuthStatus();
+  
+      console.log("authStatus")
+      console.log(test)
+    
+  }, []);
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
