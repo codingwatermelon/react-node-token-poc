@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
       AuthService.getAuthStatus()
         .then((response) => {
+          console.log("setIsAuthenticated true")
           console.log(response)
           setIsAuthenticated(true);
         })
