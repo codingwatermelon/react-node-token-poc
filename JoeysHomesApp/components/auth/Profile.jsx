@@ -12,7 +12,7 @@ export default function Profile() {
   console.log("isauth profile")
   console.log(isAuthenticated)
 
-  if (isAuthenticated) {
+  if (isAuthenticated == true) {
     return (
       <div className="container">
         <header className="jumbotron">
