@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate, useEffect } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import { useAuth } from "../common/AuthContext"
 
@@ -42,5 +42,5 @@ export default function Profile() {
       </ul>
     </div>
   );
-  
+
 }
