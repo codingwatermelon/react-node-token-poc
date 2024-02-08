@@ -104,6 +104,16 @@ export default function Login() {
 
     // This is the wrong place to use it, but temp to proof of concept
     // If I can pass token to this function that would be perfect... since token stays in local storage even after refresh
+
+    
+
+    // TODO When this returns 401 unauthorized, then set isAuthenticated to false
+    
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const { isAuthenticated, loginAuth } = useAuth();
+
     useEffect(() => {
         async function fetchAuthStatus() {
             //await AuthService.login(token.email, "xxx")
@@ -119,16 +129,6 @@ export default function Login() {
         fetchAuthStatus();
       
     }, []);
-    
-
-    // TODO When this returns 401 unauthorized, then set isAuthenticated to false
-    
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
-    const { isAuthenticated, loginAuth } = useAuth();
-
-    
 
     //useEffect(() => {
     //    if (isAuthenticated) {
