@@ -188,9 +188,7 @@ export default function Login() {
 
     // Redirect to account page if user is logged in already
     if (isAuthenticated) {
-        useEffect(() => { 
-            navigate('/profile');
-        }, []);
+        navigate('/profile');
     }
     else {
         return (
