@@ -9,6 +9,9 @@ export default function Profile() {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
+  console.log("isauth profile")
+  console.log(isAuthenticated)
+
   if (isAuthenticated) {
     return (
       <div className="container">
