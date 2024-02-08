@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom"
 import Header from "./Header"
 import Footer from "./Footer"
 import { AuthContext } from "./common/AuthContext";
+import AuthService from "../services/auth.service";
 
 export default function Layout() {
 
@@ -29,7 +30,7 @@ export default function Layout() {
         fetchAuthStatus();
       
     }, []);
-    
+
     const loginAuth = (loginData) => {
         // Perform the login logic, then update the user in the context
         setIsAuthenticated(true);
