@@ -35,7 +35,3 @@ exports.maintenanceWithID = (req, res) => {
       res.status(500).send(error);
     })
 };
-
-exports.authStatus = (req, res) => {
-  res.status(200).send("Authenticated.");
-};
