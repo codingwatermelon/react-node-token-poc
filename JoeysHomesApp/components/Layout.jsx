@@ -14,6 +14,22 @@ export default function Layout() {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+    useEffect(() => {
+        async function fetchAuthStatus() {
+            //await AuthService.login(token.email, "xxx")
+            await AuthService.getAuthStatus()
+            .then((response) => {
+                loginAuth();
+            })
+            .catch((error) => {
+                console.error("Error fetching user data: ", error);
+            });
+        }
+        
+        fetchAuthStatus();
+      
+    }, []);
+    
     const loginAuth = (loginData) => {
         // Perform the login logic, then update the user in the context
         setIsAuthenticated(true);
