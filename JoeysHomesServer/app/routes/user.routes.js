@@ -30,9 +30,4 @@ module.exports = function(app) {
     controller.adminBoard
   );
 
-  app.get(
-    "/api/test/authstatus",
-    [authJwt.verifyToken],
-    controller.authStatus
-  );
 };

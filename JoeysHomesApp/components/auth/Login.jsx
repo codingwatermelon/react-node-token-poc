@@ -93,6 +93,9 @@ export default function Login() {
     console.log("curr token")
     console.log(token)
 
+    console.log("getAuthStatus")
+    console.log(AuthService.getAuthStatus())
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -159,7 +162,7 @@ export default function Login() {
     // TODO verify token is valid (non expired and sufficient to access requested resources)
     console.log("isAuthenticated")
     console.log(isAuthenticated)
-    
+
     // Redirect to account page if user is logged in already
     if (isAuthenticated) {
         useEffect(() => { 

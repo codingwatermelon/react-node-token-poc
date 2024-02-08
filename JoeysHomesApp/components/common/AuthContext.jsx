@@ -1,6 +1,6 @@
 // AuthContext.js
 import React, { createContext, useContext, useReducer, useState, useEffect } from 'react';
-import { getAuthStatus } from "../../services/user.service";
+import AuthService from "../../services/auth.service";
 
 export const AuthContext = createContext();
 
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   // TODO Set initial state based on auth status from backend (because it resets to false if page is reloaded/refreshed or the url is modified manually)
   // Perhaps I need to use a useEffect here
   useEffect(() => {
-      getAuthStatus()
+      AuthService.getAuthStatus()
         .then((response) => {
           console.log(response)
           setIsAuthenticated(true);
