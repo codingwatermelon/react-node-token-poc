@@ -106,8 +106,8 @@ export default function Login() {
     const [password, setPassword] = useState('');
 
     const { isAuthenticated, loginAuth } = useAuth();
-    
-    print(getCurrentAuthStatus())
+
+    console.log(getCurrentAuthStatus())
 
     //useEffect(() => {
     //    if (isAuthenticated) {
