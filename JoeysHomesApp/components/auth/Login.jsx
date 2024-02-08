@@ -33,7 +33,7 @@ export default function Login() {
         if (isAuthenticated === true) {
             navigate('/profile');
         }
-    }, []);
+    }, [isAuthenticated]);
 
     const token = AuthService.getCurrentUser()
     console.log("curr token")
