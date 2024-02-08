@@ -19,10 +19,10 @@ export default function Layout() {
         async function fetchAuthStatus() {
             //await AuthService.login(token.email, "xxx")
             await AuthService.getAuthStatus()
-            .then((response) => {
-                console.log("authstatus")
-                console.log(response)
-                loginAuth();
+            .then((authenticated) => {
+                if (authenticated) {
+                    loginAuth();
+                }
             })
             .catch((error) => {
                 console.error("Error fetching user data: ", error);
