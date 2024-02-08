@@ -11,8 +11,9 @@ export default function Profile() {
 
   console.log("isauth profile")
   console.log(isAuthenticated)
+  console.log(typeof isAuthenticated)
 
-  if (isAuthenticated == true) {
+  if (isAuthenticated === true) {
     return (
       <div className="container">
         <header className="jumbotron">

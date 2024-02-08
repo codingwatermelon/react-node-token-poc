@@ -187,7 +187,7 @@ export default function Login() {
     console.log(isAuthenticated)
 
     // Redirect to account page if user is logged in already
-    if (isAuthenticated) {
+    if (isAuthenticated === true) {
         navigate('/profile');
     }
     else {
