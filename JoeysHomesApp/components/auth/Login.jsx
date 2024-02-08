@@ -165,12 +165,14 @@ export default function Login() {
         } catch(err) {
             console.log("caught error in login")
             if (err.name == "AxiosError") {
-                if (err.response.status == 404) {
+                if (err.response.status == 404 || err.response.status == 401) {
                     // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
+                    navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
                     return "Username or password is incorrect, try again"
                 }
             }
             else {
+                navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
                 return err.message
             }
         }
