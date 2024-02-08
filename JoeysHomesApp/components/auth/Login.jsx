@@ -93,14 +93,21 @@ export default function Login() {
     console.log("curr token")
     console.log(token)
 
-    console.log("getAuthStatus")
-    // TODO When this returns 401 unauthorized, then set isAuthenticated to false
-    console.log(AuthService.getAuthStatus())
+    // TODO Where to call this?
+    const getCurrentAuthStatus = async () => {
+        console.log("getAuthStatus")
+        return await AuthService.getAuthStatus();
 
+    }
+    
+    // TODO When this returns 401 unauthorized, then set isAuthenticated to false
+    
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const { isAuthenticated, loginAuth } = useAuth();
+    
+    print(getCurrentAuthStatus())
 
     //useEffect(() => {
     //    if (isAuthenticated) {
@@ -111,6 +118,8 @@ export default function Login() {
     //        navigate(pathname);
     //    }
     //}, [navigate, isAuthenticated]);
+
+    
 
     // After the user submits the login form
     const handleLogin = async (e) => {
