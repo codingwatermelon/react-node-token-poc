@@ -18,6 +18,21 @@ export default function Header() {
     console.log('header isauthenticated')
     console.log(isAuthenticated)
 
+    // Perform loginAuth action upon first login using useEffect
+
+    //useEffect(async () => {
+    //    await AuthService.getAuthStatus()
+    //      .then((response) => {
+    //        console.log("setIsAuthenticated true")
+    //        console.log(response)
+    //        setIsAuthenticated(true);
+    //      })
+    //      .catch((error) => {
+    //        console.error("Error fetching user data: ", error);
+    //      });
+    //  
+    //}, []);
+
 
     // TODO When I press 'Log in' from /login, I need the Header component to update with the new current user
     // Currently, only the setCurrentUser(undefined) in the logOut method is updating the Header component properly
@@ -36,6 +51,8 @@ export default function Header() {
 //
 //    }, []); 
 //
+
+
     const logOut = () => {
         AuthService.logout();
         //setShowModeratorBoard(false);

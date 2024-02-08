@@ -25,18 +25,6 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   // TODO Set initial state based on auth status from backend (because it resets to false if page is reloaded/refreshed or the url is modified manually)
   // Perhaps I need to use a useEffect here
-  useEffect(async () => {
-      await AuthService.getAuthStatus()
-        .then((response) => {
-          console.log("setIsAuthenticated true")
-          console.log(response)
-          setIsAuthenticated(true);
-        })
-        .catch((error) => {
-          console.error("Error fetching user data: ", error);
-        });
-    
-  }, []);
 
   const loginAuth = (loginData) => {
     // Perform the login logic, then update the user in the context

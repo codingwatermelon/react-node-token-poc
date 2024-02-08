@@ -45,6 +45,8 @@ const getAuthStatus = () => {
     });
 };
 
+
+
 const AuthService = {
   register,
   login,
