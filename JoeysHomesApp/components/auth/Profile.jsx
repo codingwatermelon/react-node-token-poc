@@ -9,8 +9,6 @@ export default function Profile() {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // TODO if not authed, then don't allow user to render this
-
   if (isAuthenticated) {
     return (
       <div className="container">
