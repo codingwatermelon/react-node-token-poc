@@ -18,6 +18,9 @@ export const useAuth = () => {
 //  );
 //};
 
+
+// For some reason... AuthProvider in Layout is overriding this
+
 export const AuthProvider = ({ children }) => {
   //const [user, setUser] = useState(null);
 

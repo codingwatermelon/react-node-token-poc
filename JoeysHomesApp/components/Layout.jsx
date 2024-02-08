@@ -20,6 +20,8 @@ export default function Layout() {
             //await AuthService.login(token.email, "xxx")
             await AuthService.getAuthStatus()
             .then((response) => {
+                console.log("authstatus")
+                console.log(response)
                 loginAuth();
             })
             .catch((error) => {
