@@ -114,21 +114,7 @@ export default function Login() {
 
     const { isAuthenticated, loginAuth } = useAuth();
 
-    useEffect(() => {
-        async function fetchAuthStatus() {
-            //await AuthService.login(token.email, "xxx")
-            await AuthService.getAuthStatus()
-            .then((response) => {
-                loginAuth();
-            })
-            .catch((error) => {
-                console.error("Error fetching user data: ", error);
-            });
-        }
-        
-        fetchAuthStatus();
-      
-    }, []);
+    
 
     //useEffect(() => {
     //    if (isAuthenticated) {
