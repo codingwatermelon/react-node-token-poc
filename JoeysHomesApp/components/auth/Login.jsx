@@ -96,7 +96,8 @@ export default function Login() {
     // TODO Where to call this?
     const getCurrentAuthStatus = async () => {
         console.log("getAuthStatus")
-        return await AuthService.getAuthStatus();
+        const data = await AuthService.getAuthStatus();
+        return data
 
     }
     
