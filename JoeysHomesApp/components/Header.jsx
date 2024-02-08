@@ -11,27 +11,12 @@ export default function Header() {
         color: "#161616"
     }
     
-    const { isAuthenticated, changeHeader } = useContext(AuthContext);
+    const { isAuthenticated, changeHeader, logoutAuth } = useContext(AuthContext);
 
     // TODO This is returning as undefined
     // I think I need to revamp this whole thing lol
     console.log('header isauthenticated')
     console.log(isAuthenticated)
-
-    // Perform loginAuth action upon first login using useEffect
-
-    //useEffect(async () => {
-    //    await AuthService.getAuthStatus()
-    //      .then((response) => {
-    //        console.log("setIsAuthenticated true")
-    //        console.log(response)
-    //        setIsAuthenticated(true);
-    //      })
-    //      .catch((error) => {
-    //        console.error("Error fetching user data: ", error);
-    //      });
-    //  
-    //}, []);
 
 
     // TODO When I press 'Log in' from /login, I need the Header component to update with the new current user
@@ -57,7 +42,7 @@ export default function Header() {
         AuthService.logout();
         //setShowModeratorBoard(false);
         //setShowAdminBoard(false);
-        setCurrentUser(undefined);
+        //setCurrentUser(undefined);
     };
     
     return (
@@ -91,9 +76,9 @@ export default function Header() {
                     </Link>
                     </li>
                     <li className="nav-item">
-                    <a href="/login" className="nav-link">
-                        LogOut
-                    </a>
+                    <button onClick={logOut}>
+                        Log Out
+                    </button>
                     </li>
                 </div>
                 ) : (
