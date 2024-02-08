@@ -38,7 +38,10 @@ const getAuthStatus = () => {
   return api
     .get("/auth/authstatus")
     .then((response) => {
-      return response.data;
+      return true;
+    })
+    .catch((error) => {
+      return false;
     });
 };
 

@@ -94,6 +94,7 @@ export default function Login() {
     console.log(token)
 
     console.log("getAuthStatus")
+    // TODO When this returns 401 unauthorized, then set isAuthenticated to false
     console.log(AuthService.getAuthStatus())
 
     const [username, setUsername] = useState('');
