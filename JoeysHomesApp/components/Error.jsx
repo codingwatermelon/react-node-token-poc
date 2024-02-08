@@ -38,6 +38,19 @@ export default function Error() {
                     </div>
                 )
             }
+            else if (error.response.status == 401) {
+                const location = `/login?message=Wrong username or password&redirectTo=${useLocation().pathname}`;
+                return (
+                    <div className="session-expired">
+                        <h1>Wrong username or password </h1>
+                        <Link
+                            to={location}
+                        >
+                            <h2>Click here to log in again</h2>
+                        </Link>
+                    </div>
+                )
+            }
         }
         else {
             return (

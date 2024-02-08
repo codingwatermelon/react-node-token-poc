@@ -11,6 +11,7 @@ export default function Header() {
         color: "#161616"
     }
     
+    // TODO I think I need to not use this in so many different places, making too many requests??
     const { isAuthenticated, changeHeader, logoutAuth } = useContext(AuthContext);
 
     // TODO This is returning as undefined

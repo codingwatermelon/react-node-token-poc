@@ -163,6 +163,7 @@ export default function Login() {
             // TODO If user is logged in, then upon subsequent requests to login page, either stay on current page or go to some account settings page
             
         } catch(err) {
+            console.log("caught error in login")
             if (err.name == "AxiosError") {
                 if (err.response.status == 404) {
                     // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
@@ -203,7 +204,7 @@ export default function Login() {
                         type="string"
                         placeholder="Username"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        //onChange={(e) => setUsername(e.target.value)}
                     />
                     
                     <input
@@ -211,7 +212,7 @@ export default function Login() {
                         type="password"
                         placeholder="Password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        //onChange={(e) => setPassword(e.target.value)}
                     />
                     <button
                         disabled={navigation.state === "submitting"}

@@ -21,3 +21,8 @@ The Frontend Developer Career Path aims to teach you everything you need to beco
 - [Become a Scrimba Pro member](https://scrimba.com/pricing)
 
 Happy Coding!
+
+
+Unit Testing:
+- Test that protected routes can't be access manually (through URL) and that errors are caught correctly
+- Test that routes redirect as necessary (e.g., login shouldn't be accessible if the user is already logged in)
