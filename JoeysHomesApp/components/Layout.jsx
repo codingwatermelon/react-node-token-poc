@@ -13,7 +13,7 @@ export default function Layout() {
 //        setIsAuthenticated(!isAuthenticated);
 //    };
 
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(null);
 
     useEffect(() => {
         async function fetchAuthStatus() {
