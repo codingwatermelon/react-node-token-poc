@@ -40,6 +40,7 @@ export default function Header() {
 
     const logOut = () => {
         AuthService.logout();
+        logoutAuth();
         //setShowModeratorBoard(false);
         //setShowAdminBoard(false);
         //setCurrentUser(undefined);
