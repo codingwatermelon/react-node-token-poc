@@ -164,6 +164,9 @@ export default function Login() {
             
         } catch(err) {
             console.log("caught error in login")
+            setUsername("")
+            setPassword("")
+
             if (err.name == "AxiosError") {
                 if (err.response.status == 404 || err.response.status == 401) {
                     // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
