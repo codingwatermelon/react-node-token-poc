@@ -89,6 +89,14 @@ export default function Login() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    const { isAuthenticated, loginAuth } = useAuth();
+
+    useEffect(() => {
+        if (isAuthenticated === true) {
+            navigate('/profile');
+        }
+    }, []);
+
     const token = AuthService.getCurrentUser()
     console.log("curr token")
     console.log(token)
@@ -112,7 +120,7 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const { isAuthenticated, loginAuth } = useAuth();
+    
 
     
 
@@ -187,10 +195,10 @@ export default function Login() {
     console.log(isAuthenticated)
 
     // Redirect to account page if user is logged in already
-    if (isAuthenticated === true) {
-        navigate('/profile');
-    }
-    else {
+    //if (isAuthenticated === true) {
+    //    navigate('/profile');
+    //}
+    //else {
         return (
             <div className="login-container">
                 <h1>Sign in to your account</h1>
@@ -234,5 +242,5 @@ export default function Login() {
                 </Link>
             </div>   
         )
-    }
+    //}
 }
