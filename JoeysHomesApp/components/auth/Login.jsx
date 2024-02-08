@@ -94,8 +94,7 @@ export default function Login() {
     console.log(token)
 
     // TODO Where to call this?
-    const getCurrentAuthStatus = async (e) => {
-        e.preventDefault();
+    const getCurrentAuthStatus = async () => {
         console.log("getAuthStatus")
         const data = await AuthService.getAuthStatus();
         return data
