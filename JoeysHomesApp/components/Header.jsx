@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import AuthService from "../services/auth.service";
 import { AuthContext } from "./common/AuthContext";
 
@@ -12,7 +12,8 @@ export default function Header() {
     }
     
     // TODO I think I need to not use this in so many different places, making too many requests??
-    const { isAuthenticated, changeHeader, logoutAuth } = useContext(AuthContext);
+    const { isAuthenticated, logoutAuth } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     // TODO This is returning as undefined
     // I think I need to revamp this whole thing lol
@@ -42,6 +43,8 @@ export default function Header() {
     const logOut = () => {
         AuthService.logout();
         logoutAuth();
+        navigate("/");
+        
         //setShowModeratorBoard(false);
         //setShowAdminBoard(false);
         //setCurrentUser(undefined);
