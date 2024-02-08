@@ -15,39 +15,13 @@ export default function Header() {
     const { isAuthenticated, logoutAuth } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    // TODO This is returning as undefined
-    // I think I need to revamp this whole thing lol
     console.log('header isauthenticated')
     console.log(isAuthenticated)
-
-
-    // TODO When I press 'Log in' from /login, I need the Header component to update with the new current user
-    // Currently, only the setCurrentUser(undefined) in the logOut method is updating the Header component properly
-    //const [currentUser, setCurrentUser] = useState(undefined);
-
-    // This useEffect runs on the first render of the page (i.e., also if the page gets reloaded)
-    // I need this to run every time the currentUser changes. If I put currentUser as a dependency, then this runs in an infinite loop
-//    useEffect(() => {
-//        const user = AuthService.getCurrentUser();
-//
-//        if (user) {
-//            setCurrentUser(user);
-//            //setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-//            //setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-//        }
-//
-//    }, []); 
-//
-
 
     const logOut = () => {
         AuthService.logout();
         logoutAuth();
         navigate("/");
-        
-        //setShowModeratorBoard(false);
-        //setShowAdminBoard(false);
-        //setCurrentUser(undefined);
     };
     
     return (
