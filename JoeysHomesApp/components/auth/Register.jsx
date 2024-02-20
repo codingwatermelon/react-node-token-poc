@@ -23,7 +23,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
-  const [validationMessage, setValidationMessage] = useState("default");
+  const [validationMessage, setValidationMessage] = useState("defaultvalue");
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -240,7 +240,7 @@ export default function Register() {
               </div>
             </div>
           )}
-          {validationMessage && (
+          {validationMessage != "defaultvalue" && (
             <div className="form-group">
               <div
                 className={
