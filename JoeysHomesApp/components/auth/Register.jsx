@@ -41,102 +41,91 @@ export default function Register() {
 
   const required = (value) => {
     if (!value) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This field is required!
-        </div>
-      );
+      return "This field is required!\n"
+    }
+    else {
+      return ""
     }
   };
   
   const validEmail = (value) => {
-    console.log(value)
     if (!isEmail(value)) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This is not a valid email.
-        </div>
-      );
+      return "This is not a valid email.\n"
+    }
+    else {
+      return ""
     }
   };
   
   const vusername = (value) => {
-    console.log(value)
     const userNameRegex = /^[A-Za-z0-9]+$/g
 
     if (value.length < 3 || value.length > 20) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          The username must be between 3 and 20 characters.
-        </div>
-      );
+      return "The username must be between 3 and 20 characters.\n"
     }
     else if (!(userNameRegex.test(username))) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          Username can only be letters and numbers
-        </div>
-      );
+      return "Username can only be letters and numbers\n";
+    }
+    else {
+      return ""
     }
   };
   
   const vpassword = (value) => {
-    console.log(value)
     if (value.length < 6 || value.length > 40) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          The password must be between 6 and 40 characters.
-        </div>
-      );
+      return "The password must be between 6 and 40 characters.\n";
+    }
+    else {
+      return ""
     }
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
 
-    // Validate form fields
-    vusername(username);
-    vpassword(password);
-    validEmail(email);
-
     setMessage("");
     setSuccessful(false);
 
-    // Run register request
-    try {
-      AuthService.register(username, email, password).then(
-        (response) => {
-          setMessage(response.data.message);
-          setSuccessful(true);
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+    // Validate form fields
+    setMessage(vusername(username) + validEmail(email) + vpassword(password));
 
-          setMessage(resMessage);
-          setSuccessful(false);
-        }
-      );
-    } catch(err) {
-      //setUsername("")
-      //setPassword("")
+    if (message == "") {
+      // Run register request
+      try {
+        AuthService.register(username, email, password).then(
+          (response) => {
+            setMessage(response.data.message);
+            setSuccessful(true);
+          },
+          (error) => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
 
-      if (err.name == "AxiosError") {
-          if (err.response.status == 404 || err.response.status == 401) {
-              // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
-              //navigate(`/register?message=Wrong username or password&redirectTo=${pathname}`)
-              setMessage("Username or password is incorrect, try again")
-              setSuccessful(false);
+            setMessage(resMessage);
+            setSuccessful(false);
           }
-      }
-      else {
-          //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
-          setMessage(err.message)
-          setSuccessful(false);
+        );
+      } catch(err) {
+        //setUsername("")
+        //setPassword("")
+
+        if (err.name == "AxiosError") {
+            if (err.response.status == 404 || err.response.status == 401) {
+                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
+                //navigate(`/register?message=Wrong username or password&redirectTo=${pathname}`)
+                setMessage("Username or password is incorrect, try again")
+                setSuccessful(false);
+            }
+        }
+        else {
+            //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
+            setMessage(err.message)
+            setSuccessful(false);
+        }
       }
     }
   };
