@@ -1,8 +1,15 @@
 import React, { useState, useRef } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
+//import Form from "react-validation/build/form";
+//import Input from "react-validation/build/input";
+//import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
+import {
+  useLoaderData,
+  useNavigation,
+  Form,
+  useNavigate,
+  Link
+} from "react-router-dom"
 
 import AuthService from "../../services/auth.service";
 
@@ -48,8 +55,8 @@ const vpassword = (value) => {
 
 //const Register = (props) => {
 export default function Register() {
-  const form = useRef();
-  const checkBtn = useRef();
+  //const form = useRef();
+  //const checkBtn = useRef();
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -78,9 +85,9 @@ export default function Register() {
     setMessage("");
     setSuccessful(false);
 
-    form.current.validateAll();
+    //form.current.validateAll();
 
-    if (checkBtn.current.context._errors.length === 0) {
+    //if (checkBtn.current.context._errors.length === 0) {
       AuthService.register(username, email, password).then(
         (response) => {
           setMessage(response.data.message);
@@ -98,7 +105,7 @@ export default function Register() {
           setSuccessful(false);
         }
       );
-    }
+    //}
   };
 
   return (
@@ -110,7 +117,9 @@ export default function Register() {
           className="profile-img-card"
         />
 
-        <Form onSubmit={handleRegister} ref={form}>
+        {/*<Form onSubmit={handleRegister} ref={form}>*/}
+        <Form onSubmit={handleRegister}>
+
           {!successful && (
             <div>
               <div className="form-group">
@@ -121,7 +130,7 @@ export default function Register() {
                   name="username"
                   value={username}
                   onChange={onChangeUsername}
-                  validations={[required, vusername]}
+                  //validations={[required, vusername]}
                 />
               </div>
 
@@ -133,7 +142,7 @@ export default function Register() {
                   name="email"
                   value={email}
                   onChange={onChangeEmail}
-                  validations={[required, validEmail]}
+                  //validations={[required, validEmail]}
                 />
               </div>
 
@@ -145,7 +154,7 @@ export default function Register() {
                   name="password"
                   value={password}
                   onChange={onChangePassword}
-                  validations={[required, vpassword]}
+                  //validations={[required, vpassword]}
                 />
               </div>
 
@@ -167,7 +176,7 @@ export default function Register() {
               </div>
             </div>
           )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          {/*<CheckButton style={{ display: "none" }} ref={checkBtn} />*/}
         </Form>
       </div>
     </div>
