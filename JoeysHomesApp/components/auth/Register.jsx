@@ -23,7 +23,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
-  const [validationMessage, setValidationMessage] = useState("defaultvalue");
+  const [validationMessage, setValidationMessage] = useState(["defaultvalue"]);
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -42,11 +42,7 @@ export default function Register() {
 
   const required = (value) => {
     if (!value) {
-      return (
-        <>
-        <h1>This field is required!</h1>
-        </>
-      );
+      return "This field is required!";
     }
     else {
       return ""
@@ -55,11 +51,7 @@ export default function Register() {
   
   const validEmail = (value) => {
     if (!isEmail(value)) {
-      return (
-        <>
-        <h1>This is not a valid email.</h1>
-        </>
-        );
+      return "This is not a valid email.";
     }
     else {
       return ""
@@ -70,18 +62,10 @@ export default function Register() {
     const userNameRegex = /^[A-Za-z0-9]+$/g
 
     if (value.length < 3 || value.length > 20) {
-      return (
-        <>
-        <h1>The username must be between 3 and 20 characters.</h1>
-        </>
-      );
+      return "The username must be between 3 and 20 characters.";
     }
     else if (!(userNameRegex.test(username))) {
-      return (
-        <>
-        <h1>Username can only be letters and numbers</h1>
-        </>
-      );
+      return "Username can only be letters and numbers";
     }
     else {
       return "";
@@ -91,11 +75,7 @@ export default function Register() {
   
   const vpassword = (value) => {
     if (value.length < 6 || value.length > 40) {
-      return (
-        <>
-        <h1>The password must be between 6 and 40 characters.</h1>
-        </>
-      );
+      return "The password must be between 6 and 40 characters.";
     }
     else {
       return ""
@@ -151,7 +131,7 @@ export default function Register() {
     setSuccessful(false);
 
     // Validate form fields
-    setValidationMessage(vusername(username) + validEmail(email) + vpassword(password));
+    setValidationMessage([vusername(username), validEmail(email), vpassword(password)]);
 
     //if (message === "") {
     //  // Run register request
@@ -261,7 +241,7 @@ export default function Register() {
               </div>
             </div>
           )}
-          {validationMessage != "defaultvalue" && (
+          {validationMessage != ["defaultvalue"] && (
             <div className="form-group">
               <div
                 className={
@@ -269,7 +249,11 @@ export default function Register() {
                 }
                 role="alert"
               >
-                {validationMessage}
+                {validationMessage.map((element) => (
+                  <h1>
+                    {element}
+                  </h1>
+                ))}
               </div>
             </div>
           )}
