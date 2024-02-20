@@ -124,7 +124,7 @@ export default function Register() {
             <div>
               <div className="form-group">
                 <label htmlFor="username">Username</label>
-                <Input
+                <input
                   type="text"
                   className="form-control"
                   name="username"
@@ -136,7 +136,7 @@ export default function Register() {
 
               <div className="form-group">
                 <label htmlFor="email">Email</label>
-                <Input
+                <input
                   type="text"
                   className="form-control"
                   name="email"
@@ -148,7 +148,7 @@ export default function Register() {
 
               <div className="form-group">
                 <label htmlFor="password">Password</label>
-                <Input
+                <input
                   type="password"
                   className="form-control"
                   name="password"
