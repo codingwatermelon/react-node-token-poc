@@ -23,7 +23,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
-  const [validationMessage, setValidationMessage] = useState("");
+  const [validationMessage, setValidationMessage] = useState("default");
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
