@@ -249,10 +249,12 @@ export default function Register() {
                 }
                 role="alert"
               >
-                {validationMessage.map((element) => (
+                {validationMessage.map((item, i) => (
+                  <div key={i}>
                   <h1>
-                    {element}
+                    {item}
                   </h1>
+                  </div>
                 ))}
               </div>
             </div>
