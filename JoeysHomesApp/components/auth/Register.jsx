@@ -83,7 +83,7 @@ export default function Register() {
   };
 
   useEffect(() => {
-    if (validationMessage === "") {
+    if (validationMessage.every(element => element === "")) {
       try {
         AuthService.register(username, email, password).then(
           (response) => {
@@ -241,7 +241,7 @@ export default function Register() {
               </div>
             </div>
           )}
-          {validationMessage != ["defaultvalue"] && (
+          {validationMessage[0] != "defaultvalue" && (
             <div className="form-group">
               <div
                 className={
@@ -251,9 +251,9 @@ export default function Register() {
               >
                 {validationMessage.map((item, i) => (
                   <div key={i}>
-                  <h1>
+                  <h3>
                     {item}
-                  </h1>
+                  </h3>
                   </div>
                 ))}
               </div>
