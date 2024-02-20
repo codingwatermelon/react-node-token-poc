@@ -89,7 +89,7 @@ export default function Register() {
     // Validate form fields
     setMessage(vusername(username) + validEmail(email) + vpassword(password));
 
-    if (message == "") {
+    if (message === "") {
       // Run register request
       try {
         AuthService.register(username, email, password).then(
