@@ -89,45 +89,86 @@ export default function Register() {
     // Validate form fields
     setMessage(vusername(username) + validEmail(email) + vpassword(password));
 
-    if (message === "") {
-      // Run register request
-      try {
-        AuthService.register(username, email, password).then(
-          (response) => {
-            setMessage(response.data.message);
-            setSuccessful(true);
-          },
-          (error) => {
-            const resMessage =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString();
-
-            setMessage(resMessage);
-            setSuccessful(false);
-          }
-        );
-      } catch(err) {
-        //setUsername("")
-        //setPassword("")
-
-        if (err.name == "AxiosError") {
-            if (err.response.status == 404 || err.response.status == 401) {
-                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
-                //navigate(`/register?message=Wrong username or password&redirectTo=${pathname}`)
-                setMessage("Username or password is incorrect, try again")
+    useEffect(() => {
+        if (message === "") {
+          try {
+            AuthService.register(username, email, password).then(
+              (response) => {
+                setMessage(response.data.message);
+                setSuccessful(true);
+              },
+              (error) => {
+                const resMessage =
+                  (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                  error.message ||
+                  error.toString();
+    
+                setMessage(resMessage);
+                setSuccessful(false);
+              }
+            );
+          } catch(err) {
+            //setUsername("")
+            //setPassword("")
+    
+            if (err.name == "AxiosError") {
+                if (err.response.status == 404 || err.response.status == 401) {
+                    // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
+                    //navigate(`/register?message=Wrong username or password&redirectTo=${pathname}`)
+                    setMessage("Username or password is incorrect, try again")
+                    setSuccessful(false);
+                }
+            }
+            else {
+                //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
+                setMessage(err.message)
                 setSuccessful(false);
             }
+          }
         }
-        else {
-            //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
-            setMessage(err.message)
-            setSuccessful(false);
-        }
-      }
-    }
+    }, [message]);
+
+    //if (message === "") {
+    //  // Run register request
+    //  try {
+    //    AuthService.register(username, email, password).then(
+    //      (response) => {
+    //        setMessage(response.data.message);
+    //        setSuccessful(true);
+    //      },
+    //      (error) => {
+    //        const resMessage =
+    //          (error.response &&
+    //            error.response.data &&
+    //            error.response.data.message) ||
+    //          error.message ||
+    //          error.toString();
+//
+    //        setMessage(resMessage);
+    //        setSuccessful(false);
+    //      }
+    //    );
+    //  } catch(err) {
+    //    //setUsername("")
+    //    //setPassword("")
+//
+    //    if (err.name == "AxiosError") {
+    //        if (err.response.status == 404 || err.response.status == 401) {
+    //            // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
+    //            //navigate(`/register?message=Wrong username or password&redirectTo=${pathname}`)
+    //            setMessage("Username or password is incorrect, try again")
+    //            setSuccessful(false);
+    //        }
+    //    }
+    //    else {
+    //        //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
+    //        setMessage(err.message)
+    //        setSuccessful(false);
+    //    }
+    //  }
+    //}
   };
 
   return (
