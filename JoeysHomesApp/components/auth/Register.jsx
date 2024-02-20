@@ -50,6 +50,7 @@ export default function Register() {
   };
   
   const validEmail = (value) => {
+    console.log(value)
     if (!isEmail(value)) {
       return (
         <div className="alert alert-danger" role="alert">
@@ -60,6 +61,7 @@ export default function Register() {
   };
   
   const vusername = (value) => {
+    console.log(value)
     const userNameRegex = /^[A-Za-z0-9]+$/g
 
     if (value.length < 3 || value.length > 20) {
@@ -79,6 +81,7 @@ export default function Register() {
   };
   
   const vpassword = (value) => {
+    console.log(value)
     if (value.length < 6 || value.length > 40) {
       return (
         <div className="alert alert-danger" role="alert">
