@@ -43,9 +43,9 @@ export default function Register() {
   const required = (value) => {
     if (!value) {
       return (
-        <div className="alert alert-danger" role="alert">
-          This field is required!
-        </div>
+        <>
+        <h1>This field is required!</h1>
+        </>
       );
     }
     else {
@@ -56,9 +56,9 @@ export default function Register() {
   const validEmail = (value) => {
     if (!isEmail(value)) {
       return (
-        <div className="alert alert-danger" role="alert">
-          This is not a valid email.
-        </div>
+        <>
+        <h1>This is not a valid email.</h1>
+        </>
         );
     }
     else {
@@ -71,16 +71,16 @@ export default function Register() {
 
     if (value.length < 3 || value.length > 20) {
       return (
-        <div className="alert alert-danger" role="alert">
-          The username must be between 3 and 20 characters.\n"
-        </div>
+        <>
+        <h1>The username must be between 3 and 20 characters.</h1>
+        </>
       );
     }
     else if (!(userNameRegex.test(username))) {
       return (
-        <div className="alert alert-danger" role="alert">
-          Username can only be letters and numbers
-        </div>
+        <>
+        <h1>Username can only be letters and numbers</h1>
+        </>
       );
     }
     else {
@@ -92,9 +92,9 @@ export default function Register() {
   const vpassword = (value) => {
     if (value.length < 6 || value.length > 40) {
       return (
-        <div className="alert alert-danger" role="alert">
-          The password must be between 6 and 40 characters.
-        </div>
+        <>
+        <h1>The password must be between 6 and 40 characters.</h1>
+        </>
       );
     }
     else {
