@@ -13,46 +13,6 @@ import {
 
 import AuthService from "../../services/auth.service";
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
-
-const validEmail = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
-      </div>
-    );
-  }
-};
-
-const vusername = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
-      </div>
-    );
-  }
-};
-
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
-    );
-  }
-};
-
 //const Register = (props) => {
 export default function Register() {
   //const form = useRef();
@@ -79,15 +39,68 @@ export default function Register() {
     setPassword(password);
   };
 
+  const required = (value) => {
+    if (!value) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This field is required!
+        </div>
+      );
+    }
+  };
+  
+  const validEmail = (value) => {
+    if (!isEmail(value)) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          This is not a valid email.
+        </div>
+      );
+    }
+  };
+  
+  const vusername = (value) => {
+    const userNameRegex = /^[A-Za-z0-9]+$/g
+
+    if (value.length < 3 || value.length > 20) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          The username must be between 3 and 20 characters.
+        </div>
+      );
+    }
+    else if (!(userNameRegex.test(username))) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          Username can only be letters and numbers
+        </div>
+      );
+    }
+  };
+  
+  const vpassword = (value) => {
+    if (value.length < 6 || value.length > 40) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          The password must be between 6 and 40 characters.
+        </div>
+      );
+    }
+  };
+
   const handleRegister = (e) => {
     e.preventDefault();
+
+    // Validate form fields
+    vusername(username);
+    vpassword(password);
+    validEmail(email);
 
     setMessage("");
     setSuccessful(false);
 
-    //form.current.validateAll();
-
-    //if (checkBtn.current.context._errors.length === 0) {
+    // Run register request
+    try {
       AuthService.register(username, email, password).then(
         (response) => {
           setMessage(response.data.message);
@@ -105,7 +118,24 @@ export default function Register() {
           setSuccessful(false);
         }
       );
-    //}
+    } catch(err) {
+      //setUsername("")
+      //setPassword("")
+
+      if (err.name == "AxiosError") {
+          if (err.response.status == 404 || err.response.status == 401) {
+              // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
+              //navigate(`/register?message=Wrong username or password&redirectTo=${pathname}`)
+              setMessage("Username or password is incorrect, try again")
+              setSuccessful(false);
+          }
+      }
+      else {
+          //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
+          setMessage(err.message)
+          setSuccessful(false);
+      }
+    }
   };
 
   return (
@@ -117,8 +147,10 @@ export default function Register() {
           className="profile-img-card"
         />
 
-        {/*<Form onSubmit={handleRegister} ref={form}>*/}
-        <Form onSubmit={handleRegister}>
+        <Form 
+          onSubmit={handleRegister}
+          replace
+        >
 
           {!successful && (
             <div>
@@ -130,7 +162,6 @@ export default function Register() {
                   name="username"
                   value={username}
                   onChange={onChangeUsername}
-                  //validations={[required, vusername]}
                 />
               </div>
 
@@ -142,7 +173,6 @@ export default function Register() {
                   name="email"
                   value={email}
                   onChange={onChangeEmail}
-                  //validations={[required, validEmail]}
                 />
               </div>
 
@@ -154,7 +184,6 @@ export default function Register() {
                   name="password"
                   value={password}
                   onChange={onChangePassword}
-                  //validations={[required, vpassword]}
                 />
               </div>
 
@@ -176,8 +205,15 @@ export default function Register() {
               </div>
             </div>
           )}
-          {/*<CheckButton style={{ display: "none" }} ref={checkBtn} />*/}
+          {/* TODO Add "Back to Home" button upon successful registration
+
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />*/}
         </Form>
+        <Link 
+            to="/"
+            className="login-form-link">
+                <p>Back to Home</p>
+        </Link>
       </div>
     </div>
   );
