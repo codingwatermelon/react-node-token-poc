@@ -1,17 +1,11 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useEffect, useState } from "react"
 import {
     useLoaderData,
     useNavigation,
     Form,
-    redirect,
-    useActionData,
     useNavigate,
-    useLocation,
-
     Link
 } from "react-router-dom"
-import { loginUser } from "../../functions"
-import { FiEye, FiEyeOff } from 'react-icons/fi'; // If using icons
 import AuthService from "../../services/auth.service";
 
 import { useAuth } from "../common/AuthContext"
@@ -24,7 +18,6 @@ export default function Login() {
     const message = useLoaderData()
     const navigation = useNavigation()
     const navigate = useNavigate();
-    const location = useLocation();
 
     const { isAuthenticated, loginAuth } = useAuth();
 
@@ -34,10 +27,6 @@ export default function Login() {
             navigate('/profile');
         }
     }, [isAuthenticated]);
-
-    const token = AuthService.getCurrentUser()
-    console.log("curr token")
-    console.log(token)
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -71,7 +60,6 @@ export default function Login() {
             navigate(pathname);
 
         } catch(err) {
-            console.log("caught error in login")
             setUsername("")
             setPassword("")
 
@@ -89,9 +77,6 @@ export default function Login() {
         }
         
     };
-
-    console.log("isAuthenticated")
-    console.log(isAuthenticated)
 
     return (
         <div className="login-container">

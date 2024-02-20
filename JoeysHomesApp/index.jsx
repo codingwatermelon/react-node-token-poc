@@ -69,7 +69,7 @@ function App() {
         element={<Login />}
         loader={loginLoader}
       />
-      <Route exact path="/register" element={<Register />} />
+      <Route exact path="/register" component={<Register />} />
       <Route exact path="/profile" element={<Profile />} />
       
   
