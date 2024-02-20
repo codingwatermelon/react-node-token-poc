@@ -81,6 +81,48 @@ export default function Register() {
     }
   };
 
+  useEffect(() => {
+    if (validationMessage === "") {
+      try {
+        AuthService.register(username, email, password).then(
+          (response) => {
+            setMessage(response.data.message);
+            setSuccessful(true);
+          },
+          (error) => {
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+
+            setMessage(resMessage);
+            setSuccessful(false);
+          }
+        );
+      } catch(err) {
+        //setUsername("")
+        //setPassword("")
+
+        if (err.name == "AxiosError") {
+            if (err.response.status == 404 || err.response.status == 401) {
+                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
+                //navigate(`/register?message=Wrong username or password&redirectTo=${pathname}`)
+                setMessage("Username or password is incorrect, try again")
+                setSuccessful(false);
+            }
+        }
+        else {
+            //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
+            setMessage(err.message)
+            setSuccessful(false);
+        }
+      }
+    }
+}, [validationMessage]);
+
+
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -89,47 +131,6 @@ export default function Register() {
 
     // Validate form fields
     setValidationMessage(vusername(username) + validEmail(email) + vpassword(password));
-
-    useEffect(() => {
-        if (validationMessage === "") {
-          try {
-            AuthService.register(username, email, password).then(
-              (response) => {
-                setMessage(response.data.message);
-                setSuccessful(true);
-              },
-              (error) => {
-                const resMessage =
-                  (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                  error.message ||
-                  error.toString();
-    
-                setMessage(resMessage);
-                setSuccessful(false);
-              }
-            );
-          } catch(err) {
-            //setUsername("")
-            //setPassword("")
-    
-            if (err.name == "AxiosError") {
-                if (err.response.status == 404 || err.response.status == 401) {
-                    // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
-                    //navigate(`/register?message=Wrong username or password&redirectTo=${pathname}`)
-                    setMessage("Username or password is incorrect, try again")
-                    setSuccessful(false);
-                }
-            }
-            else {
-                //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
-                setMessage(err.message)
-                setSuccessful(false);
-            }
-          }
-        }
-    }, [validationMessage]);
 
     //if (message === "") {
     //  // Run register request
