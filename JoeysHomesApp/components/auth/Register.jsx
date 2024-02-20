@@ -23,6 +23,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
+  const [validationMessage, setValidationMessage] = useState("");
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -87,10 +88,10 @@ export default function Register() {
     setSuccessful(false);
 
     // Validate form fields
-    setMessage(vusername(username) + validEmail(email) + vpassword(password));
+    setValidationMessage(vusername(username) + validEmail(email) + vpassword(password));
 
     useEffect(() => {
-        if (message === "") {
+        if (validationMessage === "") {
           try {
             AuthService.register(username, email, password).then(
               (response) => {
@@ -128,7 +129,7 @@ export default function Register() {
             }
           }
         }
-    }, [message]);
+    }, [validationMessage]);
 
     //if (message === "") {
     //  // Run register request
@@ -235,6 +236,18 @@ export default function Register() {
                 role="alert"
               >
                 {message}
+              </div>
+            </div>
+          )}
+          {validationMessage && (
+            <div className="form-group">
+              <div
+                className={
+                  successful ? "alert alert-success" : "alert alert-danger"
+                }
+                role="alert"
+              >
+                {validationMessage}
               </div>
             </div>
           )}
