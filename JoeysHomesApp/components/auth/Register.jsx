@@ -175,15 +175,9 @@ export default function Register() {
   };
 
   return (
-    <div className="col-md-12">
-      <div className="card card-container">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
-
+    <div className="login-container">
         <Form 
+          className="login-form"
           onSubmit={handleRegister}
           replace
         >
@@ -268,7 +262,6 @@ export default function Register() {
             className="login-form-link">
                 <p>Back to Home</p>
         </Link>
-      </div>
     </div>
   );
 };
