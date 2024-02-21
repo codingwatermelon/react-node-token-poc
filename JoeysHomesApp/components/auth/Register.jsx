@@ -203,41 +203,41 @@ export default function Register() {
         )}
 
         {!successful && (
-          <div>
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={username}
-                onChange={onChangeUsername}
-              />
+          <>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={username}
+              onChange={onChangeUsername}
+            />
 
-              <input
-                type="text"
-                name="email"
-                placeholder="Email"
-                value={email}
-                onChange={onChangeEmail}
-              />
+            <input
+              type="text"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={onChangeEmail}
+            />
 
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={onChangePassword}
-              />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={onChangePassword}
+            />
 
-              <button
-                    disabled={navigation.state === "submitting"}
-                    type="submit"
-                >
-                    {navigation.state === "submitting"
-                        ? "Signing up..."
-                        : "Sign up"
-                    }
-                </button>
-            </div>
+            <button
+                  disabled={navigation.state === "submitting"}
+                  type="submit"
+              >
+                  {navigation.state === "submitting"
+                      ? "Signing up..."
+                      : "Sign up"
+                  }
+              </button>
+          </>
         )}
         </Form>
         <Link 
