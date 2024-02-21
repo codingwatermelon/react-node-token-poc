@@ -25,6 +25,8 @@ export default function Register() {
   const [message, setMessage] = useState("");
   const [validationMessage, setValidationMessage] = useState(["defaultvalue"]);
 
+  const navigation = useNavigation();
+
   const onChangeUsername = (e) => {
     const username = e.target.value;
     setUsername(username);
@@ -182,80 +184,61 @@ export default function Register() {
           replace
         >
 
-          {!successful && (
-            <div>
-              <div className="form-group">
-                <label htmlFor="username">Username</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="username"
-                  value={username}
-                  onChange={onChangeUsername}
-                />
-              </div>
+        {message && (
+            <h3>
+              {message}
+            </h3>
+        )}
 
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="email"
-                  value={email}
-                  onChange={onChangeEmail}
-                />
+        {validationMessage[0] != "defaultvalue" && (
+          <>
+            {validationMessage.map((item, i) => (
+              <div key={i}>
+              <h3>
+                {item}
+              </h3>
               </div>
+            ))}
+          </>
+        )}
 
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={onChangePassword}
-                />
-              </div>
+        {!successful && (
+          <div>
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={username}
+                onChange={onChangeUsername}
+              />
 
-              <div className="form-group">
-                <button className="btn btn-primary btn-block">Sign Up</button>
-              </div>
+              <input
+                type="text"
+                name="email"
+                placeholder="Email"
+                value={email}
+                onChange={onChangeEmail}
+              />
+
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={onChangePassword}
+              />
+
+              <button
+                    disabled={navigation.state === "submitting"}
+                    type="submit"
+                >
+                    {navigation.state === "submitting"
+                        ? "Signing up..."
+                        : "Sign up"
+                    }
+                </button>
             </div>
-          )}
-
-          {message && (
-            <div className="form-group">
-              <div
-                className={
-                  successful ? "alert alert-success" : "alert alert-danger"
-                }
-                role="alert"
-              >
-                {message}
-              </div>
-            </div>
-          )}
-          {validationMessage[0] != "defaultvalue" && (
-            <div className="form-group">
-              <div
-                className={
-                  successful ? "alert alert-success" : "alert alert-danger"
-                }
-                role="alert"
-              >
-                {validationMessage.map((item, i) => (
-                  <div key={i}>
-                  <h3>
-                    {item}
-                  </h3>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          {/* TODO Add "Back to Home" button upon successful registration
-
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />*/}
+        )}
         </Form>
         <Link 
             to="/"
