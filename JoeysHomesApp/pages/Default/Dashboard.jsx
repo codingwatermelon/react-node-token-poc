@@ -4,7 +4,6 @@ import { Link, defer, Await, useLoaderData } from "react-router-dom"
 //import { requireAuth } from "../../utils"
 import { BsStarFill } from "react-icons/bs"
 
-
 export default function Dashboard() {
     const income = 2260
 

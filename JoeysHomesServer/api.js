@@ -5,7 +5,7 @@ require('dotenv').config()
 const pool = new Pool({
   user: process.env.USERNAME || '',
   host: process.env.HOST || '',
-  database: process.env.DATABASE || '',
+  database: process.env.APPDATABASE || '',
   password: process.env.PASSWORD || '',
   port: process.env.PORT || '',
 });
@@ -62,7 +62,26 @@ const getMaintenance = (maintenanceId) => {
   })
 }
 
+const loginUser = (creds) => {
+  return new Promise(function(resolve, reject) {
+    
+    const email = creds.email
+    const password = creds.password
+    
+    pool.query('select * from Users where email = $1 and password = $2', [email, password], (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      console.log("results (query)")
+      console.log(results.rows)
+      resolve(results.rows)
+    })
+
+  })
+}
+
 module.exports = {
   getHouses,
   getMaintenance,
+  loginUser
 }

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
     Link,
     useSearchParams,
@@ -6,7 +6,6 @@ import {
     defer,
     Await
 } from "react-router-dom"
-import { getMaintenance } from "../../api"
 import { format } from "date-fns"
 // material-ui
 // mui colors https://mui.com/material-ui/customization/color/
@@ -15,6 +14,8 @@ import { Box } from '@mui/material';
 import { useState } from "react";
 // search https://github.com/Saleh-Mubashar/React-Search/blob/master/App.js
 import TextField from "@mui/material/TextField";
+//import { requireAuth } from "../../utils"
+import { getMaintenance } from "../../services/user.service";
 
 // sx prop doc https://mui.com/system/getting-started/the-sx-prop/
 // box doc https://mui.com/material-ui/react-box/
@@ -39,7 +40,8 @@ const boxSX = {
     }
 }
 
-export function loader() {
+export async function loader({ request }) {
+    //await requireAuth(request)
     return defer({ maintenance: getMaintenance() })
 }
 

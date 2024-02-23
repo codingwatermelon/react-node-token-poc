@@ -19,7 +19,10 @@
     "apexcharts": "^3.35.3",
     "formik": "^2.2.9",
     "framer-motion": "^6.3.16",
-    "material-ui-popup-state": "^4.0.1"
+    "material-ui-popup-state": "^4.0.1",
+    "axios": "^1.6.5",
+    "react-validation": "^3.0.7",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "vite": "latest",

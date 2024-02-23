@@ -602,19 +602,12 @@ i[class*='house-type-'] {
     font-family: "Inter", sans-serif;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
     font-weight: 400;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .login-form > input:focus {
-    outline: none;
-}
-
-.login-form > input:first-of-type {
-    border-radius: 6px 6px 0px 0px;
-}
-
-.login-form > input:last-of-type {
-    border-radius: 0px 0px 6px 6px;
-    border-top: none;
+    outline: solid #84bbff;
 }
 
 .login-form > button {
@@ -630,6 +623,15 @@ i[class*='house-type-'] {
 .login-form > button:disabled {
     background-color: #aaaaaa;
     cursor: not-allowed;
+}
+
+.login-form-link {
+
+}
+
+.login-form-link > p {
+    align-items: center;
+    color: #3492fd;
 }
 
 .red {
@@ -837,4 +839,16 @@ img.graph {
 }
 .income-summary-green {
     color: #00c714;
+}
+
+.session-expired {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.session-expired h2 {
+    color: #006cbe;
 }

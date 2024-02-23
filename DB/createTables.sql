@@ -30,3 +30,9 @@ CREATE TABLE IF NOT EXISTS PropertiesMaintenance (
 	    REFERENCES Properties(id)
 	    ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS Users (
+   id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+   email VARCHAR ( 200 ) NOT NULL,
+   password VARCHAR ( 200 ) NOT NULL
+)
