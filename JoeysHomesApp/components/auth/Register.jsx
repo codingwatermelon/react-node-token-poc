@@ -119,81 +119,81 @@ export default function Register() {
   return (
     <div className="login-container">
       <h1>Create a new account</h1>
-        <Form 
-          className="login-form"
-          onSubmit={handleRegister}
-          replace
-        >
-
-        {message && (
+      {message && (
             <h3>
               {message}
             </h3>
         )}
 
-        {validationMessage[0] != "defaultvalue" && (
-          <>
-            {validationMessage.map((item, i) => (
-              <div key={i}>
-              <h3>
-                {item}
-              </h3>
-              </div>
-            ))}
-          </>
-        )}
+      {validationMessage[0] != "defaultvalue" && (
+        <>
+          {validationMessage.map((item, i) => (
+            <div key={i}>
+            <h3>
+              {item}
+            </h3>
+            </div>
+          ))}
+        </>
+      )}
 
-        {!successful && (
-          <>
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+      <Form 
+        className="login-form"
+        onSubmit={handleRegister}
+        replace
+      >
 
-            <input
-              type="text"
-              name="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+      {!successful && (
+        <>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            
-            <input
-              type="password"
-              name="confirmpassword"
-              placeholder="Confirm password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-            <button
-                  disabled={navigation.state === "submitting"}
-                  type="submit"
-              >
-                  {navigation.state === "submitting"
-                      ? "Signing up..."
-                      : "Sign up"
-                  }
-              </button>
-          </>
-        )}
-        </Form>
-        <Link 
-            to="/"
-            className="login-form-link">
-                <p>Back to Home</p>
-        </Link>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          
+          <input
+            type="password"
+            name="confirmpassword"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+
+          <button
+                disabled={navigation.state === "submitting"}
+                type="submit"
+            >
+                {navigation.state === "submitting"
+                    ? "Signing up..."
+                    : "Sign up"
+                }
+            </button>
+        </>
+      )}
+      </Form>
+      <Link 
+          to="/"
+          className="login-form-link">
+              <p>Back to Home</p>
+      </Link>
     </div>
   );
 };
