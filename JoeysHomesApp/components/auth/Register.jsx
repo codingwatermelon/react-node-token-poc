@@ -21,35 +21,12 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [validationMessage, setValidationMessage] = useState(["defaultvalue"]);
 
   const navigation = useNavigation();
-
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
-
-  const onChangeEmail = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-  };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
-
-  const required = (value) => {
-    if (!value) {
-      return "This field is required!";
-    }
-    else {
-      return ""
-    }
-  };
   
   const validEmail = (value) => {
     if (!isEmail(value)) {
@@ -78,6 +55,9 @@ export default function Register() {
   const vpassword = (value) => {
     if (value.length < 6 || value.length > 40) {
       return "The password must be between 6 and 40 characters.";
+    }
+    else if (value != confirmPassword) {
+      return "Passwords don't match, try again."
     }
     else {
       return ""
@@ -111,7 +91,6 @@ export default function Register() {
         if (err.name == "AxiosError") {
             if (err.response.status == 404 || err.response.status == 401) {
                 // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
-                //navigate(`/register?message=Wrong username or password&redirectTo=${pathname}`)
                 setMessage("Username or password is incorrect, try again")
                 setSuccessful(false);
             }
@@ -135,49 +114,11 @@ export default function Register() {
     // Validate form fields
     setValidationMessage([vusername(username), validEmail(email), vpassword(password)]);
 
-    //if (message === "") {
-    //  // Run register request
-    //  try {
-    //    AuthService.register(username, email, password).then(
-    //      (response) => {
-    //        setMessage(response.data.message);
-    //        setSuccessful(true);
-    //      },
-    //      (error) => {
-    //        const resMessage =
-    //          (error.response &&
-    //            error.response.data &&
-    //            error.response.data.message) ||
-    //          error.message ||
-    //          error.toString();
-//
-    //        setMessage(resMessage);
-    //        setSuccessful(false);
-    //      }
-    //    );
-    //  } catch(err) {
-    //    //setUsername("")
-    //    //setPassword("")
-//
-    //    if (err.name == "AxiosError") {
-    //        if (err.response.status == 404 || err.response.status == 401) {
-    //            // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
-    //            //navigate(`/register?message=Wrong username or password&redirectTo=${pathname}`)
-    //            setMessage("Username or password is incorrect, try again")
-    //            setSuccessful(false);
-    //        }
-    //    }
-    //    else {
-    //        //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
-    //        setMessage(err.message)
-    //        setSuccessful(false);
-    //    }
-    //  }
-    //}
   };
 
   return (
     <div className="login-container">
+      <h1>Create a new account</h1>
         <Form 
           className="login-form"
           onSubmit={handleRegister}
@@ -209,7 +150,7 @@ export default function Register() {
               name="username"
               placeholder="Username"
               value={username}
-              onChange={onChangeUsername}
+              onChange={(e) => setUsername(e.target.value)}
             />
 
             <input
@@ -217,7 +158,7 @@ export default function Register() {
               name="email"
               placeholder="Email"
               value={email}
-              onChange={onChangeEmail}
+              onChange={(e) => setEmail(e.target.value)}
             />
 
             <input
@@ -225,7 +166,15 @@ export default function Register() {
               name="password"
               placeholder="Password"
               value={password}
-              onChange={onChangePassword}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            
+            <input
+              type="password"
+              name="confirmpassword"
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
 
             <button
