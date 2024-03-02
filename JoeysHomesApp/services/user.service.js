@@ -16,16 +16,14 @@ const getAdminBoard = () => {
   return api.get("/test/admin");
 };
 
-export async function getMaintenance(id) {
+export async function getListings(endpoint, id) {
 
-  const url = id ? `/maintenance/${id}` : "/maintenance"
-  //const res = await fetch(url)
+  const url = id ? `/${endpoint}/${id}` : `/${endpoint}`
   const res = await api.get(url);
-  console.log("called getMaintenance")
 
   if (!res.status == 200) {
       throw {
-          message: "Failed to fetch maintenance tasks",
+          message: `Failed to fetch listing of ${endpoint}`,
           statusText: res.statusText,
           status: res.status,
       }

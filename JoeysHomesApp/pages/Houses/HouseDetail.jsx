@@ -8,12 +8,10 @@ import {
     useLocation,
     useParams
 } from "react-router-dom"
-import { getHouses } from "../../functions"
-import { requireAuth } from "../../utils"
+import { getListings } from "../../services/user.service";
 
 export async function loader({ params, request }) {
-    await requireAuth(request)
-    return defer({ house: getHouses(params.id) })
+    return defer({ house: getListings("houses", params.id) })
 }
 
 export default function HouseDetail() {
