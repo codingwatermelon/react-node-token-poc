@@ -40,51 +40,17 @@ db.sequelize.sync();
 //  initial();
 //});
 
-app.get("/api/houses", (req, res) => {
-  
-  api.getHouses()
-    .then(response => {
-      res.json(response);
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    })
-})
+app.get(
+  "/api/houses",
+  [authJwt.verifyToken],
+  controller.houses
+)
 
-app.get("/api/houses/:id", (req, res) => {
-  
-  console.log(req)
-
-  api.getHouses(req.params.id)
-    .then(response => {
-      res.status(200).send(response);
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    })
-})
-
-//app.get("/api/maintenance", (req, res) => {
-//  
-//  api.getMaintenance()
-//    .then(response => {
-//      res.json(response);
-//    })
-//    .catch(error => {
-//      res.status(500).send(error);
-//    })
-//})
-
-//app.get("/api/maintenance/:id", (req, res) => {
-//  
-//  api.getMaintenance(req.params.id)
-//    .then(response => {
-//      res.status(200).send(response);
-//    })
-//    .catch(error => {
-//      res.status(500).send(error);
-//    })
-//})
+app.get(
+  "/api/houses/:id",
+  [authJwt.verifyToken],
+  controller.housesWithID
+);
 
 app.get(
   "/api/maintenance",
