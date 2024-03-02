@@ -42,7 +42,7 @@ const boxSX = {
 
 export async function loader({ request }) {
     //await requireAuth(request)
-    return defer({ maintenance: getListings(endpoint="maintenance") })
+    return defer({ maintenance: getListings("maintenance", "") })
 }
 
 export default function Maintenance() {

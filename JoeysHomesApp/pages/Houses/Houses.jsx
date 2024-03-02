@@ -30,7 +30,7 @@ const boxSX = {
 }
 
 export async function loader({ request }) {
-    return defer({ houses: getListings(endpoint="houses") })
+    return defer({ houses: getListings("houses", "") })
 }
 
 
