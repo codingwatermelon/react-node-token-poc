@@ -31,9 +31,9 @@ CREATE TABLE IF NOT EXISTS PropertiesFinancialDetails (
    loan_to_value_ratio INT NOT NULL,
    operating_expense_ratio INT NOT NULL,
    vacancy_rate INT NOT NULL,
-   CONSTRAINT fk_propertiesgeneraldetails_id
+   CONSTRAINT fk_properties_id
        FOREIGN KEY(id) 
-	    REFERENCES PropertiesGeneralDetails(id)
+	    REFERENCES Properties(id)
 	    ON DELETE CASCADE
 );
 
