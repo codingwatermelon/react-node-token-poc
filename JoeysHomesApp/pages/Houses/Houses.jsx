@@ -22,6 +22,8 @@ const boxSX = {
         md: 300, // theme.breakpoints.up('md')
         lg: 400 // theme.breakpoints.up('lg')
     },
+    alignItems: center,
+    justifyItems: center,
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
         backgroundColor: blue[200],
