@@ -23,7 +23,7 @@ export default function HouseDetail() {
         const displayedHouses = house
 
         const houseElements = displayedHouses.map(house => (
-            <div key={house.properties_id} className="house-tile">
+            <div key={house.properties_id}>
                 <div className="house-info">
                     <h3>{house.property_address}</h3>
                     <p>{house.property_description}</p>

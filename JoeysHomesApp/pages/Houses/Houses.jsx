@@ -80,12 +80,8 @@ export default function Houses() {
                     relative="path"
                 >
                     <Box sx={boxSX}>
-                        <div className="house-info">
-                            <h3>{house.property_address}</h3>
-                            <p>{house.property_description}</p>
-                            <p><span>$</span>{house.base_value}<span>K</span></p>
-                            <img src={house.image_path}/>
-                        </div>
+                        <h3>{house.property_address}</h3>
+                        <img src={house.image_path}/>
                     </Box>
                 
                 </Link>
