@@ -17,7 +17,7 @@ const getHouses = (houseId) => {
       const id = parseInt(houseId)
       console.log(id)
 
-      pool.query('select properties.id as properties_id, property_address, property_description, image_path, base_value, purchase_date from properties join propertiesgeneraldetails on properties.id = propertiesgeneraldetails.id where properties.id = $1', [id], (error, results) => {
+      pool.query('select properties.id as properties_id, property_address, property_description, base_market_value, image_path, purchase_date from properties join propertiesgeneraldetails on properties.id = propertiesgeneraldetails.id join propertiesfinancialdetails on properties.id = propertiesfinancialdetails.id where properties.id = $1', [id], (error, results) => {
         if (error) {
           reject(error)
         }
@@ -26,7 +26,7 @@ const getHouses = (houseId) => {
       })
     }
     else {
-      pool.query('select properties.id as properties_id, property_address, property_description, image_path, base_value, purchase_date from properties join propertiesgeneraldetails on properties.id = propertiesgeneraldetails.id', (error, results) => {
+      pool.query('select properties.id as properties_id, property_address, property_description, image_path, purchase_date from properties join propertiesgeneraldetails on properties.id = propertiesgeneraldetails.id', (error, results) => {
         if (error) {
           reject(error)
         }
