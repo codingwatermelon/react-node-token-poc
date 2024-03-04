@@ -22,6 +22,7 @@ const boxSX = {
         md: 300, // theme.breakpoints.up('md')
         lg: 400 // theme.breakpoints.up('lg')
     },
+    display: "flex",
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
@@ -83,7 +84,7 @@ export default function Houses() {
                     relative="path"
                 >
                     <Box sx={boxSX}>
-                        <h3>{house.property_address}</h3>
+                        <h3 >{house.property_address}</h3>
                         <img src={house.image_path}/>
                     </Box>
                 
