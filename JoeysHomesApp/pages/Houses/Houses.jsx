@@ -24,6 +24,7 @@ const boxSX = {
     },
     alignItems: "center",
     justifyItems: "center",
+    justifyContent: "center",
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
         backgroundColor: blue[200],
