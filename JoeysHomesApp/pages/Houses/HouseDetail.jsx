@@ -23,13 +23,12 @@ export default function HouseDetail() {
         const displayedHouses = house
 
         const houseElements = displayedHouses.map(house => (
-            <div key={house.property_id} className="house-tile">
+            <div key={house.properties_id} className="house-tile">
                 <div className="house-info">
                     <h3>{house.property_address}</h3>
                     <p>{house.property_description}</p>
-                    <p><span>$</span>{house.base_value}<span>K</span></p>
                     <p>{house.purchase_date}</p>
-                    <p>{house.property_id}</p>
+                    <p>Base Market Value: ${house.base_market_value}K</p>
                     <img src={house.image_path}/>
                 </div>
             </div>

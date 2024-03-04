@@ -74,9 +74,9 @@ export default function Houses() {
         const displayedHouses = houses
 
         const houseElements = displayedHouses.map(house => (
-            <div key={house.property_id} className="house-tile">
+            <div key={house.properties_id} className="house-tile">
                 <Link
-                    to={`${house.property_id}`}
+                    to={`${house.properties_id}`}
                     relative="path"
                 >
                     <Box sx={boxSX}>
