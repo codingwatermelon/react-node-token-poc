@@ -1,6 +1,6 @@
-image_path,purchase_date
-https://photos.zillowstatic.com/fp/0c52d2ff7289d3d542c859f68fdbc8f2-cc_ft_1536.webp,2005-10-03
-https://photos.zillowstatic.com/fp/93e01e8055e05aad272cdf9d8e132f4a-cc_ft_1536.webp,2015-02-05
-https://photos.zillowstatic.com/fp/8ccec0ac70fde08d69fed913ce83e89f-cc_ft_1536.webp,2010-05-10
-https://photos.zillowstatic.com/fp/e5c45aa3886e9b832d5a5012b25fc0ed-uncropped_scaled_within_1536_1152.webp,2006-09-02
-https://photos.zillowstatic.com/fp/510de7bae4112e920d4e688eaac98b12-uncropped_scaled_within_1536_1152.webp,2010-10-15
+id,image_path,purchase_date
+1,https://photos.zillowstatic.com/fp/0c52d2ff7289d3d542c859f68fdbc8f2-cc_ft_1536.webp,2005-10-03
+2,https://photos.zillowstatic.com/fp/93e01e8055e05aad272cdf9d8e132f4a-cc_ft_1536.webp,2015-02-05
+3,https://photos.zillowstatic.com/fp/8ccec0ac70fde08d69fed913ce83e89f-cc_ft_1536.webp,2010-05-10
+4,https://photos.zillowstatic.com/fp/e5c45aa3886e9b832d5a5012b25fc0ed-uncropped_scaled_within_1536_1152.webp,2006-09-02
+5,https://photos.zillowstatic.com/fp/510de7bae4112e920d4e688eaac98b12-uncropped_scaled_within_1536_1152.webp,2010-10-15

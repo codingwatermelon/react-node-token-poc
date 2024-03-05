@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS Properties (
 
 -- Should id be assigned rather than generated here?
 CREATE TABLE IF NOT EXISTS PropertiesGeneralDetails (
-   id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+   id int PRIMARY KEY,
    image_path VARCHAR ( 200 ) NOT NULL,
    purchase_date DATE NOT NULL,
    CONSTRAINT fk_properties_id
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS PropertiesGeneralDetails (
 
 -- Should id be assigned rather than generated here?
 CREATE TABLE IF NOT EXISTS PropertiesFinancialDetails (
-   id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+   id int PRIMARY KEY,
    rental_income INT NOT NULL,
    net_operating_income INT NOT NULL,
    cash_flow INT NOT NULL,
