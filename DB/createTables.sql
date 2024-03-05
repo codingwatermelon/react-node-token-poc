@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS Properties (
    property_description VARCHAR ( 200 ) NOT NULL
 );
 
+-- Should id be assigned rather than generated here?
 CREATE TABLE IF NOT EXISTS PropertiesGeneralDetails (
    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
    image_path VARCHAR ( 200 ) NOT NULL,
@@ -17,6 +18,7 @@ CREATE TABLE IF NOT EXISTS PropertiesGeneralDetails (
 	    ON DELETE CASCADE
 );
 
+-- Should id be assigned rather than generated here?
 CREATE TABLE IF NOT EXISTS PropertiesFinancialDetails (
    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
    rental_income INT NOT NULL,
