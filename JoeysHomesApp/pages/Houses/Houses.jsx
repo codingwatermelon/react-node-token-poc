@@ -13,7 +13,7 @@ import { getListings } from "../../services/user.service";
 
 const greenBoxSx = {
     p: 2.25, 
-    bgcolor: green[50],
+    bgcolor: green[150],
     boxShadow: 1,
     borderRadius: 2,
     width: {
@@ -35,7 +35,7 @@ const greenBoxSx = {
 
 const redBoxSx = {
     p: 2.25, 
-    bgcolor: red[50],
+    bgcolor: red[150],
     boxShadow: 1,
     borderRadius: 2,
     width: {
