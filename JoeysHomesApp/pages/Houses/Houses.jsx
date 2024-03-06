@@ -7,7 +7,7 @@ import {
     Await
 } from "react-router-dom"
 import { getHouses } from "../../functions"
-import { blue } from '@mui/material/colors';
+import { blue, green, red } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { getListings } from "../../services/user.service";
 
