@@ -26,7 +26,7 @@ const getHouses = (houseId) => {
       })
     }
     else {
-      pool.query('select properties.id as properties_id, property_address, property_description, image_path, purchase_date from properties join propertiesgeneraldetails on properties.id = propertiesgeneraldetails.id', (error, results) => {
+      pool.query('select properties.id as properties_id, property_address, image_path, net_operating_income from properties join propertiesgeneraldetails on properties.id = propertiesgeneraldetails.id join propertiesfinancialdetails on properties.id = propertiesfinancialdetails.id', (error, results) => {
         if (error) {
           reject(error)
         }

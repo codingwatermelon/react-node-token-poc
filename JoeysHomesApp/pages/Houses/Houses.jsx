@@ -11,9 +11,9 @@ import { blue } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { getListings } from "../../services/user.service";
 
-const boxSX = {
+const greenBoxSx = {
     p: 2.25, 
-    bgcolor: blue[50],
+    bgcolor: green[50],
     boxShadow: 1,
     borderRadius: 2,
     width: {
@@ -28,7 +28,29 @@ const boxSX = {
     justifyContent: "center",
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
-        backgroundColor: blue[200],
+        backgroundColor: green[200],
+        transform: "scale3d(1.05, 1.05, 1)"
+    }
+}
+
+const redBoxSx = {
+    p: 2.25, 
+    bgcolor: red[50],
+    boxShadow: 1,
+    borderRadius: 2,
+    width: {
+        xs: 100, // theme.breakpoints.up('xs')
+        sm: 200, // theme.breakpoints.up('sm')
+        md: 300, // theme.breakpoints.up('md')
+        lg: 400 // theme.breakpoints.up('lg')
+    },
+    display: "grid",
+    alignItems: "center",
+    justifyItems: "center",
+    justifyContent: "center",
+    transition: "transform 0.15s ease-in-out",
+    "&:hover": {
+        backgroundColor: red[200],
         transform: "scale3d(1.05, 1.05, 1)"
     }
 }
@@ -57,6 +79,7 @@ export default function Houses() {
 
     function renderHouseElements(houses) {
 
+        // TODO Create filter for green/red (button dropdown with green/red as checkbox options)
         const filters = ["TBD1", "TBD2", "TBD3", "TBD4"];
 
         const filterButtons = filters.map(filter => (
@@ -83,10 +106,18 @@ export default function Houses() {
                     to={`${house.properties_id}`}
                     relative="path"
                 >
-                    <Box sx={boxSX}>
-                        <h3 >{house.property_address}</h3>
-                        <img src={house.image_path}/>
-                    </Box>
+                    
+                    {`${house.net_operating_income}` > 0 ? (
+                        <Box sx={greenBoxSx}>
+                            <h3 >{house.property_address}</h3>
+                            <img src={house.image_path}/>
+                        </Box>
+                    ) :
+                        <Box sx={redBoxSx}>
+                            <h3 >{house.property_address}</h3>
+                            <img src={house.image_path}/>
+                        </Box>
+                    }
                 
                 </Link>
             </div>
