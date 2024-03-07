@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import {
     Link,
     useSearchParams,
@@ -78,8 +78,21 @@ export async function loader({ request }) {
 export default function Houses() {
     const [searchParams, setSearchParams] = useSearchParams()
     const dataPromise = useLoaderData()
+    const [width, setWidth] = useState(window.innerWidth);
 
     const typeFilter = searchParams.get("type")
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     function handleFilterChange(key, value) {
         setSearchParams(prevParams => {
@@ -116,7 +129,7 @@ export default function Houses() {
         const displayedHouses = houses
 
         const houseElements = displayedHouses.map(house => (
-            <div key={house.properties_id}>
+            <div key={house.properties_id} className="house-tile">
                 <Link
                     to={`${house.properties_id}`}
                     relative="path"
@@ -124,17 +137,14 @@ export default function Houses() {
                     
                     {`${house.net_operating_income}` > 0 ? (
                         <Box sx={greenBoxSx}>
-                            <div className="house-tile">
-                                <h3 >{house.property_address}</h3>
-                                <img src={house.image_path}/>
-                            </div>
+                            <h3>{house.property_address}</h3>
+                            <img src={house.image_path}/>
+                            <p>{width}</p>
                         </Box>
                     ) :
                         <Box sx={redBoxSx}>
-                            <div className="house-tile">
-                                <h3 >{house.property_address}</h3>
-                                <img src={house.image_path}/>
-                            </div>
+                            <h3>{house.property_address}</h3>
+                            <img src={house.image_path}/>
                         </Box>
                     }
                 
