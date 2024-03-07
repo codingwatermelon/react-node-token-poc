@@ -327,6 +327,8 @@ footer {
 .house-tile h3 {
     justify-items: center;
     align-items: center;
+    padding: 5px;
+    margin-top: 5px;
 }
 
 .house-info {

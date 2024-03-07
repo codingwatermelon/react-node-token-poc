@@ -116,7 +116,7 @@ export default function Houses() {
         const displayedHouses = houses
 
         const houseElements = displayedHouses.map(house => (
-            <div key={house.properties_id} className="house-tile">
+            <div key={house.properties_id}>
                 <Link
                     to={`${house.properties_id}`}
                     relative="path"
@@ -124,13 +124,17 @@ export default function Houses() {
                     
                     {`${house.net_operating_income}` > 0 ? (
                         <Box sx={greenBoxSx}>
-                            <h3 >{house.property_address}</h3>
-                            <img src={house.image_path}/>
+                            <div className="house-tile">
+                                <h3 >{house.property_address}</h3>
+                                <img src={house.image_path}/>
+                            </div>
                         </Box>
                     ) :
                         <Box sx={redBoxSx}>
-                            <h3 >{house.property_address}</h3>
-                            <img src={house.image_path}/>
+                            <div className="house-tile">
+                                <h3 >{house.property_address}</h3>
+                                <img src={house.image_path}/>
+                            </div>
                         </Box>
                     }
                 
