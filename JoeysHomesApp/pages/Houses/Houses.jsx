@@ -19,8 +19,14 @@ const greenBoxSx = {
     bgcolor: green[100],
     boxShadow: 1,
     borderRadius: 2,
-    width: 5/8,
-    height: 7/8,
+    width: {
+        md: 5/8,
+        lg: 1
+    },
+    height: {
+        md: 7/8,
+        lg: 1,
+    },
     display: "grid",
     alignItems: "center",
     justifyItems: "center",
@@ -38,8 +44,14 @@ const redBoxSx = {
     bgcolor: red[100],
     boxShadow: 1,
     borderRadius: 2,
-    width: 5/8,
-    height: 7/8,
+    width: {
+        md: 5/8,
+        lg: 1
+    },
+    height: {
+        md: 7/8,
+        lg: 1,
+    },
     display: "grid",
     alignItems: "center",
     justifyItems: "center",
