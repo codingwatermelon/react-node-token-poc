@@ -80,6 +80,17 @@ export default function Houses() {
     const dataPromise = useLoaderData()
     const [width, setWidth] = useState(window.innerWidth);
 
+    const size = "md"
+    if (width > 1824) {
+        size = "lg"
+    }
+    else if (width < 1224) {
+        size = "sm"
+    }
+    else {
+        size = "md"
+    }
+
     const typeFilter = searchParams.get("type")
 
     useEffect(() => {
@@ -166,7 +177,7 @@ export default function Houses() {
                     ) : null}
 
                 </div>
-                <div className="house-list">
+                <div className={`house-list-${size}`}>
                     {houseElements}
                 </div>
             </>
