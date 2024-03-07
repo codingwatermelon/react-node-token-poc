@@ -80,7 +80,8 @@ export default function Houses() {
     const dataPromise = useLoaderData()
     const [width, setWidth] = useState(window.innerWidth);
 
-    const size = "md"
+    let size = "md"
+    
     if (width > 1824) {
         size = "lg"
     }
