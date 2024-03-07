@@ -131,7 +131,6 @@ export default function Houses() {
                         <Box sx={greenBoxSx}>
                             <h3>{house.property_address}</h3>
                             <img src={house.image_path}/>
-                            <p>{width}</p>
                         </Box>
                     ) :
                         <Box sx={redBoxSx}>
@@ -147,7 +146,7 @@ export default function Houses() {
         return (
             <>
                 <div className="house-list-filter-buttons">
-                    
+                <p>{width}</p>
                     {filterButtons}
 
                     {typeFilter ? (
