@@ -19,18 +19,8 @@ const greenBoxSx = {
     bgcolor: green[100],
     boxShadow: 1,
     borderRadius: 2,
-    width: {
-        xs: 100, 
-        sm: 200, 
-        md: 300, 
-        lg: 400
-    },
-    height: {
-        xs: 75, 
-        sm: 175, 
-        md: 275, 
-        lg: 375
-    },
+    width: 1/2,
+    height: 1/2,
     display: "grid",
     alignItems: "center",
     justifyItems: "center",
@@ -47,18 +37,8 @@ const redBoxSx = {
     bgcolor: red[100],
     boxShadow: 1,
     borderRadius: 2,
-    width: {
-        xs: 100, 
-        sm: 200, 
-        md: 300, 
-        lg: 400
-    },
-    height: {
-        xs: 75, 
-        sm: 175, 
-        md: 275, 
-        lg: 375
-    },
+    width: 1/2,
+    height: 1/2,
     display: "grid",
     alignItems: "center",
     justifyItems: "center",
@@ -81,7 +61,7 @@ export default function Houses() {
     const [width, setWidth] = useState(window.innerWidth);
 
     let size = "md"
-    
+
     if (width > 1824) {
         size = "lg"
     }
