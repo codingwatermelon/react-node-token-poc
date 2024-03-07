@@ -318,7 +318,7 @@ footer {
 }
 
 .house-tile img {
-    max-width: 100%;
+    max-width: 75%;
     border-radius: 5px;
     justify-items: center;
     align-items: center;
