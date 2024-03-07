@@ -57,7 +57,7 @@ const redBoxSx = {
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
-    margin: "auto",
+    //margin: "auto",
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
         backgroundColor: red[200],
