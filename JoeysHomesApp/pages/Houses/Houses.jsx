@@ -26,10 +26,10 @@ const greenBoxSx = {
         lg: 400
     },
     height: {
-        xs: 100, 
-        sm: 200, 
-        md: 300, 
-        lg: 400
+        xs: 75, 
+        sm: 175, 
+        md: 275, 
+        lg: 375
     },
     display: "grid",
     alignItems: "center",

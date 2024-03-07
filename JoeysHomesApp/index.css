@@ -318,7 +318,7 @@ footer {
 }
 
 .house-tile img {
-    max-width: 75%;
+    max-width: 100%;
     border-radius: 5px;
     justify-items: center;
     align-items: center;
@@ -330,7 +330,7 @@ footer {
 }
 
 .house-info {
-    
+
 }
 
 .house-list-container button {
