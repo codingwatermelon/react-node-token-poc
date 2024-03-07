@@ -11,16 +11,25 @@ import { blue, green, red } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { getListings } from "../../services/user.service";
 
+
+// TODO Upon resizing, I can change the css for grid-template-columns such that a wider screen accomodates more columns
+// I'd rather see columns shrink instead of boxes shrink (although, one/two degrees of box shrink would be ok)
 const greenBoxSx = {
     p: 2.25, 
     bgcolor: green[100],
     boxShadow: 1,
     borderRadius: 2,
     width: {
-        xs: 100, // theme.breakpoints.up('xs')
-        sm: 200, // theme.breakpoints.up('sm')
-        md: 300, // theme.breakpoints.up('md')
-        lg: 400 // theme.breakpoints.up('lg')
+        xs: 100, 
+        sm: 200, 
+        md: 300, 
+        lg: 400
+    },
+    height: {
+        xs: 100, 
+        sm: 200, 
+        md: 300, 
+        lg: 400
     },
     display: "grid",
     alignItems: "center",
@@ -39,10 +48,16 @@ const redBoxSx = {
     boxShadow: 1,
     borderRadius: 2,
     width: {
-        xs: 100, // theme.breakpoints.up('xs')
-        sm: 200, // theme.breakpoints.up('sm')
-        md: 300, // theme.breakpoints.up('md')
-        lg: 400 // theme.breakpoints.up('lg')
+        xs: 100, 
+        sm: 200, 
+        md: 300, 
+        lg: 400
+    },
+    height: {
+        xs: 100, 
+        sm: 200, 
+        md: 300, 
+        lg: 400
     },
     display: "grid",
     alignItems: "center",
