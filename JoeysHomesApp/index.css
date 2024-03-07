@@ -330,6 +330,12 @@ footer {
     padding: 20px;
 }
 
+.house-tile {
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
 .house-tile a {
     color: #161616;
     text-decoration: none;    
@@ -339,13 +345,9 @@ footer {
     max-width: 80%;
     max-height: 95%;
     border-radius: 5px;
-    justify-items: center;
-    align-items: center;
 }
 
 .house-tile h3 {
-    justify-items: center;
-    align-items: center;
     padding: 5px;
     margin-top: 5px;
 }
