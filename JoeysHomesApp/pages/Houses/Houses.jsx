@@ -15,7 +15,7 @@ import { getListings } from "../../services/user.service";
 // TODO Upon resizing, I can change the css for grid-template-columns such that a wider screen accomodates more columns
 // I'd rather see columns shrink instead of boxes shrink (although, one/two degrees of box shrink would be ok)
 const greenBoxSx = {
-    p: 2, 
+    p: 2.25, 
     bgcolor: green[100],
     boxShadow: 1,
     borderRadius: 2,
@@ -33,7 +33,7 @@ const greenBoxSx = {
 }
 
 const redBoxSx = {
-    p: 2, 
+    p: 2.25, 
     bgcolor: red[100],
     boxShadow: 1,
     borderRadius: 2,
