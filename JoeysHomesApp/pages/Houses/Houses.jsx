@@ -46,12 +46,12 @@ const redBoxSx = {
     boxShadow: 1,
     borderRadius: 2,
     width: {
-        md: 5/8,
-        lg: 1
+        md: 250,
+        lg: 300
     },
     height: {
-        md: 7/8,
-        lg: 1,
+        md: 250,
+        lg: 300,
     },
     display: "grid",
     alignItems: "center",
