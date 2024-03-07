@@ -25,6 +25,7 @@ const greenBoxSx = {
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
+    margin: "auto",
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
         backgroundColor: green[200],
@@ -43,6 +44,7 @@ const redBoxSx = {
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
+    margin: "auto",
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
         backgroundColor: red[200],
