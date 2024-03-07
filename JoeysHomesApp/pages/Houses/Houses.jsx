@@ -20,17 +20,18 @@ const greenBoxSx = {
     boxShadow: 1,
     borderRadius: 2,
     width: {
-        md: 5/8,
-        lg: 1
+        md: 250,
+        lg: 300
     },
     height: {
-        md: 7/8,
-        lg: 1,
+        md: 250,
+        lg: 300,
     },
-    display: "grid",
+    display: "inline",
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
+    // Note: margin: auto is necessary for centering this box in the grid container
     margin: "auto",
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
