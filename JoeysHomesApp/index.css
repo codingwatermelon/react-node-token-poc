@@ -342,6 +342,8 @@ footer {
 .house-tile {
     margin: auto;
     display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .house-tile a {
