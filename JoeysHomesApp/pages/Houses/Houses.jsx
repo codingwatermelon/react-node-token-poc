@@ -33,7 +33,7 @@ const greenBoxSx = {
 }
 
 const redBoxSx = {
-    p: 2.25, 
+    p: 1, 
     bgcolor: red[100],
     boxShadow: 1,
     borderRadius: 2,
