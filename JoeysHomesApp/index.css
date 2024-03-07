@@ -339,6 +339,13 @@ footer {
     justify-content: center;
 }
 
+.house-tile {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
 .house-tile a {
     color: #161616;
     text-decoration: none;    
