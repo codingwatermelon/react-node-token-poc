@@ -310,6 +310,9 @@ footer {
     gap: 10px;
     margin-top: 30px;
     padding: 20px;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .house-list-md {
@@ -319,6 +322,9 @@ footer {
     gap: 10px;
     margin-top: 30px;
     padding: 20px;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .house-list-sm {
@@ -328,9 +334,6 @@ footer {
     gap: 10px;
     margin-top: 30px;
     padding: 20px;
-}
-
-.house-tile {
     justify-items: center;
     align-items: center;
     justify-content: center;
