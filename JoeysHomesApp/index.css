@@ -340,10 +340,7 @@ footer {
 }
 
 .house-tile {
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    justify-content: center;
+    margin: auto;
 }
 
 .house-tile a {
