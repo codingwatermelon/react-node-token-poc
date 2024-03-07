@@ -5,7 +5,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #dbf6ff;
+    background-color: #eefbff;
     font-family: "Inter", sans-serif;
 }
 
@@ -34,7 +34,7 @@ header {
     display: flex;
     align-items: center;
     padding-block: 10px;
-    background-color: #6ea8b3;
+    background-color: #797e7f;
 }
 
 header .site-logo {
