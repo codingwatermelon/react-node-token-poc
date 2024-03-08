@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import {
     Link,
     useSearchParams,
@@ -7,39 +7,104 @@ import {
     Await
 } from "react-router-dom"
 import { getHouses } from "../../functions"
-import { blue } from '@mui/material/colors';
+import { blue, green, red } from '@mui/material/colors';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
-import { requireAuth } from "../../utils"
+import { getListings } from "../../services/user.service";
 
-const boxSX = {
+
+// TODO Upon resizing, I can change the css for grid-template-columns such that a wider screen accomodates more columns
+// I'd rather see columns shrink instead of boxes shrink (although, one/two degrees of box shrink would be ok)
+const greenBoxSx = {
     p: 2.25, 
-    bgcolor: blue[50],
+    bgcolor: green[100],
     boxShadow: 1,
     borderRadius: 2,
     width: {
-        xs: 100, // theme.breakpoints.up('xs')
-        sm: 200, // theme.breakpoints.up('sm')
-        md: 300, // theme.breakpoints.up('md')
-        lg: 400 // theme.breakpoints.up('lg')
+        xs: 150,
+        sm: 200,
+        md: 250,
+        lg: 300
     },
+    height: {
+        xs: 150,
+        sm: 200,
+        md: 250,
+        lg: 300,
+    },
+    display: "grid",
+    alignItems: "center",
+    justifyItems: "center",
+    justifyContent: "center",
     transition: "transform 0.15s ease-in-out",
     "&:hover": {
-        backgroundColor: blue[200],
+        backgroundColor: green[200],
+        transform: "scale3d(1.05, 1.05, 1)"
+    }
+}
+
+const redBoxSx = {
+    p: 2.25, 
+    bgcolor: red[100],
+    boxShadow: 1,
+    borderRadius: 2,
+    width: {
+        xs: 150,
+        sm: 200,
+        md: 250,
+        lg: 300
+    },
+    height: {
+        xs: 150,
+        sm: 200,
+        md: 250,
+        lg: 300,
+    },
+    display: "grid",
+    alignItems: "center",
+    justifyItems: "center",
+    justifyContent: "center",
+    transition: "transform 0.15s ease-in-out",
+    "&:hover": {
+        backgroundColor: red[200],
         transform: "scale3d(1.05, 1.05, 1)"
     }
 }
 
 export async function loader({ request }) {
-    await requireAuth(request)
-    return defer({ houses: getHouses() })
+    return defer({ houses: getListings("houses", "") })
 }
 
 
 export default function Houses() {
     const [searchParams, setSearchParams] = useSearchParams()
     const dataPromise = useLoaderData()
+    const [width, setWidth] = useState(window.innerWidth);
+
+    let size = "md"
+
+    if (width > 1824) {
+        size = "lg"
+    }
+    else if (width < 1224) {
+        size = "sm"
+    }
+    else {
+        size = "md"
+    }
 
     const typeFilter = searchParams.get("type")
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     function handleFilterChange(key, value) {
         setSearchParams(prevParams => {
@@ -54,6 +119,7 @@ export default function Houses() {
 
     function renderHouseElements(houses) {
 
+        // TODO Create filter for green/red (button dropdown with green/red as checkbox options)
         const filters = ["TBD1", "TBD2", "TBD3", "TBD4"];
 
         const filterButtons = filters.map(filter => (
@@ -75,19 +141,23 @@ export default function Houses() {
         const displayedHouses = houses
 
         const houseElements = displayedHouses.map(house => (
-            <div key={house.property_id} className="house-tile">
+            <div key={house.properties_id} className="house-tile">
                 <Link
-                    to={`${house.property_id}`}
+                    to={`${house.properties_id}`}
                     relative="path"
                 >
-                    <Box sx={boxSX}>
-                        <div className="house-info">
+                    
+                    {`${house.net_operating_income}` > 0 ? (
+                        <Box sx={greenBoxSx}>
                             <h3>{house.property_address}</h3>
-                            <p>{house.property_description}</p>
-                            <p><span>$</span>{house.base_value}<span>K</span></p>
                             <img src={house.image_path}/>
-                        </div>
-                    </Box>
+                        </Box>
+                    ) :
+                        <Box sx={redBoxSx}>
+                            <h3>{house.property_address}</h3>
+                            <img src={house.image_path}/>
+                        </Box>
+                    }
                 
                 </Link>
             </div>
@@ -96,7 +166,7 @@ export default function Houses() {
         return (
             <>
                 <div className="house-list-filter-buttons">
-                    
+                <p>{width}</p>
                     {filterButtons}
 
                     {typeFilter ? (
@@ -107,7 +177,7 @@ export default function Houses() {
                     ) : null}
 
                 </div>
-                <div className="house-list">
+                <div className={`house-list-${size}`}>
                     {houseElements}
                 </div>
             </>

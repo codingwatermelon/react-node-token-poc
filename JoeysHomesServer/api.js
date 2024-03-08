@@ -17,7 +17,7 @@ const getHouses = (houseId) => {
       const id = parseInt(houseId)
       console.log(id)
 
-      pool.query('select properties.id as property_id, property_address, property_description, image_path, base_value, purchase_date from properties join propertiesdetails on properties.id = propertiesdetails.id where properties.id = $1', [id], (error, results) => {
+      pool.query('select properties.id as properties_id, property_address, property_description, base_market_value, image_path, purchase_date from properties join propertiesgeneraldetails on properties.id = propertiesgeneraldetails.id join propertiesfinancialdetails on properties.id = propertiesfinancialdetails.id where properties.id = $1', [id], (error, results) => {
         if (error) {
           reject(error)
         }
@@ -26,7 +26,7 @@ const getHouses = (houseId) => {
       })
     }
     else {
-      pool.query('select properties.id as property_id, property_address, property_description, image_path, base_value, purchase_date from properties join propertiesdetails on properties.id = propertiesdetails.id', (error, results) => {
+      pool.query('select properties.id as properties_id, property_address, image_path, net_operating_income from properties join propertiesgeneraldetails on properties.id = propertiesgeneraldetails.id join propertiesfinancialdetails on properties.id = propertiesfinancialdetails.id', (error, results) => {
         if (error) {
           reject(error)
         }
@@ -62,26 +62,7 @@ const getMaintenance = (maintenanceId) => {
   })
 }
 
-const loginUser = (creds) => {
-  return new Promise(function(resolve, reject) {
-    
-    const email = creds.email
-    const password = creds.password
-    
-    pool.query('select * from Users where email = $1 and password = $2', [email, password], (error, results) => {
-      if (error) {
-        reject(error)
-      }
-      console.log("results (query)")
-      console.log(results.rows)
-      resolve(results.rows)
-    })
-
-  })
-}
-
 module.exports = {
   getHouses,
-  getMaintenance,
-  loginUser
+  getMaintenance
 }

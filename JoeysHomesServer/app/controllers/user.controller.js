@@ -35,3 +35,23 @@ exports.maintenanceWithID = (req, res) => {
       res.status(500).send(error);
     })
 };
+
+exports.houses = (req, res) => {
+  api.getHouses()
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
+};
+
+exports.housesWithID = (req, res) => {
+  api.getHouses(req.params.id)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
+};

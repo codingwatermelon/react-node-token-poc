@@ -40,51 +40,17 @@ db.sequelize.sync();
 //  initial();
 //});
 
-app.get("/api/houses", (req, res) => {
-  
-  api.getHouses()
-    .then(response => {
-      res.json(response);
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    })
-})
+app.get(
+  "/api/houses",
+  [authJwt.verifyToken],
+  controller.houses
+)
 
-app.get("/api/houses/:id", (req, res) => {
-  
-  console.log(req)
-
-  api.getHouses(req.params.id)
-    .then(response => {
-      res.status(200).send(response);
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    })
-})
-
-//app.get("/api/maintenance", (req, res) => {
-//  
-//  api.getMaintenance()
-//    .then(response => {
-//      res.json(response);
-//    })
-//    .catch(error => {
-//      res.status(500).send(error);
-//    })
-//})
-
-//app.get("/api/maintenance/:id", (req, res) => {
-//  
-//  api.getMaintenance(req.params.id)
-//    .then(response => {
-//      res.status(200).send(response);
-//    })
-//    .catch(error => {
-//      res.status(500).send(error);
-//    })
-//})
+app.get(
+  "/api/houses/:id",
+  [authJwt.verifyToken],
+  controller.housesWithID
+);
 
 app.get(
   "/api/maintenance",
@@ -106,39 +72,6 @@ app.get(
 // auth routes
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
-
-app.post("/api/login", (req, res) => {
-  // TODO Use hashed version of password here
-  //const { email, password } = JSON.parse(req.body)
-  console.log("/api/login body")
-  console.log(req.body)
-
-  const creds = req.body
-
-  //const foundUser = schema.users.findBy({ email, password })
-  //if (!foundUser) {
-  //    return new Response(401, {}, { message: "No user with those credentials found!" })
-  //}
-
-  api.loginUser(creds)
-    .then(response => {
-      console.log("response")
-      console.log(response)
-
-      res.json(response);
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    })
-
-  // At the very least, don't send the password back to the client 😅
-  //foundUser.password = undefined
-  //return {
-  //    user: foundUser,
-  //    token: "Enjoy your pizza, here's your tokens."
-  //}
-
-})
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
