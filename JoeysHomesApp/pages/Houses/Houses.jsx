@@ -20,10 +20,14 @@ const greenBoxSx = {
     boxShadow: 1,
     borderRadius: 2,
     width: {
+        xs: 150,
+        sm: 200,
         md: 250,
         lg: 300
     },
     height: {
+        xs: 150,
+        sm: 200,
         md: 250,
         lg: 300,
     },
