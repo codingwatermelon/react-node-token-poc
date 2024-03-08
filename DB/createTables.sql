@@ -4,30 +4,29 @@ CREATE TABLE IF NOT EXISTS Properties (
    property_description VARCHAR ( 200 ) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS PropertiesGeneralDetails (
+CREATE TABLE IF NOT EXISTS PropertiesBasicGeneralDetails (
    id int PRIMARY KEY,
    image_path VARCHAR ( 200 ) NOT NULL,
    purchase_date DATE NOT NULL,
+   rental_income INT NOT NULL,
+   operating_expenses INT NOT NULL,
+   purchase_price INT NOT NULL,
+   vacancy_rate INT NOT NULL,
    CONSTRAINT fk_properties_id
        FOREIGN KEY(id) 
 	    REFERENCES Properties(id)
 	    ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS PropertiesFinancialDetails (
+CREATE TABLE IF NOT EXISTS PropertiesDerivedFinancialDetails (
    id int PRIMARY KEY,
-   rental_income INT NOT NULL,
-   net_operating_income INT NOT NULL,
    cash_flow INT NOT NULL,
    cash_on_cash_return INT NOT NULL,
    total_cash_in INT NOT NULL,
    cap_rate INT NOT NULL,
-   internal_rate_return INT NOT NULL,
-   base_market_value INT NOT NULL,
    net_present_value INT NOT NULL,
    loan_to_value_ratio INT NOT NULL,
    operating_expense_ratio INT NOT NULL,
-   vacancy_rate INT NOT NULL,
    CONSTRAINT fk_properties_id
        FOREIGN KEY(id) 
 	    REFERENCES Properties(id)

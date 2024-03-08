@@ -1,0 +1,10 @@
+id,maintenance_name,cost,maintenance_type,due_date
+1,AC replacement,200, preventative,2023-10-30
+1,Roof replacement,10000, emergency,2023-10-30
+3,HVAC inspection,100, preventative,2023-11-30
+4,Siding installation,1000, cosmetic,2023-12-31
+5,Annual septic pump,250, scheduled,2023-11-30
+4,Grass replacement,500,scheduled,2024-03-01
+5,Mold removal,200,cosmetic,2025-09-01
+5,Home inspection,50,preventative,2024-05-30
+2,Door removal,215,preventative,2024-05-15
