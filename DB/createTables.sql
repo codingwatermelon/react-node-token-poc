@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS Properties (
    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
    property_address VARCHAR ( 200 ) UNIQUE NOT NULL,
-   property_description VARCHAR ( 200 ) NOT NULL
+   property_description VARCHAR ( 200 )
 );
 
 CREATE TABLE IF NOT EXISTS PropertiesBasicGeneralDetails (
