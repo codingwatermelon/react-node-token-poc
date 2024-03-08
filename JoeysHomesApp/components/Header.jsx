@@ -8,7 +8,7 @@ export default function Header() {
     const activeStyles = {
         fontWeight: "bold",
         textDecoration: "underline",
-        color: "#2a2a2a"
+        color: "#8d8d8d"
     }
     
     // TODO I think I need to not use this in so many different places, making too many requests??
