@@ -20,20 +20,25 @@ export default function HouseDetail() {
 
     function renderHouseElements(house) {
 
+        function currencyFormat(num) {
+            return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
+
         const displayedHouses = house
 
         const houseElements = displayedHouses.map(house => (
             <div key={house.properties_id}>
                 <div className="house-info">
                     <h3>{house.property_address}</h3>
-                    <p>Description: {house.property_description}</p>
-                    <p>Purchase Date: {house.purchase_date}</p>
-                    <p>Purchase Price: ${house.purchase_price}</p>
-                    <p>Vacany Rate: ${house.vacancy_rate}</p>
-                    <p>Rental Income: ${house.rental_income}</p>
-                    <p>Operating Expenses: ${house.operating_expenses}</p>
-                    <p>Cash Flow: ${house.cash_flow}</p>
-                    <p>Operating Expense Ratio: ${house.operating_expense_ratio}</p>
+                    {house.property_description ? (
+                        <p>{house.property_description}</p>
+                    ) : null}
+                    <p>Purchased on {new Date(house.purchase_date).toDateString()} for ${currencyFormat(house.purchase_price)}</p>
+                    <p>Vacancy Rate: {house.vacancy_rate}%</p>
+                    <p>Rental Income: ${currencyFormat(house.rental_income)}</p>
+                    <p>Operating Expenses: ${currencyFormat(house.operating_expenses)}</p>
+                    <p>Cash Flow: ${currencyFormat(house.cash_flow)}</p>
+                    <p>Operating Expense Ratio: {house.operating_expense_ratio}</p>
                     <img src={house.image_path}/>
                 </div>
             </div>
