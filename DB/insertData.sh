@@ -8,4 +8,4 @@ psql -U postgres -d joeyshomes -a -c "\copy propertiesbasicgeneraldetails(id, im
 
 psql -U postgres -d joeyshomes -a -c "\copy propertiesmaintenance(properties_id, maintenance_name, cost, maintenance_type, due_date) FROM 'data_files/PropertiesMaintenance.csv' DELIMITER ',' CSV HEADER"
 
-#psql -U postgres -d joyeshomes -a -f populateFinancialDetails.sql
+psql -U postgres -d joeyshomes -a -f populateFinancialDetails.sql
