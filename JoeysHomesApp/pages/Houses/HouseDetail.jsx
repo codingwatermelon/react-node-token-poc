@@ -21,7 +21,7 @@ export default function HouseDetail() {
     function renderHouseElements(house) {
 
         function currencyFormat(num) {
-            dollar = new Intl.NumberFormat('en-US', {
+            let dollar = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD'
             });
