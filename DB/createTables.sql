@@ -21,11 +21,6 @@ CREATE TABLE IF NOT EXISTS PropertiesBasicGeneralDetails (
 CREATE TABLE IF NOT EXISTS PropertiesDerivedFinancialDetails (
    id int PRIMARY KEY,
    cash_flow NUMERIC(10,2) NOT NULL,
-   cash_on_cash_return NUMERIC(10,2) NOT NULL,
-   total_cash_in NUMERIC(10,2) NOT NULL,
-   cap_rate NUMERIC(10,2) NOT NULL,
-   net_present_value NUMERIC(10,2) NOT NULL,
-   loan_to_value_ratio NUMERIC(10,2) NOT NULL,
    operating_expense_ratio NUMERIC(10,2) NOT NULL,
    CONSTRAINT fk_properties_id
        FOREIGN KEY(id) 
