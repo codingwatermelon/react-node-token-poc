@@ -26,9 +26,14 @@ export default function HouseDetail() {
             <div key={house.properties_id}>
                 <div className="house-info">
                     <h3>{house.property_address}</h3>
-                    <p>{house.property_description}</p>
-                    <p>{house.purchase_date}</p>
-                    <p>Base Market Value: ${house.base_market_value}K</p>
+                    <p>Description: {house.property_description}</p>
+                    <p>Purchase Date: {house.purchase_date}</p>
+                    <p>Purchase Price: ${house.purchase_price}</p>
+                    <p>Vacany Rate: ${house.vacancy_rate}</p>
+                    <p>Rental Income: ${house.rental_income}</p>
+                    <p>Operating Expenses: ${house.operating_expenses}</p>
+                    <p>Cash Flow: ${house.cash_flow}</p>
+                    <p>Operating Expense Ratio: ${house.operating_expense_ratio}</p>
                     <img src={house.image_path}/>
                 </div>
             </div>

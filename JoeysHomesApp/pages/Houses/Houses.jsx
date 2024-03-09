@@ -147,7 +147,7 @@ export default function Houses() {
                     relative="path"
                 >
                     
-                    {`${house.purchase_price}` > 0 ? (
+                    {`${house.cash_flow}` > 0 ? (
                         <Box sx={greenBoxSx}>
                             <h3>{house.property_address}</h3>
                             <img src={house.image_path}/>
