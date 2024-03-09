@@ -21,7 +21,11 @@ export default function HouseDetail() {
     function renderHouseElements(house) {
 
         function currencyFormat(num) {
-            return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+            dollar = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            });
+            return dollar.format(num);
         }
 
         const displayedHouses = house
