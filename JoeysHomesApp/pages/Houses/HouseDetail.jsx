@@ -37,11 +37,11 @@ export default function HouseDetail() {
                     {house.property_description ? (
                         <p>{house.property_description}</p>
                     ) : null}
-                    <p>Purchased on {new Date(house.purchase_date).toDateString()} for ${currencyFormat(house.purchase_price)}</p>
+                    <p>Purchased on {new Date(house.purchase_date).toDateString()} for {currencyFormat(house.purchase_price)}</p>
                     <p>Vacancy Rate: {house.vacancy_rate}%</p>
-                    <p>Rental Income: ${currencyFormat(house.rental_income)}</p>
-                    <p>Operating Expenses: ${currencyFormat(house.operating_expenses)}</p>
-                    <p>Cash Flow: ${currencyFormat(house.cash_flow)}</p>
+                    <p>Rental Income: {currencyFormat(house.rental_income)}</p>
+                    <p>Operating Expenses: {currencyFormat(house.operating_expenses)}</p>
+                    <p>Cash Flow: {currencyFormat(house.cash_flow)}</p>
                     <p>Operating Expense Ratio: {house.operating_expense_ratio}</p>
                     <img src={house.image_path}/>
                 </div>
