@@ -20,15 +20,29 @@ export default function HouseDetail() {
 
     function renderHouseElements(house) {
 
+        function currencyFormat(num) {
+            let dollar = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            });
+            return dollar.format(num);
+        }
+
         const displayedHouses = house
 
         const houseElements = displayedHouses.map(house => (
             <div key={house.properties_id}>
                 <div className="house-info">
                     <h3>{house.property_address}</h3>
-                    <p>{house.property_description}</p>
-                    <p>{house.purchase_date}</p>
-                    <p>Base Market Value: ${house.base_market_value}K</p>
+                    {house.property_description ? (
+                        <p>{house.property_description}</p>
+                    ) : null}
+                    <p>Purchased on {new Date(house.purchase_date).toDateString()} for {currencyFormat(house.purchase_price)}</p>
+                    <p>Vacancy Rate: {house.vacancy_rate}%</p>
+                    <p>Rental Income: {currencyFormat(house.rental_income)}</p>
+                    <p>Operating Expenses: {currencyFormat(house.operating_expenses)}</p>
+                    <p>Cash Flow: {currencyFormat(house.cash_flow)}</p>
+                    <p>Operating Expense Ratio: {house.operating_expense_ratio}</p>
                     <img src={house.image_path}/>
                 </div>
             </div>
