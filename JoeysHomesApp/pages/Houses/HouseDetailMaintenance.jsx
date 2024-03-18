@@ -9,6 +9,8 @@ import {
     useParams
 } from "react-router-dom"
 import { getMaintenanceByPropertiesId } from "../../services/user.service";
+import { blue } from '@mui/material/colors';
+import { Box } from '@mui/material';
 
 const boxSX = {
     p: 2.25, 
