@@ -10,6 +10,27 @@ import {
 } from "react-router-dom"
 import { getMaintenanceByPropertiesId } from "../../services/user.service";
 
+const boxSX = {
+    p: 2.25, 
+    bgcolor: blue[50],
+    boxShadow: 1,
+    borderRadius: 2,
+    width: {
+        xs: 700, // theme.breakpoints.up('xs')
+        sm: 800, // theme.breakpoints.up('sm')
+        md: 900, // theme.breakpoints.up('md')
+        lg: 1200, // theme.breakpoints.up('lg')
+        xl: 1400, // theme.breakpoints.up('xl')
+    },
+    // zoom transition on hover https://stackoverflow.com/questions/64080401/how-to-enlarge-card-size-on-hovering-over-it-in-material-ui
+    transition: "transform 0.15s ease-in-out",
+    "&:hover": {
+        backgroundColor: blue[200],
+        transform: "scale3d(1.05, 1.05, 1)"
+    }
+}
+
+
 export async function loader({ params, request }) {
     return defer({ maintenance: getMaintenanceByPropertiesId(params.id) })
 }
