@@ -4,7 +4,9 @@ import {
 } from "react-router-dom"
 
 export default function HouseDetailInfo() {
-    const { currentHouse } = useOutletContext()
+    const { dataPromise } = useOutletContext()
+
+    const currentHouser = dataPromise.house
 
     function currencyFormat(num) {
         let dollar = new Intl.NumberFormat('en-US', {

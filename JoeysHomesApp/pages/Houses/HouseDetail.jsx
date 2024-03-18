@@ -78,7 +78,7 @@ export default function HouseDetail() {
                         Maintenance
                     </NavLink>
                 </nav>
-                <Outlet context={{ displayedHouses }}/>
+                <Outlet context={{ dataPromise }}/>
     
             </div>
         )
