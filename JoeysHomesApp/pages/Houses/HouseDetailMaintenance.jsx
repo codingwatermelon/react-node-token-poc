@@ -11,6 +11,7 @@ import {
 import { getMaintenanceByPropertiesId } from "../../services/user.service";
 import { blue } from '@mui/material/colors';
 import { Box } from '@mui/material';
+import { format } from "date-fns"
 
 const boxSX = {
     p: 2.25, 
