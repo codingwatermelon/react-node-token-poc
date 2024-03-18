@@ -1,6 +1,7 @@
 import React from "react"
 import {
-    useOutletContext
+    useOutletContext,
+    Await
 } from "react-router-dom"
 
 export default function HouseDetailInfo() {
