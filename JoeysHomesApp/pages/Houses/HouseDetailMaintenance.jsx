@@ -46,8 +46,7 @@ export default function HouseDetailMaintenance() {
 
         // filter by search text
         let displayedMaintenanceTasks = maintenanceTasks
-        console.log(displayedMaintenanceTasks)
-
+        
         const maintenanceElements = displayedMaintenanceTasks.map(task => (
             <div key={task.id}>
                 <Link
@@ -69,6 +68,8 @@ export default function HouseDetailMaintenance() {
         const displayedMaintenanceElements = maintenanceElements
         ? maintenanceElements
         : "No maintenance tasks scheduled for this property"
+
+        console.log(displayedMaintenanceElements)
 
         return (
             <div>
