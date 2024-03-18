@@ -6,7 +6,7 @@ import {
 export default function HouseDetailInfo() {
     const { dataPromise } = useOutletContext()
 
-    const currentHouser = dataPromise.house
+    const currentHouse = dataPromise.house
 
     function currencyFormat(num) {
         let dollar = new Intl.NumberFormat('en-US', {
