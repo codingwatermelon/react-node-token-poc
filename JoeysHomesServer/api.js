@@ -45,7 +45,7 @@ const getMaintenance = (maintenanceId) => {
       const id = parseInt(maintenanceId)
       console.log(id)
 
-      pool.query('select * from PropertiesMaintenance where id = $1', [id], (error, results) => {
+      pool.query('select *, EXTRACT(EPOCH from due_date) as due_date_epoch from PropertiesMaintenance where id = $1', [id], (error, results) => {
         if (error) {
           reject(error)
         }
@@ -70,7 +70,7 @@ const getMaintenanceByPropertiesId = (propertiesId) => {
     if (propertiesId) {
       const id = parseInt(propertiesId)
 
-      pool.query('select * from PropertiesMaintenance where properties_id = $1', [id], (error, results) => {
+      pool.query('select *, EXTRACT(EPOCH from due_date) as due_date_epoch from PropertiesMaintenance where properties_id = $1', [id], (error, results) => {
         if (error) {
           reject(error)
         }

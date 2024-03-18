@@ -55,6 +55,7 @@ export default function HouseDetailMaintenance() {
                 >
                     <Box sx={boxSX}>
                         <div>
+                            <h2>{format(new Date(task.due_date_epoch * 1000), "MMMM do, yyyy")}</h2>
                             <h3>{task.maintenance_name}</h3>
                             <h3>{task.maintenance_type}</h3>
                             <p><span>$</span>{task.cost}</p>
@@ -65,11 +66,15 @@ export default function HouseDetailMaintenance() {
             </div>
         ))
 
+        const displayedMaintenanceElements = maintenanceElements
+        ? displayedMaintenanceElements
+        : "No maintenance tasks scheduled for this property"
+
         return (
             <div>
                 <h3>Test</h3>
                 <div className="house-detail">
-                    {maintenanceElements}
+                    {displayedMaintenanceElements}
                 </div>
     
             </div>
