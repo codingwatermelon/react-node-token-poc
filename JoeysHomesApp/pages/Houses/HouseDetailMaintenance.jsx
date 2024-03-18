@@ -67,7 +67,7 @@ export default function HouseDetailMaintenance() {
         ))
 
         const displayedMaintenanceElements = maintenanceElements
-        ? displayedMaintenanceElements
+        ? maintenanceElements
         : "No maintenance tasks scheduled for this property"
 
         return (
