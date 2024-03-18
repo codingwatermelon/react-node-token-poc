@@ -8,6 +8,9 @@ export default function HouseDetailInfo() {
 
     const currentHouse = dataPromise.house
 
+    console.log(dataPromise)
+    console.log(currentHouse)
+
     function currencyFormat(num) {
         let dollar = new Intl.NumberFormat('en-US', {
             style: 'currency',
