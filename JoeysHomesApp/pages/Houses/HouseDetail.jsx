@@ -30,7 +30,9 @@ export default function HouseDetail() {
             return dollar.format(num);
         }
 
-        const houseElements = (
+        const displayedHouses = house
+
+        const houseElements = displayedHouses.map(house => (
             <div key={house.properties_id}>
                 <div className="house-info">
                     <h3>{house.property_address}</h3>
@@ -38,10 +40,15 @@ export default function HouseDetail() {
                         <p>{house.property_description}</p>
                     ) : null}
                     <p>Cash Flow: {currencyFormat(house.cash_flow)}</p>
+                    <p>Purchased on {new Date(house.purchase_date).toDateString()} for {currencyFormat(house.purchase_price)}</p>
+                    <p>Vacancy Rate: {house.vacancy_rate}%</p>
+                    <p>Rental Income: {currencyFormat(house.rental_income)}</p>
+                    <p>Operating Expenses: {currencyFormat(house.operating_expenses)}</p>
+                    <p>Operating Expense Ratio: {house.operating_expense_ratio}</p>
                     <img src={house.image_path}/>
                 </div>
             </div>
-        )
+        ))
         const search = location.state?.search || "";
         const type = location.state?.type || "all";
     
@@ -71,7 +78,7 @@ export default function HouseDetail() {
                         Maintenance
                     </NavLink>
                 </nav>
-                <Outlet context={{ house }}/>
+                <Outlet context={{ displayedHouses }}/>
     
             </div>
         )
