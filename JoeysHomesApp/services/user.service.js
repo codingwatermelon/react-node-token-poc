@@ -33,6 +33,23 @@ export async function getListings(endpoint, id) {
   return data
 }
 
+export async function getMaintenanceByPropertiesId(id) {
+
+  const url = `/houses/${id}/maintenance`
+  const res = await api.get(url);
+
+  if (!res.status == 200) {
+      throw {
+          message: `Failed to fetch maintenance listings by property ID`,
+          statusText: res.statusText,
+          status: res.status,
+      }
+  }
+
+  const data = await res.data;
+  return data
+}
+
 const UserService = {
   getPublicContent,
   getUserBoard,

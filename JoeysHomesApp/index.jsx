@@ -26,6 +26,9 @@ import Profile from "./components/auth/Profile"
 import Login, { loader as loginLoader } from "./components/auth/Login"
 import Register from "./components/auth/Register"
 
+import HouseDetailMaintenance, { loader as houseDetailMaintenanceLoader } from "./pages/Houses/HouseDetailMaintenance"
+import HouseDetailInfo from "./pages/Houses/HouseDetailInfo"
+
 //import "./server"
 //import "../JoeysHomesServer/server"
 
@@ -63,7 +66,17 @@ function App() {
         element={<HouseDetail />} 
         errorElement={<Error />}
         loader={houseDetailLoader}
-      />
+      >
+        <Route
+          index
+          element={<HouseDetailInfo />}
+        />
+        <Route
+          path="maintenance"
+          element={<HouseDetailMaintenance />}
+          loader={houseDetailMaintenanceLoader}
+        />
+      </Route>
       <Route
         path="login"
         element={<Login />}

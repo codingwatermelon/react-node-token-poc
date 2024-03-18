@@ -64,6 +64,12 @@ app.get(
   controller.maintenanceWithID
 );
 
+app.get(
+  "/api/houses/:id/maintenance",
+  [authJwt.verifyToken],
+  controller.maintenanceWithPropertiesID
+);
+
 //app.get(
 //  "/api/verifyauth",
 //  [authJwt.verifyToken]

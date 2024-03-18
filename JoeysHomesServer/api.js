@@ -10,6 +10,8 @@ const pool = new Pool({
   port: process.env.PORT || '',
 });
 
+// TODO Handle errors here so server doesn't crash when an invalid query is given
+
 const getHouses = (houseId) => {
   return new Promise(function(resolve, reject) {
     
@@ -62,7 +64,25 @@ const getMaintenance = (maintenanceId) => {
   })
 }
 
+const getMaintenanceByPropertiesId = (propertiesId) => {
+  return new Promise(function(resolve, reject) {
+    
+    if (propertiesId) {
+      const id = parseInt(propertiesId)
+
+      pool.query('select * from PropertiesMaintenance where properties_id = $1', [id], (error, results) => {
+        if (error) {
+          reject(error)
+        }
+        console.log(results.rows)
+        resolve(results.rows)
+      })
+    }
+  })
+}
+
 module.exports = {
   getHouses,
-  getMaintenance
+  getMaintenance,
+  getMaintenanceByPropertiesId
 }
