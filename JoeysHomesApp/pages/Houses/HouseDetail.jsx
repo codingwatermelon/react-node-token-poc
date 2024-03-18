@@ -9,7 +9,6 @@ import {
     useParams
 } from "react-router-dom"
 import { getListings } from "../../services/user.service";
-import Maintenance from "../Maintenance/Maintenance";
 
 export async function loader({ params, request }) {
     return defer({ house: getListings("houses", params.id) })
@@ -74,7 +73,6 @@ export default function HouseDetail() {
                     {renderHouseElements}
                 </Await>
             </React.Suspense>
-            <Maintenance/>
         </div>
         
     )
