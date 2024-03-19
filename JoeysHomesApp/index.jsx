@@ -25,6 +25,7 @@ import Profile from "./components/auth/Profile"
 //import Login, { loader as loginLoader, action as loginAction } from "./components/auth/Login"
 import Login, { loader as loginLoader } from "./components/auth/Login"
 import Register from "./components/auth/Register"
+import ResetPassword from "./components/auth/Register"
 
 import HouseDetailMaintenance, { loader as houseDetailMaintenanceLoader } from "./pages/Houses/HouseDetailMaintenance"
 import HouseDetailInfo from "./pages/Houses/HouseDetailInfo"
@@ -85,6 +86,11 @@ function App() {
       <Route 
         path="register"
         element={<Register />} 
+        errorElement={<Error />}
+      />
+      <Route 
+        path="resetpassword"
+        element={<ResetPassword />} 
         errorElement={<Error />}
       />
       <Route exact path="/profile" element={<Profile />} />

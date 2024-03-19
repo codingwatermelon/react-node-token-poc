@@ -19,6 +19,10 @@ export default function Profile() {
     }
   }, []);
 
+  const resetPassword = () => {
+    navigate("resetpassword");
+};
+
   return (
     <div className="container">
       <header className="jumbotron">
@@ -44,6 +48,7 @@ export default function Profile() {
       <button
           disabled={navigation.state === "submitting"}
           type="submit"
+          onClick={resetPassword}
       >
           {navigation.state === "submitting"
               ? "Submitting password reset request..."
