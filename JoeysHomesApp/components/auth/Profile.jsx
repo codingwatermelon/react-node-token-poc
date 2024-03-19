@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import { useAuth } from "../common/AuthContext"
 
@@ -8,6 +8,7 @@ export default function Profile() {
   const currentUser = AuthService.getCurrentUser();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const navigation = useNavigation();
 
   console.log("isauth profile")
   console.log(isAuthenticated)
@@ -40,6 +41,15 @@ export default function Profile() {
         {currentUser.roles &&
           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
       </ul>
+      <button
+          disabled={navigation.state === "submitting"}
+          type="submit"
+      >
+          {navigation.state === "submitting"
+              ? "Submitting password reset request..."
+              : "Reset Password"
+          }
+      </button>
     </div>
   );
 
