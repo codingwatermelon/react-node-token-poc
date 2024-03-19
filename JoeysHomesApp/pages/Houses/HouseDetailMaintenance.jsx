@@ -65,11 +65,9 @@ export default function HouseDetailMaintenance() {
             </div>
         ))
 
-        const displayedMaintenanceElements = maintenanceElements
+        const displayedMaintenanceElements = maintenanceElements.length > 0
         ? maintenanceElements
         : "No maintenance tasks scheduled for this property"
-
-        console.log(displayedMaintenanceElements)
 
         return (
             <div>
