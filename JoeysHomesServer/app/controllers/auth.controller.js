@@ -94,6 +94,41 @@ exports.signin = (req, res) => {
     });
 };
 
+exports.submitPasswordReset = (req, res) => {
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  })
+    .then(async (user) => {
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+
+      // TODO Sign token with current password as salt
+      const token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: config.jwtTempExpiration
+      });
+
+      let refreshToken = await RefreshToken.createToken(user, expiryTime=config.jwtTempRefreshExpiration);
+
+      // TODO Send email with token embedded in link
+
+      res.status(200).send({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        // TODO remove these
+        accessToken: token,
+        refreshToken: refreshToken,
+      });
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
+};
+
+
 exports.refreshToken = async (req, res) => {
   const { refreshToken: requestToken } = req.body;
 
@@ -136,4 +171,59 @@ exports.refreshToken = async (req, res) => {
 
 exports.authStatus = (req, res) => {
   res.status(200).send("Authenticated.");
+};
+
+// signin function for password
+exports.temp_signin = (req, res) => {
+  User.findOne({
+    where: {
+      username: req.body.username
+    }
+  })
+    .then(async (user) => {
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+
+      // TODO Compare stored password against hashed password in link given to user from email as described here: https://melodiessim.netlify.app/Reset%20Password%20Flow%20Using%20JWT/
+      const passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+
+      if (!passwordIsValid) {
+        return res.status(401).send({
+          accessToken: null,
+          message: "Invalid Password!"
+        });
+      }
+
+      // TODO Create temporary token with much shorter lifespan than usual token
+      const token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: config.jwtExpiration
+      });
+
+      
+      // TODO Create temporary token with much shorter lifespan than usual signin token
+      let refreshToken = await RefreshToken.createToken(user, 3600);
+
+      let authorities = [];
+      user.getRoles().then(roles => {
+        for (let i = 0; i < roles.length; i++) {
+          authorities.push("ROLE_" + roles[i].name.toUpperCase());
+        }
+
+        res.status(200).send({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          roles: authorities,
+          accessToken: token,
+          refreshToken: refreshToken,
+        });
+      });
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
 };

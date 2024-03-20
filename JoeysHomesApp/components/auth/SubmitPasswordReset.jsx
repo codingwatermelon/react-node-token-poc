@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 //import Form from "react-validation/build/form";
 //import Input from "react-validation/build/input";
@@ -32,39 +33,13 @@ export default function ResetPassword() {
       return ""
     }
   };
-  
-  const vusername = (value) => {
-    const userNameRegex = /^[A-Za-z0-9]+$/g
-
-    if (value.length < 3 || value.length > 20) {
-      return "The username must be between 3 and 20 characters.";
-    }
-    else if (!(userNameRegex.test(username))) {
-      return "Username can only be letters and numbers";
-    }
-    else {
-      return "";
-    }
-
-  };
-  
-  const vpassword = (value) => {
-    if (value.length < 6 || value.length > 40) {
-      return "The password must be between 6 and 40 characters.";
-    }
-    else if (value != confirmPassword) {
-      return "Passwords don't match, try again."
-    }
-    else {
-      return ""
-    }
-  };
 
   useEffect(() => {
     if (validationMessage.every(element => element === "")) {
       try {
-        AuthService.register(username, email, password).then(
+        AuthService.submitPasswordReset(email).then(
           (response) => {
+            console.log(response.data);
             setMessage(response.data.message);
             setSuccessful(true);
           },
@@ -101,20 +76,20 @@ export default function ResetPassword() {
 }, [validationMessage]);
 
 
-  const handleRegister = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     setMessage("");
     setSuccessful(false);
 
     // Validate form fields
-    setValidationMessage([vusername(username), validEmail(email), vpassword(password)]);
+    setValidationMessage([validEmail(email)]);
 
   };
 
   return (
     <div className="login-container">
-      <h1>Create a new account</h1>
+      <h1>Enter the email linked to your account to receive a password reset request</h1>
       {message && (
             <h3>
               {message}
@@ -135,19 +110,12 @@ export default function ResetPassword() {
 
       <Form 
         className="login-form"
-        onSubmit={handleRegister}
+        onSubmit={handleSubmit}
         replace
       >
 
       {!successful && (
         <>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
 
           <input
             type="text"
@@ -157,29 +125,13 @@ export default function ResetPassword() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          
-          <input
-            type="password"
-            name="confirmpassword"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-
           <button
                 disabled={navigation.state === "submitting"}
                 type="submit"
             >
                 {navigation.state === "submitting"
-                    ? "Signing up..."
-                    : "Sign up"
+                    ? "Submitting..."
+                    : "Submit"
                 }
             </button>
         </>

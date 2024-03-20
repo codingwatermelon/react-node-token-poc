@@ -1,9 +1,9 @@
 module.exports = {
   secret: "jacks-secret-key-857ff5bea3f",
-  jwtExpiration: 3600,         // 1 hour
-  jwtRefreshExpiration: 86400, // 24 hours
+  jwtExpiration: 3600,              // 1 hour
+  jwtRefreshExpiration: 86400,      // 24 hours
 
-  /* for test */
-  //jwtExpiration: 60,          // 1 minute
-  //jwtRefreshExpiration: 120,  // 2 minutes
+  // For password resets
+  jwtTempExpiration: 1800,          // 30 min
+  jwtTempRefreshExpiration: 1800,   // 30 min
 };

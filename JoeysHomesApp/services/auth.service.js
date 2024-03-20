@@ -29,6 +29,12 @@ const logout = () => {
   TokenService.removeUser();
 };
 
+const submitPasswordReset = (email) => {
+  return api.post("/auth/submitpasswordreset", {
+    email
+  });
+};
+
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
@@ -52,7 +58,8 @@ const AuthService = {
   login,
   logout,
   getCurrentUser,
-  getAuthStatus
+  getAuthStatus,
+  submitPasswordReset
 };
 
 export default AuthService;

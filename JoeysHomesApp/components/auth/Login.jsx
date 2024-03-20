@@ -21,6 +21,12 @@ export default function Login() {
 
     const { isAuthenticated, loginAuth } = useAuth();
 
+    // TODO Create component for processing sign in via hashed password generated from ResetPassword and using temp_signin to compare hashed password against stored one to authenticate user with temporary access/refresh tokens
+
+    // Basically, this is a landing page for requests to site.com/login?resetPassword={hashed_password}
+    // Check if resetPassword search param exists and if so, process it accordingly
+        // After temp authed, then send user to resetpassword form
+
     // Redirect to account page if user is logged in already
     useEffect(() => {
         if (isAuthenticated === true) {
@@ -118,6 +124,11 @@ export default function Login() {
                 to="/signup"
                 className="login-form-link">
                     <p>No account yet? Sign up here</p>
+            </Link>
+            <Link 
+                to="/submitpasswordreset"
+                className="login-form-link">
+                    <p>Forgot Password?</p>
             </Link>
         </div>   
     )
