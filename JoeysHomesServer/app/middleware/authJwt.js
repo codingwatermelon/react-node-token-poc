@@ -13,10 +13,12 @@ const catchError = (err, res) => {
   return res.sendStatus(401).send({ message: "Unauthorized!" });
 }
 
+// Use this 
 const verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
 
   if (!token) {
+    // If this is returned, then axios intercepts it and generates a new access token if refresh token is valid
     return res.status(403).send({ message: "No token provided!" });
   }
 

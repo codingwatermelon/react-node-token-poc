@@ -35,6 +35,27 @@ const submitPasswordReset = (email) => {
   });
 };
 
+// This function will be used to set local accessToken and refreshToken after user clicks link from email
+const templogin = (username, accessToken, refreshToken) => {
+  // TODO Find username from email to use setUser to set local access/refresh token
+  return api
+    .get("/auth/getuser", {
+      username
+    })
+    .then((response) => {
+      if (response.data.username) {
+        TokenService.setUser({
+          id: response.data.id, 
+          username: response.data.username,
+          email: response.data.email,
+          roles: response.data.roles,
+          accessToken: accessToken,
+          refreshToken: refreshToken
+        });
+      }
+    })
+}
+
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };

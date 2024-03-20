@@ -20,7 +20,7 @@ export default function Profile() {
   }, []);
 
   const resetPassword = () => {
-    navigate("/resetpassword");
+    navigate("/submitpasswordreset");
 };
 
   return (

@@ -105,14 +105,15 @@ exports.submitPasswordReset = (req, res) => {
         return res.status(404).send({ message: "User Not found." });
       }
 
-      // TODO Sign token with current password as salt
+      // TODO Sign token with current password as salt (dont know if I really care about this since temp token will expire within an hour anyways)
       const token = jwt.sign({ id: user.id }, config.secret, {
         expiresIn: config.jwtTempExpiration
       });
 
       let refreshToken = await RefreshToken.createToken(user, expiryTime=config.jwtTempRefreshExpiration);
 
-      // TODO Send email with token embedded in link
+      // TODO Send email with tokens embedded in link e.g.,
+      // /passwordreset?accessToken={}&refreshToken={}
 
       res.status(200).send({
         id: user.id,
@@ -172,6 +173,35 @@ exports.refreshToken = async (req, res) => {
 exports.authStatus = (req, res) => {
   res.status(200).send("Authenticated.");
 };
+
+exports.getUser = (req, res) => {
+  User.findOne({
+    where: {
+      username: req.body.username
+    }
+  })
+    .then(async (user) => {
+      res.status(200).send({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        roles: authorities
+      });
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
+}
+
+
+
+
+
+
+
+
+
+
 
 // signin function for password
 exports.temp_signin = (req, res) => {

@@ -39,6 +39,7 @@ export default function ResetPassword() {
       try {
         AuthService.submitPasswordReset(email).then(
           (response) => {
+            // For testing, will log this to console to form my /passwordreset? link so I don't have to waste emails
             console.log(response.data);
             setMessage(response.data.message);
             setSuccessful(true);

@@ -38,4 +38,9 @@ module.exports = function(app) {
     [authJwt.verifyToken],
     controller.authStatus
   );
+
+  app.get(
+    "/api/auth/getuser",
+    controller.getUser
+  )
 };
