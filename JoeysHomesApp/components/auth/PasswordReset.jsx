@@ -147,5 +147,3 @@ export default function PasswordReset() {
     </div>
   );
 };
-
-//export default Register;
