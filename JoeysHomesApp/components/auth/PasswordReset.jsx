@@ -143,7 +143,6 @@ export default function ResetPassword() {
 
   return (
     <div className="login-container">
-      <h1>Create a new account</h1>
       {message && (
             <h3>
               {message}
@@ -161,8 +160,6 @@ export default function ResetPassword() {
           ))}
         </>
       )}
-
-      
 
       {ready ? (
         <>
@@ -201,7 +198,7 @@ export default function ResetPassword() {
         </>
       ) :
       (
-        <h3>test</h3>
+        <h3>If you want to reset your password, <a href="/submitpasswordreset">submit a request to do so</a></h3>
       )
       }
       

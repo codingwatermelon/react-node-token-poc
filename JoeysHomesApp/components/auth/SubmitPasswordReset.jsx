@@ -43,6 +43,7 @@ export default function ResetPassword() {
             console.log(response.data);
             setMessage(response.data.message);
             setSuccessful(true);
+
           },
           (error) => {
             const resMessage =
@@ -90,7 +91,7 @@ export default function ResetPassword() {
 
   return (
     <div className="login-container">
-      <h1>Enter the email linked to your account to receive a password reset request</h1>
+      
       {message && (
             <h3>
               {message}
@@ -109,14 +110,15 @@ export default function ResetPassword() {
         </>
       )}
 
-      <Form 
-        className="login-form"
-        onSubmit={handleSubmit}
-        replace
-      >
 
       {!successful && (
         <>
+        <h2>Enter the email linked to your account to receive a password reset request</h2>
+        <Form 
+        className="login-form"
+        onSubmit={handleSubmit}
+        replace
+        >
 
           <input
             type="text"
@@ -135,9 +137,10 @@ export default function ResetPassword() {
                     : "Submit"
                 }
             </button>
+            </Form>
         </>
       )}
-      </Form>
+    
       <Link 
           to="/"
           className="login-form-link">

@@ -121,7 +121,7 @@ export default function Login() {
                 </button>
             </Form>
             <Link 
-                to="/signup"
+                to="/register"
                 className="login-form-link">
                     <p>No account yet? Sign up here</p>
             </Link>
