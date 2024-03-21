@@ -45,15 +45,10 @@ const changePassword = (username, password, accessToken) => {
       accessToken
     })
     .then((response) => {
-      return "Successfully changed password";
+      return response.data;
     })
     .catch((error) => {
-      if (error.response.status == 401) {
-        return "Invalid token, likely expired. Try generating a new password reset request."
-      }
-      else {
-        return error.message;
-      }
+      return error.response.data;
     });
 }
 

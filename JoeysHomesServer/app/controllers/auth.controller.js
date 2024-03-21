@@ -192,7 +192,7 @@ exports.changePassword = (req, res) => {
     // Verify access token
     jwt.verify(accessToken, user.password, (err) => {
       if (err) {
-        res.status(401).send({ message: "Invalid access token" });
+        res.status(401).send({ message: "Invalid token, password reset request likely expired. Try generating a new password reset request." });
       }
       else {
         // Change password where given user
@@ -205,7 +205,8 @@ exports.changePassword = (req, res) => {
           res.status(200).send({
             id: user.id,
             username: user.username,
-            email: user.email
+            email: user.email,
+            message: "Successfully changed password!"
           });
         })
         .catch(err => {

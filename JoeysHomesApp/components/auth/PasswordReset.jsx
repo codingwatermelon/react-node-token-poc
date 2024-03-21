@@ -56,12 +56,17 @@ export default function PasswordReset() {
                               username,
                               password,
                               accessToken
-                            )
+                            );
+        
+        setMessage(data.message);
 
-        setMessage(data)
-    
-        setSuccessful(true)
-
+        if (data.status == 200) {
+          setSuccessful(true)
+        }
+        else {
+          setSuccessful(false)
+        }
+        
     }
     catch(err) {
       return err.message
@@ -128,6 +133,11 @@ export default function PasswordReset() {
             </button>
           </Form>
         </>
+      ) :
+      message &&
+      successful ?
+      (
+        <></>
       ) :
       (
         <h3>If you want to reset your password, <a href="/submitpasswordreset">submit a request to do so here TODO link</a></h3>
