@@ -15,7 +15,7 @@ import {
 
 import AuthService from "../../services/auth.service";
 
-export default function ResetPassword() {
+export default function PasswordReset() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
@@ -26,10 +26,18 @@ export default function ResetPassword() {
 
   // TODO If local tokens are invalid (e.g., tokens expired or user not logged in), then ask user if they want to reset their password and have link to redirect them to /submitpasswordreset or otherwise login
 
+  // TODO Change this so that authStatus is not being called (this route does not need to be protected)
+
+  // If templogin succeeds, then proceed with password reset -- otherwise, don't allow password resets
+
+  // TODO Need to figure out how to pass username etc in quotes in search params
+  // e.g., http://192.168.64.3:5173?username="test@test.com"&accessToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywia…yOTB9.5i1UBtWzUPt7jtxLizeO579tK9bxpvL_GDwGSL0FrUE"&refreshToken="e8853ee3-3e98-4e91-9add-c6e58d1d7a15"
+
   const navigation = useNavigation();
 
   const params = new URLSearchParams(window.location.search)
   if (params.has("username") && params.has("accessToken") && params.has("refreshToken")) {
+    console.log(params)
     setReady(true);
   }
 

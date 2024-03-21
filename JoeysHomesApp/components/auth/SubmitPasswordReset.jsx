@@ -14,7 +14,7 @@ import {
 
 import AuthService from "../../services/auth.service";
 
-export default function ResetPassword() {
+export default function SubmitPasswordReset() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -111,7 +111,12 @@ export default function ResetPassword() {
       )}
 
 
-      {!successful && (
+      {successful ? (
+        <>
+        <h2>Check your email for password reset instructions</h2>
+        </>
+      ) :
+      (
         <>
         <h2>Enter the email linked to your account to receive a password reset request</h2>
         <Form 
@@ -139,7 +144,8 @@ export default function ResetPassword() {
             </button>
             </Form>
         </>
-      )}
+      )
+      }
     
       <Link 
           to="/"
