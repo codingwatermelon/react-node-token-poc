@@ -105,6 +105,7 @@ exports.submitPasswordReset = (req, res) => {
         return res.status(404).send({ message: "User Not found." });
       }
 
+      console.log("current password (submitPasswordReset):" + user.password)  
       // TODO Sign token with current password as salt (dont know if I really care about this since temp token will expire within an hour anyways)
       const token = jwt.sign({ id: user.id }, user.password, {
         expiresIn: config.jwtTempExpiration
@@ -187,11 +188,13 @@ exports.changePassword = (req, res) => {
   })
   .then(async (user) => {
 
+    console.log("current password (changePassword):" + user.password)
     // Verify access token
     jwt.verify(accessToken, user.password, (err, decoded) => {
       if (err) {
         return "Invalid access token"
       }
+      console.log(decoded.id)
     });
 
     // Change password where given user
@@ -204,8 +207,7 @@ exports.changePassword = (req, res) => {
         res.status(200).send({
           id: user.id,
           username: user.username,
-          email: user.email,
-          roles: authorities
+          email: user.email
         });
       })
       .catch(err => {
