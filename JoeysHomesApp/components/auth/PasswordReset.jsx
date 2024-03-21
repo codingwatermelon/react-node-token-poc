@@ -18,7 +18,7 @@ import AuthService from "../../services/auth.service";
 export default function PasswordReset() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [successful, setSuccessful] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [ready, setReady] = useState(false);
   const [message, setMessage] = useState("");
   const [validationMessage, setValidationMessage] = useState(["defaultvalue"]);
@@ -59,14 +59,8 @@ export default function PasswordReset() {
                             );
         
         setMessage(data.message);
-
-        if (data.status == 200) {
-          setSuccessful(true)
-        }
-        else {
-          setSuccessful(false)
-        }
-        
+        setCompleted(true)
+   
     }
     catch(err) {
       return err.message
@@ -98,7 +92,7 @@ export default function PasswordReset() {
 
       {username &&
        accessToken &&
-       !successful ? (
+       !completed ? (
         <>
         <h3>Changing password for user {username}</h3>
         <Form 
@@ -133,11 +127,6 @@ export default function PasswordReset() {
             </button>
           </Form>
         </>
-      ) :
-      message &&
-      successful ?
-      (
-        <></>
       ) :
       (
         <h3>If you want to reset your password, <a href="/submitpasswordreset">submit a request to do so here TODO link</a></h3>
