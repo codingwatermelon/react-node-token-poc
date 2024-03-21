@@ -30,6 +30,7 @@ instance.interceptors.response.use(
 
     // TODO may need to change this path
     if (originalConfig.url !== "/auth/signin" && err.response) {
+      // Process invalid changepassword requests
       if (originalConfig.url == "/auth/changepassword") {
         if (err.response.status === 401 && !originalConfig._retry) {
           originalConfig._retry = true;

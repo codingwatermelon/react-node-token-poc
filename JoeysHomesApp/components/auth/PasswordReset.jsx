@@ -58,15 +58,9 @@ export default function PasswordReset() {
                               accessToken
                             )
 
-        // TODO Check if data is valid, then setIsAuthenticated accordingly
-
-        console.log("data from login")
-        console.log(data)
-
-        // Set isAuthenticated context for usage in Header etc.
-        //loginAuth(username, password)
+        setMessage(data)
     
-        //navigate(pathname);
+        setSuccessful(true)
 
     }
     catch(err) {
@@ -98,7 +92,8 @@ export default function PasswordReset() {
         )}
 
       {username &&
-       accessToken ? (
+       accessToken &&
+       !successful ? (
         <>
         <h3>Changing password for user {username}</h3>
         <Form 
