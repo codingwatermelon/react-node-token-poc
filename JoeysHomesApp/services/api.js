@@ -31,7 +31,10 @@ instance.interceptors.response.use(
     // TODO may need to change this path
     if (originalConfig.url !== "/auth/signin" && err.response) {
       if (originalConfig.url == "/auth/changepassword") {
-        return instance(originalConfig);
+        if (err.response.status === 401 && !originalConfig._retry) {
+          originalConfig._retry = true;
+          return instance(originalConfig)
+        }
       }
       else {
         // if Access Token was expired
