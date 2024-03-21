@@ -30,7 +30,7 @@ export default function ResetPassword() {
 
   const params = new URLSearchParams(window.location.search)
   if (params.has("username") && params.has("accessToken") && params.has("refreshToken")) {
-    setReady = True
+    setReady(true);
   }
 
   const handleLogin = async (e) => {
