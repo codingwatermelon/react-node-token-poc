@@ -33,7 +33,7 @@ instance.interceptors.response.use(
       // Process invalid changepassword requests
       if (originalConfig.url == "/auth/changepassword") {
         if (err.response.status === 401 && !originalConfig._retry) {
-          originalConfig._retry = false;
+          originalConfig._retry = true;
           return instance(originalConfig)
         }
       }
