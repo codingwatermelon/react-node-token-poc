@@ -190,11 +190,10 @@ exports.changePassword = (req, res) => {
 
     console.log("current password (changePassword):" + user.password)
     // Verify access token
-    jwt.verify(accessToken, user.password, (err, decoded) => {
+    jwt.verify(accessToken, user.password, (err) => {
       if (err) {
-        return "Invalid access token"
+        res.status(401).send({ mesage: "Invalid access token" });
       }
-      console.log(decoded.id)
     });
 
     // Change password where given user
