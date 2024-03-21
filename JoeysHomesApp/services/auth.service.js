@@ -36,23 +36,13 @@ const submitPasswordReset = (email) => {
 };
 
 // This function will be used to set local accessToken and refreshToken after user clicks link from email
-const templogin = (username, accessToken, refreshToken) => {
-  // TODO Find username from email to use setUser to set local access/refresh token
+const changePassword = (username, password, accessToken) => {
+  // I don't think I need to set local access token if I can just verify token on backend as a method of authenticating the password reset request
   return api
-    .get("/auth/getuser", {
-      username
-    })
-    .then((response) => {
-      if (response.data.username) {
-        TokenService.setUser({
-          id: response.data.id, 
-          username: response.data.username,
-          email: response.data.email,
-          roles: response.data.roles,
-          accessToken: accessToken,
-          refreshToken: refreshToken
-        });
-      }
+    .post("/auth/changepassword", {
+      username,
+      password,
+      accessToken
     })
 }
 
@@ -80,7 +70,8 @@ const AuthService = {
   logout,
   getCurrentUser,
   getAuthStatus,
-  submitPasswordReset
+  submitPasswordReset,
+  changePassword
 };
 
 export default AuthService;

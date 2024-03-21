@@ -110,25 +110,22 @@ exports.submitPasswordReset = (req, res) => {
         expiresIn: config.jwtTempExpiration
       });
 
-      let refreshToken = await RefreshToken.createToken(user, expiryTime=config.jwtTempRefreshExpiration);
-
       // TODO Send email with tokens embedded in link e.g.,
-      // /passwordreset?accessToken={}&refreshToken={}
+      // /passwordreset?accessToken={}
 
       res.status(200).send({
         id: user.id,
         username: user.username,
         email: user.email,
-        // TODO remove these
-        accessToken: token,
-        refreshToken: refreshToken,
+        // TODO Remove this because it will be sent in email instead later
+        // If verificaation of access token doesnt work, I could also verify refreshToken
+        accessToken: token
       });
     })
     .catch(err => {
       res.status(500).send({ message: err.message });
     });
 };
-
 
 exports.refreshToken = async (req, res) => {
   const { refreshToken: requestToken } = req.body;
@@ -174,8 +171,23 @@ exports.authStatus = (req, res) => {
   res.status(200).send("Authenticated.");
 };
 
-exports.getUser = (req, res) => {
-  User.findOne({
+exports.changePassword = (req, res) => {
+  const accessToken = req.body.accessToken
+
+  if (!accessToken) {
+    return res.status(403).send({ message: "No token provided!" });
+  }
+
+  // Verify access token
+  jwt.verify(accessToken, config.secret, (err, decoded) => {
+    if (err) {
+      return "Invalid access token"
+    }
+    req.userId = decoded.id;
+  });
+
+  // Change password where given user
+  User.update({ password: req.body.password }, {
     where: {
       username: req.body.username
     }

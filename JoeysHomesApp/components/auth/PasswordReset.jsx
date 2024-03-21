@@ -35,16 +35,26 @@ export default function PasswordReset() {
 
   const navigation = useNavigation();
 
-  const handleLogin = async (e) => {
+  const username = searchParams.get("username");
+  const accessToken = searchParams.get("accessToken");
+
+  const handleChangePassword = async (e) => {
     e.preventDefault();
+
+    if (password.length < 6 || password.length > 40) {
+      return "The password must be between 6 and 40 characters.";
+    }
+    else if (password != confirmPassword) {
+      return "Passwords don't match, try again."
+    }
 
     try {
         // Set accessToken and refreshToken headers based on search params using AuthService.templogin, given from email
         // TODO setReady if all search params below are present
-        const data = await AuthService.templogin(
-                              username=searchParams.get("username"), 
-                              accessToken=searchParams.get("accessToken"), 
-                              refreshToken=searchParams.get("refreshToken")
+        const data = await AuthService.changePassword(
+                              username,
+                              password,
+                              accessToken
                             )
 
         // TODO Check if data is valid, then setIsAuthenticated accordingly
@@ -78,30 +88,6 @@ export default function PasswordReset() {
     
   };
 
-  const vpassword = (value) => {
-    if (value.length < 6 || value.length > 40) {
-      return "The password must be between 6 and 40 characters.";
-    }
-    else if (value != confirmPassword) {
-      return "Passwords don't match, try again."
-    }
-    else {
-      return ""
-    }
-  };
-
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-
-    setMessage("");
-    setSuccessful(false);
-
-    // Validate form fields
-    //setValidationMessage([vpassword(password)]);
-
-  };
-
   return (
     <div className="login-container">
       {message && (
@@ -110,26 +96,13 @@ export default function PasswordReset() {
             </h3>
         )}
 
-      {validationMessage[0] != "defaultvalue" && (
+      {username &&
+       accessToken ? (
         <>
-          {validationMessage.map((item, i) => (
-            <div key={i}>
-            <h3>
-              {item}
-            </h3>
-            </div>
-          ))}
-        </>
-      )}
-
-      {searchParams.get("username") &&
-       searchParams.get("accessToken") &&
-       searchParams.get("refreshToken") ? (
-        <>
-        <h3>Changing password for user</h3>
+        <h3>Changing password for user {username}</h3>
         <Form 
         className="login-form"
-        onSubmit={handleRegister}
+        onSubmit={handleChangePassword}
         replace
         >
           <input
@@ -153,8 +126,8 @@ export default function PasswordReset() {
                 type="submit"
             >
                 {navigation.state === "submitting"
-                    ? "Signing up..."
-                    : "Sign up"
+                    ? "Changing password..."
+                    : "Change password"
                 }
             </button>
           </Form>

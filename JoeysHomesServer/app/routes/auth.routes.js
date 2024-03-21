@@ -39,8 +39,8 @@ module.exports = function(app) {
     controller.authStatus
   );
 
-  app.get(
-    "/api/auth/getuser",
-    controller.getUser
+  app.post(
+    "/api/auth/changepassword",
+    controller.changePassword
   )
 };
