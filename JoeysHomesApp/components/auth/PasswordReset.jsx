@@ -35,9 +35,9 @@ export default function PasswordReset() {
 
   const navigation = useNavigation();
 
-  username=searchParams.get("username")
-  accessToken=searchParams.get("accessToken"), 
-  refreshToken=searchParams.get("refreshToken")
+  const username = searchParams.get("username")
+  const accessToken = searchParams.get("accessToken"), 
+  const refreshToken = searchParams.get("refreshToken")
 
   console.log(username)
   console.log(accessToken)
