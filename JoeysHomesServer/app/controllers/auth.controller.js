@@ -193,7 +193,6 @@ exports.changePassword = (req, res) => {
     jwt.verify(accessToken, user.password, (err) => {
       if (err) {
         res.status(401).send({ message: "Invalid access token" });
-        return "Invalid access token"
       }
       else {
         // Change password where given user

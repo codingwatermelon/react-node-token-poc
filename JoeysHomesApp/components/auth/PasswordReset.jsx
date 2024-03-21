@@ -43,10 +43,10 @@ export default function PasswordReset() {
 
     // TODO Fix this since it's not showing right now
     if (password.length < 6 || password.length > 40) {
-      return "The password must be between 6 and 40 characters.";
+      setMessage("The password must be between 6 and 40 characters.");
     }
     else if (password != confirmPassword) {
-      return "Passwords don't match, try again."
+      setMessage("Passwords don't match, try again.");
     }
 
     try {
