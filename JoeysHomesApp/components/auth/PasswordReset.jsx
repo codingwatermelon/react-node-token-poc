@@ -37,7 +37,6 @@ export default function PasswordReset() {
 
   const params = new URLSearchParams(window.location.search)
   if (params.has("username") && params.has("accessToken") && params.has("refreshToken")) {
-    console.log(params)
     setReady(true);
   }
 
@@ -96,47 +95,6 @@ export default function PasswordReset() {
     }
   };
 
-  useEffect(() => {
-    if (validationMessage.every(element => element === "")) {
-      try {
-        // TODO Set password here
-        //AuthService.register(username, email, password).then(
-        //  (response) => {
-        //    setMessage(response.data.message);
-        //    setSuccessful(true);
-        //  },
-        //  (error) => {
-        //    const resMessage =
-        //      (error.response &&
-        //        error.response.data &&
-        //        error.response.data.message) ||
-        //      error.message ||
-        //      error.toString();
-        //
-        //    setMessage(resMessage);
-        //    setSuccessful(false);
-        //  }
-        //);
-      } catch(err) {
-        //setUsername("")
-        //setPassword("")
-
-        if (err.name == "AxiosError") {
-            if (err.response.status == 404 || err.response.status == 401) {
-                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
-                setMessage("Username or password is incorrect, try again")
-                setSuccessful(false);
-            }
-        }
-        else {
-            //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
-            setMessage(err.message)
-            setSuccessful(false);
-        }
-      }
-    }
-}, [validationMessage]);
-
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -145,7 +103,7 @@ export default function PasswordReset() {
     setSuccessful(false);
 
     // Validate form fields
-    setValidationMessage([vpassword(password)]);
+    //setValidationMessage([vpassword(password)]);
 
   };
 
