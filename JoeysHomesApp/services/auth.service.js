@@ -44,6 +44,12 @@ const changePassword = (username, password, accessToken) => {
       password,
       accessToken
     })
+    .then((response) => {
+      return "Successfully changed password";
+    })
+    .catch((error) => {
+      return error.message;
+    });
 }
 
 const getCurrentUser = () => {

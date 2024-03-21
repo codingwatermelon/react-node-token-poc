@@ -41,6 +41,7 @@ export default function PasswordReset() {
   const handleChangePassword = async (e) => {
     e.preventDefault();
 
+    // TODO Fix this since it's not showing right now
     if (password.length < 6 || password.length > 40) {
       return "The password must be between 6 and 40 characters.";
     }
