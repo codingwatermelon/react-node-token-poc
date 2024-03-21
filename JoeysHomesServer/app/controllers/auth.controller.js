@@ -195,25 +195,28 @@ exports.changePassword = (req, res) => {
         //res.status(401).send({ message: "Invalid access token" });
         return "Invalid access token"
       }
+      else {
+        // Change password where given user
+        User.update({ password: bcrypt.hashSync(req.body.password, 8) }, {
+          where: {
+            username: req.body.username
+          }
+        })
+        .then(async (user) => {
+          res.status(200).send({
+            id: user.id,
+            username: user.username,
+            email: user.email
+          });
+        })
+        .catch(err => {
+          console.log(err)
+          res.status(500).send({ message: err.message });
+        });
+      }
     });
 
-    // Change password where given user
-    User.update({ password: bcrypt.hashSync(req.body.password, 8) }, {
-      where: {
-        username: req.body.username
-      }
-    })
-      .then(async (user) => {
-        res.status(200).send({
-          id: user.id,
-          username: user.username,
-          email: user.email
-        });
-      })
-      .catch(err => {
-        console.log(err)
-        res.status(500).send({ message: err.message });
-      });
+    
   });
 }
 
