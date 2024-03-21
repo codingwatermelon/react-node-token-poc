@@ -53,17 +53,17 @@ export default function PasswordReset() {
     try {
         // Set accessToken and refreshToken headers based on search params using AuthService.templogin, given from email
         // TODO setReady if all search params below are present
-        const data = await AuthService.changePassword(
+        const res = await AuthService.changePassword(
                               username,
                               password,
                               accessToken
                             );
         
-        if (data.status == 200) {
+        if (res.status == 200) {
           setSuccessful(true);
         }
 
-        setMessage(data.message);
+        setMessage(res.data.message);
         setCompleted(true)
         
     }
