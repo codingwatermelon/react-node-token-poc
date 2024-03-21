@@ -106,7 +106,7 @@ exports.submitPasswordReset = (req, res) => {
       }
 
       // TODO Sign token with current password as salt (dont know if I really care about this since temp token will expire within an hour anyways)
-      const token = jwt.sign({ id: user.id }, config.secret, {
+      const token = jwt.sign({ id: user.id }, user.password, {
         expiresIn: config.jwtTempExpiration
       });
 
@@ -179,31 +179,40 @@ exports.changePassword = (req, res) => {
     return res.status(403).send({ message: "No token provided!" });
   }
 
-  // Verify access token
-  jwt.verify(accessToken, config.secret, (err, decoded) => {
-    if (err) {
-      return "Invalid access token"
-    }
-    req.userId = decoded.id;
-  });
-
-  // Change password where given user
-  User.update({ password: bcrypt.hashSync(req.body.password, 8) }, {
+  // Get current user details to verify token with password
+  User.findOne({
     where: {
       username: req.body.username
     }
   })
-    .then(async (user) => {
-      res.status(200).send({
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        roles: authorities
-      });
-    })
-    .catch(err => {
-      res.status(500).send({ message: err.message });
+  .then(async (user) => {
+
+    // Verify access token
+    jwt.verify(accessToken, user.password, (err, decoded) => {
+      if (err) {
+        return "Invalid access token"
+      }
     });
+
+    // Change password where given user
+    User.update({ password: bcrypt.hashSync(req.body.password, 8) }, {
+      where: {
+        username: req.body.username
+      }
+    })
+      .then(async (user) => {
+        res.status(200).send({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          roles: authorities
+        });
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).send({ message: err.message });
+      });
+  });
 }
 
 
