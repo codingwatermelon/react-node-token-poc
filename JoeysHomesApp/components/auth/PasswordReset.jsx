@@ -35,14 +35,6 @@ export default function PasswordReset() {
 
   const navigation = useNavigation();
 
-  const username = searchParams.get("username");
-  const accessToken = searchParams.get("accessToken");
-  const refreshToken = searchParams.get("refreshToken");
-
-  console.log(username)
-  console.log(accessToken)
-  console.log(refreshToken)
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -130,7 +122,9 @@ export default function PasswordReset() {
         </>
       )}
 
-      {ready ? (
+      {searchParams.get("username") &&
+       searchParams.get("accessToken") &&
+       searchParams.get("refreshToken") ? (
         <>
         <h3>Changing password for user</h3>
         <Form 
@@ -167,7 +161,7 @@ export default function PasswordReset() {
         </>
       ) :
       (
-        <h3>If you want to reset your password, <a href="/submitpasswordreset">submit a request to do so</a></h3>
+        <h3>If you want to reset your password, <a href="/submitpasswordreset">submit a request to do so here TODO link</a></h3>
       )
       }
       
