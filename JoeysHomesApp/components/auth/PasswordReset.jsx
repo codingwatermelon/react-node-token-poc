@@ -35,10 +35,13 @@ export default function PasswordReset() {
 
   const navigation = useNavigation();
 
-  const params = new URLSearchParams(window.location.search)
-  if (params.has("username") && params.has("accessToken") && params.has("refreshToken")) {
-    setReady(true);
-  }
+  username=searchParams.get("username")
+  accessToken=searchParams.get("accessToken"), 
+  refreshToken=searchParams.get("refreshToken")
+
+  console.log(username)
+  console.log(accessToken)
+  console.log(refreshToken)
 
   const handleLogin = async (e) => {
     e.preventDefault();
