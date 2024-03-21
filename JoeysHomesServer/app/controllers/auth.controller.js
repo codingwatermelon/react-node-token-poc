@@ -122,6 +122,7 @@ exports.submitPasswordReset = (req, res) => {
         accessToken: token
       });
     })
+    // TODO Add info to error message (e.g., if username is wrong)
     .catch(err => {
       res.status(500).send({ message: err.message });
     });
