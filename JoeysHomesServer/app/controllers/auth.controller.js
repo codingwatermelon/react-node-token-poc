@@ -192,7 +192,8 @@ exports.changePassword = (req, res) => {
     // Verify access token
     jwt.verify(accessToken, user.password, (err) => {
       if (err) {
-        res.status(401).send({ message: "Invalid access token" });
+        //res.status(401).send({ message: "Invalid access token" });
+        return "Invalid access token"
       }
     });
 
