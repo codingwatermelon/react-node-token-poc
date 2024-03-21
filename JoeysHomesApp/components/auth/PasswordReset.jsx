@@ -19,6 +19,7 @@ export default function PasswordReset() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [completed, setCompleted] = useState(false);
+  const [successful, setSuccessful] = useState(false);
   const [ready, setReady] = useState(false);
   const [message, setMessage] = useState("");
   const [validationMessage, setValidationMessage] = useState(["defaultvalue"]);
@@ -58,9 +59,13 @@ export default function PasswordReset() {
                               accessToken
                             );
         
+        if (data.status == 200) {
+          setSuccessful(true);
+        }
+
         setMessage(data.message);
         setCompleted(true)
-   
+        
     }
     catch(err) {
       return err.message
@@ -128,8 +133,13 @@ export default function PasswordReset() {
           </Form>
         </>
       ) :
+      !successful ? 
       (
         <h3>If you want to reset your password, <a href="/submitpasswordreset">submit a request to do so here TODO link</a></h3>
+      )
+      :
+      (
+        <></>
       )
       }
       

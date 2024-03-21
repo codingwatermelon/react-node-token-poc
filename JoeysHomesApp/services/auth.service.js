@@ -45,10 +45,10 @@ const changePassword = (username, password, accessToken) => {
       accessToken
     })
     .then((response) => {
-      return "Successfully changed password!";
+      return response.data;
     })
     .catch((error) => {
-        return error.message;
+      return error.response.data;
     });
 }
 
