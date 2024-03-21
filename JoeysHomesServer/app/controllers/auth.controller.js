@@ -205,8 +205,7 @@ exports.changePassword = (req, res) => {
           res.status(200).send({
             id: user.id,
             username: user.username,
-            email: user.email,
-            message: "Successfully changed password!"
+            email: user.email
           });
         })
         .catch(err => {
