@@ -30,21 +30,26 @@ instance.interceptors.response.use(
 
     // TODO may need to change this path
     if (originalConfig.url !== "/auth/signin" && err.response) {
-      // if Access Token was expired
-      if (err.response.status === 401 && !originalConfig._retry) {
-        originalConfig._retry = true;
+      if (originalConfig.url == "/auth/changepassword") {
+        return instance(originalConfig);
+      }
+      else {
+        // if Access Token was expired
+        if (err.response.status === 401 && !originalConfig._retry) {
+          originalConfig._retry = true;
 
-        try {
-          const rs = await instance.post("/auth/refreshtoken", {
-            refreshToken: TokenService.getLocalRefreshToken(),
-          });
+          try {
+            const rs = await instance.post("/auth/refreshtoken", {
+              refreshToken: TokenService.getLocalRefreshToken(),
+            });
 
-          const { accessToken } = rs.data;
-          TokenService.updateLocalAccessToken(accessToken);
+            const { accessToken } = rs.data;
+            TokenService.updateLocalAccessToken(accessToken);
 
-          return instance(originalConfig);
-        } catch (_error) {
-          return Promise.reject(_error);
+            return instance(originalConfig);
+          } catch (_error) {
+            return Promise.reject(_error);
+          }
         }
       }
     }
