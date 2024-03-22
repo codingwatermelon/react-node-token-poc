@@ -8,7 +8,7 @@ import {
     useLocation,
     Outlet
 } from "react-router-dom"
-import { getListings, getMaintenanceByPropertiesId } from "../../services/user.service";
+import { getListings } from "../../services/user.service";
 
 export async function loader({ params, request }) {
     return defer({ house: getListings("houses", params.id) })
@@ -53,7 +53,6 @@ export default function HouseDetail() {
                     className="back-button"
                 >&larr; <span>Back to {type} houses</span></Link>
     
-                
                 <div className="house-detail">
                     {houseElements}
                 </div>

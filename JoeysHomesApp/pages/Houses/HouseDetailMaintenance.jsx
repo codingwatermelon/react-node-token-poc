@@ -1,12 +1,10 @@
 import React from "react"
 import {
     Link,
-    useSearchParams,
     useLoaderData,
     defer,
     Await,
     useLocation,
-    useParams
 } from "react-router-dom"
 import { getMaintenanceByPropertiesId } from "../../services/user.service";
 import { blue } from '@mui/material/colors';
@@ -32,7 +30,6 @@ const boxSX = {
         transform: "scale3d(1.05, 1.05, 1)"
     }
 }
-
 
 export async function loader({ params, request }) {
     return defer({ maintenance: getMaintenanceByPropertiesId(params.id) })

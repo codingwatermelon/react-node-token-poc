@@ -105,8 +105,7 @@ exports.submitPasswordReset = (req, res) => {
         return res.status(404).send({ message: "User Not found." });
       }
 
-      console.log("current password (submitPasswordReset):" + user.password)  
-      // TODO Sign token with current password as salt (dont know if I really care about this since temp token will expire within an hour anyways)
+      // Sign token with user's current password, that way password reset is only valid once
       const token = jwt.sign({ id: user.id }, user.password, {
         expiresIn: config.jwtTempExpiration
       });
@@ -119,11 +118,9 @@ exports.submitPasswordReset = (req, res) => {
         username: user.username,
         email: user.email,
         // TODO Remove this because it will be sent in email instead later
-        // If verificaation of access token doesnt work, I could also verify refreshToken
         accessToken: token
       });
     })
-    // TODO Add info to error message (e.g., if username is wrong)
     .catch(err => {
       res.status(500).send({ message: err.message });
     });
@@ -215,68 +212,3 @@ exports.changePassword = (req, res) => {
 
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-// signin function for password
-exports.temp_signin = (req, res) => {
-  User.findOne({
-    where: {
-      username: req.body.username
-    }
-  })
-    .then(async (user) => {
-      if (!user) {
-        return res.status(404).send({ message: "User Not found." });
-      }
-
-      // TODO Compare stored password against hashed password in link given to user from email as described here: https://melodiessim.netlify.app/Reset%20Password%20Flow%20Using%20JWT/
-      const passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
-      );
-
-      if (!passwordIsValid) {
-        return res.status(401).send({
-          accessToken: null,
-          message: "Invalid Password!"
-        });
-      }
-
-      // TODO Create temporary token with much shorter lifespan than usual token
-      const token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: config.jwtExpiration
-      });
-
-      
-      // TODO Create temporary token with much shorter lifespan than usual signin token
-      let refreshToken = await RefreshToken.createToken(user, 3600);
-
-      let authorities = [];
-      user.getRoles().then(roles => {
-        for (let i = 0; i < roles.length; i++) {
-          authorities.push("ROLE_" + roles[i].name.toUpperCase());
-        }
-
-        res.status(200).send({
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          roles: authorities,
-          accessToken: token,
-          refreshToken: refreshToken,
-        });
-      });
-    })
-    .catch(err => {
-      res.status(500).send({ message: err.message });
-    });
-};

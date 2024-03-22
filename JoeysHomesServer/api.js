@@ -11,6 +11,7 @@ const pool = new Pool({
 });
 
 // TODO Handle errors here so server doesn't crash when an invalid query is given
+// TODO Account for SQL injection too
 
 const getHouses = (houseId) => {
   return new Promise(function(resolve, reject) {

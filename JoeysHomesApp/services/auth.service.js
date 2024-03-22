@@ -37,7 +37,6 @@ const submitPasswordReset = (email) => {
 
 // This function will be used to set local accessToken and refreshToken after user clicks link from email
 const changePassword = (username, password, accessToken) => {
-  // I don't think I need to set local access token if I can just verify token on backend as a method of authenticating the password reset request
   return api
     .post("/auth/changepassword", {
       username,
