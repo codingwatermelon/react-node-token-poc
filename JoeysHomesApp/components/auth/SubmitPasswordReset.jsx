@@ -1,24 +1,16 @@
 
 import React, { useState, useEffect } from "react";
-//import Form from "react-validation/build/form";
-//import Input from "react-validation/build/input";
-//import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import {
-  useLoaderData,
   useNavigation,
   Form,
-  useNavigate,
   Link
 } from "react-router-dom"
 
 import AuthService from "../../services/auth.service";
 
 export default function SubmitPasswordReset() {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
   const [validationMessage, setValidationMessage] = useState(["defaultvalue"]);
@@ -43,7 +35,6 @@ export default function SubmitPasswordReset() {
             console.log(response.data);
             setMessage(response.data.message);
             setSuccessful(true);
-
           },
           (error) => {
             const resMessage =
@@ -58,25 +49,11 @@ export default function SubmitPasswordReset() {
           }
         );
       } catch(err) {
-        //setUsername("")
-        //setPassword("")
-
-        if (err.name == "AxiosError") {
-            if (err.response.status == 404 || err.response.status == 401) {
-                // TODO In a real world scenario, I'd want to limit the number of attempts to access an account
-                setMessage("Username or password is incorrect, try again")
-                setSuccessful(false);
-            }
-        }
-        else {
-            //navigate(`/login?message=Wrong username or password&redirectTo=${pathname}`)
-            setMessage(err.message)
-            setSuccessful(false);
-        }
+        setMessage(err.message)
+        setSuccessful(false);
       }
     }
 }, [validationMessage]);
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -86,7 +63,6 @@ export default function SubmitPasswordReset() {
 
     // Validate form fields
     setValidationMessage([validEmail(email)]);
-
   };
 
   return (
@@ -110,7 +86,6 @@ export default function SubmitPasswordReset() {
         </>
       )}
 
-
       {successful ? (
         <>
         <h2>Check your email for password reset instructions</h2>
@@ -120,9 +95,9 @@ export default function SubmitPasswordReset() {
         <>
         <h2>Enter the email linked to your account to receive a password reset request</h2>
         <Form 
-        className="login-form"
-        onSubmit={handleSubmit}
-        replace
+          className="login-form"
+          onSubmit={handleSubmit}
+          replace
         >
 
           <input
@@ -141,8 +116,8 @@ export default function SubmitPasswordReset() {
                     ? "Submitting..."
                     : "Submit"
                 }
-            </button>
-            </Form>
+          </button>
+        </Form>
         </>
       )
       }
@@ -155,5 +130,3 @@ export default function SubmitPasswordReset() {
     </div>
   );
 };
-
-//export default Register;

@@ -2,12 +2,10 @@ import React from "react"
 import {
     Link,
     NavLink,
-    useSearchParams,
     useLoaderData,
     defer,
     Await,
     useLocation,
-    useParams,
     Outlet
 } from "react-router-dom"
 import { getListings, getMaintenanceByPropertiesId } from "../../services/user.service";

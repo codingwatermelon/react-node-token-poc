@@ -3,15 +3,13 @@ import { useNavigate, useNavigation } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import { useAuth } from "../common/AuthContext"
 
-//const Profile = () => {
+// TODO Fix styling for this component
+
 export default function Profile() {
   const currentUser = AuthService.getCurrentUser();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const navigation = useNavigation();
-
-  console.log("isauth profile")
-  console.log(isAuthenticated)
 
   useEffect(() => {
     if (isAuthenticated === false) {
@@ -40,7 +38,7 @@ export default function Profile() {
       <p>
         <strong>Email:</strong> {currentUser.email}
       </p>
-      <strong>Authorities:</strong>
+      <strong>Roles:</strong>
       <ul>
         {currentUser.roles &&
           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
