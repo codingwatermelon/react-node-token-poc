@@ -36,6 +36,16 @@ exports.maintenanceWithID = (req, res) => {
     })
 };
 
+exports.maintenanceWithPropertiesID = (req, res) => {
+  api.getMaintenanceByPropertiesId(req.params.id)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
+};
+
 exports.houses = (req, res) => {
   api.getHouses()
     .then(response => {

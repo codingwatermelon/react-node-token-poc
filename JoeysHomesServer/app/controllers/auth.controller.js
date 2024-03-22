@@ -94,6 +94,38 @@ exports.signin = (req, res) => {
     });
 };
 
+exports.submitPasswordReset = (req, res) => {
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  })
+    .then(async (user) => {
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+
+      // Sign token with user's current password, that way password reset is only valid once
+      const token = jwt.sign({ id: user.id }, user.password, {
+        expiresIn: config.jwtTempExpiration
+      });
+
+      // TODO Send email with tokens embedded in link e.g.,
+      // /passwordreset?accessToken={}
+
+      res.status(200).send({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        // TODO Remove this because it will be sent in email instead later
+        accessToken: token
+      });
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
+};
+
 exports.refreshToken = async (req, res) => {
   const { refreshToken: requestToken } = req.body;
 
@@ -137,3 +169,46 @@ exports.refreshToken = async (req, res) => {
 exports.authStatus = (req, res) => {
   res.status(200).send("Authenticated.");
 };
+
+exports.changePassword = (req, res) => {
+  const accessToken = req.body.accessToken
+
+  if (!accessToken) {
+    return res.status(403).send({ message: "No token provided!" });
+  }
+
+  // Get current user details to verify token with password
+  User.findOne({
+    where: {
+      username: req.body.username
+    }
+  })
+  .then(async (user) => {
+
+    console.log("current password (changePassword):" + user.password)
+    // Verify access token
+    jwt.verify(accessToken, user.password, (err) => {
+      if (err) {
+        res.status(401).send({ message: "Invalid token, password reset request likely expired. Try generating a new password reset request." });
+      }
+      else {
+        // Change password where given user
+        User.update({ password: bcrypt.hashSync(req.body.password, 8) }, {
+          where: {
+            username: req.body.username
+          }
+        })
+        .then(async (user) => {
+          res.status(200).send({
+            message: "Successfully changed password!"
+          });
+        })
+        .catch(err => {
+          console.log(err)
+          res.status(500).send({ message: err.message });
+        });
+      }
+    });
+
+  });
+}

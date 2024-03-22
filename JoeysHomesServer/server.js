@@ -64,10 +64,11 @@ app.get(
   controller.maintenanceWithID
 );
 
-//app.get(
-//  "/api/verifyauth",
-//  [authJwt.verifyToken]
-//);
+app.get(
+  "/api/houses/:id/maintenance",
+  [authJwt.verifyToken],
+  controller.maintenanceWithPropertiesID
+);
 
 // auth routes
 require('./app/routes/auth.routes')(app);

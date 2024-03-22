@@ -1,22 +1,25 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import { useAuth } from "../common/AuthContext"
 
-//const Profile = () => {
+// TODO Fix styling for this component
+
 export default function Profile() {
   const currentUser = AuthService.getCurrentUser();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
-
-  console.log("isauth profile")
-  console.log(isAuthenticated)
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (isAuthenticated === false) {
       navigate('/login');
     }
   }, []);
+
+  const resetPassword = () => {
+    navigate("/submitpasswordreset");
+};
 
   return (
     <div className="container">
@@ -35,11 +38,21 @@ export default function Profile() {
       <p>
         <strong>Email:</strong> {currentUser.email}
       </p>
-      <strong>Authorities:</strong>
+      <strong>Roles:</strong>
       <ul>
         {currentUser.roles &&
           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
       </ul>
+      <button
+          disabled={navigation.state === "submitting"}
+          type="submit"
+          onClick={resetPassword}
+      >
+          {navigation.state === "submitting"
+              ? "Submitting password reset request..."
+              : "Reset Password"
+          }
+      </button>
     </div>
   );
 

@@ -25,6 +25,11 @@ import Profile from "./components/auth/Profile"
 //import Login, { loader as loginLoader, action as loginAction } from "./components/auth/Login"
 import Login, { loader as loginLoader } from "./components/auth/Login"
 import Register from "./components/auth/Register"
+import PasswordReset from "./components/auth/PasswordReset"
+import SubmitPasswordReset from "./components/auth/SubmitPasswordReset"
+
+import HouseDetailMaintenance, { loader as houseDetailMaintenanceLoader } from "./pages/Houses/HouseDetailMaintenance"
+import HouseDetailInfo from "./pages/Houses/HouseDetailInfo"
 
 //import "./server"
 //import "../JoeysHomesServer/server"
@@ -63,7 +68,17 @@ function App() {
         element={<HouseDetail />} 
         errorElement={<Error />}
         loader={houseDetailLoader}
-      />
+      >
+        <Route
+          index
+          element={<HouseDetailInfo />}
+        />
+        <Route
+          path="maintenance"
+          element={<HouseDetailMaintenance />}
+          loader={houseDetailMaintenanceLoader}
+        />
+      </Route>
       <Route
         path="login"
         element={<Login />}
@@ -72,6 +87,16 @@ function App() {
       <Route 
         path="register"
         element={<Register />} 
+        errorElement={<Error />}
+      />
+      <Route 
+        path="passwordreset"
+        element={<PasswordReset />} 
+        errorElement={<Error />}
+      />
+      <Route 
+        path="submitpasswordreset"
+        element={<SubmitPasswordReset />} 
         errorElement={<Error />}
       />
       <Route exact path="/profile" element={<Profile />} />

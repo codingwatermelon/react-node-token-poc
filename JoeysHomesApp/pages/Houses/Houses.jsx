@@ -6,9 +6,8 @@ import {
     defer,
     Await
 } from "react-router-dom"
-import { getHouses } from "../../functions"
 import { blue, green, red } from '@mui/material/colors';
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { getListings } from "../../services/user.service";
 
 
@@ -134,10 +133,6 @@ export default function Houses() {
             </div>
         ))
 
-        //const displayedHouses = houses
-        //    ? houses
-        //        .filter(house => house.property_address === typeFilter)
-        //    : houses
         const displayedHouses = houses
 
         const houseElements = displayedHouses.map(house => (

@@ -10,6 +10,9 @@ const pool = new Pool({
   port: process.env.PORT || '',
 });
 
+// TODO Handle errors here so server doesn't crash when an invalid query is given
+// TODO Account for SQL injection too
+
 const getHouses = (houseId) => {
   return new Promise(function(resolve, reject) {
     
@@ -43,7 +46,7 @@ const getMaintenance = (maintenanceId) => {
       const id = parseInt(maintenanceId)
       console.log(id)
 
-      pool.query('select * from PropertiesMaintenance where id = $1', [id], (error, results) => {
+      pool.query('select *, EXTRACT(EPOCH from due_date) as due_date_epoch from PropertiesMaintenance where id = $1', [id], (error, results) => {
         if (error) {
           reject(error)
         }
@@ -62,7 +65,25 @@ const getMaintenance = (maintenanceId) => {
   })
 }
 
+const getMaintenanceByPropertiesId = (propertiesId) => {
+  return new Promise(function(resolve, reject) {
+    
+    if (propertiesId) {
+      const id = parseInt(propertiesId)
+
+      pool.query('select *, EXTRACT(EPOCH from due_date) as due_date_epoch from PropertiesMaintenance where properties_id = $1', [id], (error, results) => {
+        if (error) {
+          reject(error)
+        }
+        console.log(results.rows)
+        resolve(results.rows)
+      })
+    }
+  })
+}
+
 module.exports = {
   getHouses,
-  getMaintenance
+  getMaintenance,
+  getMaintenanceByPropertiesId
 }

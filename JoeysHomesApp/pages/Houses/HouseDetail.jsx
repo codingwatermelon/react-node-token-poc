@@ -1,12 +1,12 @@
 import React from "react"
 import {
     Link,
-    useSearchParams,
+    NavLink,
     useLoaderData,
     defer,
     Await,
     useLocation,
-    useParams
+    Outlet
 } from "react-router-dom"
 import { getListings } from "../../services/user.service";
 
@@ -37,12 +37,7 @@ export default function HouseDetail() {
                     {house.property_description ? (
                         <p>{house.property_description}</p>
                     ) : null}
-                    <p>Purchased on {new Date(house.purchase_date).toDateString()} for {currencyFormat(house.purchase_price)}</p>
-                    <p>Vacancy Rate: {house.vacancy_rate}%</p>
-                    <p>Rental Income: {currencyFormat(house.rental_income)}</p>
-                    <p>Operating Expenses: {currencyFormat(house.operating_expenses)}</p>
                     <p>Cash Flow: {currencyFormat(house.cash_flow)}</p>
-                    <p>Operating Expense Ratio: {house.operating_expense_ratio}</p>
                     <img src={house.image_path}/>
                 </div>
             </div>
@@ -61,6 +56,21 @@ export default function HouseDetail() {
                 <div className="house-detail">
                     {houseElements}
                 </div>
+
+                <nav>
+                    <NavLink
+                        to="."
+                        end
+                    >
+                        Details
+                    </NavLink>  
+                    <NavLink
+                        to="maintenance"
+                    >
+                        Maintenance
+                    </NavLink>
+                </nav>
+                <Outlet context={{ dataPromise }}/>
     
             </div>
         )
@@ -74,5 +84,6 @@ export default function HouseDetail() {
                 </Await>
             </React.Suspense>
         </div>
+        
     )
 }

@@ -78,6 +78,7 @@ export default function Login() {
         
     };
 
+    // TODO Fix styling for links so that there is some space between them
     return (
         <div className="login-container">
             <h1>Sign in to your account</h1>
@@ -115,9 +116,14 @@ export default function Login() {
                 </button>
             </Form>
             <Link 
-                to="/signup"
+                to="/register"
                 className="login-form-link">
                     <p>No account yet? Sign up here</p>
+            </Link>
+            <Link 
+                to="/submitpasswordreset"
+                className="login-form-link">
+                    <p>Forgot Password?</p>
             </Link>
         </div>   
     )

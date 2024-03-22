@@ -29,6 +29,28 @@ const logout = () => {
   TokenService.removeUser();
 };
 
+const submitPasswordReset = (email) => {
+  return api.post("/auth/submitpasswordreset", {
+    email
+  });
+};
+
+// This function will be used to set local accessToken and refreshToken after user clicks link from email
+const changePassword = (username, password, accessToken) => {
+  return api
+    .post("/auth/changepassword", {
+      username,
+      password,
+      accessToken
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+}
+
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
@@ -52,7 +74,9 @@ const AuthService = {
   login,
   logout,
   getCurrentUser,
-  getAuthStatus
+  getAuthStatus,
+  submitPasswordReset,
+  changePassword
 };
 
 export default AuthService;
