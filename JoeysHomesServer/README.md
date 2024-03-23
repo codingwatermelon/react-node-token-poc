@@ -4,5 +4,6 @@ You will need to upload file named '.env' in this directory with the following p
 - DATABASE
 - PASSWORD
 - PORT
-- SENDER_EMAIL (for password reset requests)
-- MAILTRAP_TOKEN (for password reset requests)
+For password reset requests (see this site for testing https://api-docs.mailtrap.io/docs/mailtrap-api-docs/67f1d70aeb62c-send-email-including-templates, where token lives in Settings > API Tokens):
+- SENDER_EMAIL
+- MAILTRAP_TOKEN

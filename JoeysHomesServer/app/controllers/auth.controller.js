@@ -1,5 +1,5 @@
 //import { MailtrapClient } from "mailtrap"
-const MailtrapClient = require("mailtrap")
+const mailtrap = require("mailtrap")
 require('dotenv').config()
 
 const db = require("../models");
@@ -120,9 +120,13 @@ exports.submitPasswordReset = (req, res) => {
       const SENDER_EMAIL = process.env.SENDER_EMAIL || ''
       const BASE_URL = "http://192.168.64.3:5173"
 
-      const client = new MailtrapClient.MailtrapClient({ token: MAILTRAP_TOKEN });
+      const client = new mailtrap.MailtrapClient({ token: MAILTRAP_TOKEN });
 
       const sender = { name: "JoeysHomes", email: SENDER_EMAIL };
+
+      console.log(sender)
+      console.log(MAILTRAP_TOKEN)
+      console.log(SENDER_EMAIL)
 
       client
         .send({
@@ -131,7 +135,7 @@ exports.submitPasswordReset = (req, res) => {
           subject: "Password Reset Request",
           text: `Hello, click this link to reset your password: ${BASE_URL}/passwordreset?username=${user.username}&accessToken=${accessToken}`
         })
-        .then((response) => {
+        .then(async (response) => {
           console.log(`sent password request ${response}`);
           res.status(200).send({
             message: "Submitted password reset request"
