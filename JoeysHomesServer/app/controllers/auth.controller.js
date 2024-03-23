@@ -120,7 +120,7 @@ exports.submitPasswordReset = (req, res) => {
       const SENDER_EMAIL = process.env.SENDER_EMAIL || ''
       const BASE_URL = "http://192.168.64.3:5173"
 
-      const client = new MailtrapClient({ token: MAILTRAP_TOKEN });
+      const client = new MailtrapClient.MailtrapClient({ token: MAILTRAP_TOKEN });
 
       const sender = { name: "JoeysHomes", email: SENDER_EMAIL };
 
