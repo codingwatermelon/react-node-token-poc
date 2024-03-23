@@ -114,16 +114,17 @@ exports.submitPasswordReset = (req, res) => {
         expiresIn: config.jwtTempExpiration
       });
 
+      const BASE_URL = "http://192.168.64.3:5173"
       const mailBody = `Hello, click this link to reset your password: \n${BASE_URL}/passwordreset?//username=${user.username}&accessToken=${accessToken}`
 
       console.log(mailBody)
-      
+
       res.status(200).send({
         message: "Submitted password reset request"
       })
       // REENABLE FOR PROD
       // Send email with token embedded in link
-      //const BASE_URL = "http://192.168.64.3:5173"
+      
       //const MAILTRAP_TOKEN = process.env.MAILTRAP_TOKEN || ''
       //const SENDER_EMAIL = process.env.SENDER_EMAIL || ''
       //const client = new mailtrap.MailtrapClient({ token: MAILTRAP_TOKEN });
