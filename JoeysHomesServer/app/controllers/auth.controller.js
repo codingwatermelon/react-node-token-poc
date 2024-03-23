@@ -114,34 +114,43 @@ exports.submitPasswordReset = (req, res) => {
         expiresIn: config.jwtTempExpiration
       });
 
-      // Send email with token embedded in link
-      const BASE_URL = "http://192.168.64.3:5173"
-      const MAILTRAP_TOKEN = process.env.MAILTRAP_TOKEN || ''
-      const SENDER_EMAIL = process.env.SENDER_EMAIL || ''
-      const client = new mailtrap.MailtrapClient({ token: MAILTRAP_TOKEN });
-      const sender = { name: "JoeysHomes", email: SENDER_EMAIL };
+      const mailBody = `Hello, click this link to reset your password: \n${BASE_URL}/passwordreset?//username=${user.username}&accessToken=${accessToken}`
 
-      client
-        .send({
-          from: sender,
-          to: [{ email: req.body.email }],
-          subject: "Password Reset Request",
-          text: `Hello, click this link to reset your password: \n${BASE_URL}/passwordreset?username=${user.username}&accessToken=${accessToken}`
-        })
-        .then(async (response) => {
-          res.status(200).send({
-            message: "Submitted password reset request"
-          })
-        })
-        .catch(err => {
-          res.status(500).send({
-            message: `Problem sending password reset request. See error: ${err.message}`
-          })
-        });
+      console.log(mailBody)
+      
+      res.status(200).send({
+        message: "Submitted password reset request"
+      })
+      // REENABLE FOR PROD
+      // Send email with token embedded in link
+      //const BASE_URL = "http://192.168.64.3:5173"
+      //const MAILTRAP_TOKEN = process.env.MAILTRAP_TOKEN || ''
+      //const SENDER_EMAIL = process.env.SENDER_EMAIL || ''
+      //const client = new mailtrap.MailtrapClient({ token: MAILTRAP_TOKEN });
+      //const sender = { name: "JoeysHomes", email: SENDER_EMAIL };
+      //
+      //client
+      //  .send({
+      //    from: sender,
+      //    to: [{ email: req.body.email }],
+      //    subject: "Password Reset Request",
+      //    text: `Hello, click this link to reset your password: \n${BASE_URL}/passwordreset?//username=${user.username}&accessToken=${accessToken}`
+      //  })
+      //  .then(async (response) => {
+      //    res.status(200).send({
+      //      message: "Submitted password reset request"
+      //    })
+      //  })
+      //  .catch(err => {
+      //    res.status(500).send({
+      //      message: `Problem sending password reset request. See error: ${err.message}`
+      //    })
+      //  });
       
     })
     .catch(err => {
-      res.status(500).send({ message: err.message });
+      res.status(500).send({ 
+        message: `Problem sending password reset request. See error: ${err.message}`});
     });
 };
 
