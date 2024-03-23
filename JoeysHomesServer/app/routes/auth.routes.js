@@ -1,5 +1,11 @@
 const { authJwt, verifySignUp } = require("../middleware");
 const controller = require("../controllers/auth.controller");
+const rateLimit = require('express-rate-limit');
+
+const passwordResetLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,   // 15 minutes
+  max: 1,                  // 1000 requests per IP
+})
 
 module.exports = function(app) {
   //app.use(function(req, res, next) {
@@ -29,7 +35,7 @@ module.exports = function(app) {
 
   app.post("/api/auth/signin", controller.signin);
 
-  app.post("/api/auth/submitpasswordreset", controller.submitPasswordReset);
+  app.post("/api/auth/submitpasswordreset", passwordResetLimiter, controller.submitPasswordReset);
 
   app.post("/api/auth/refreshtoken", controller.refreshToken);
   
