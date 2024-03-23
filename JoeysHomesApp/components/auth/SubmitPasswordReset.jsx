@@ -29,16 +29,22 @@ export default function SubmitPasswordReset() {
   useEffect(() => {
     if (validationMessage.every(element => element === "")) {
       try {
-        AuthService.submitPasswordReset(email).then(
+        AuthService.submitPasswordReset(email)
+        .then(
           (response) => {
             // For testing, I can log this to console to form my /passwordreset? link so I don't have to waste emails
             console.log(response.data);
-            setMessage(response.data.message);
-            setSuccessful(true);
+            if (response.status == 429) {
+              setMessage("Password request already sent recently, try again in 5 minutes from the time you first requested a new password.")
+              setSuccessful(false);
+            }
+            else {
+              setMessage(response.data.message);
+              setSuccessful(true);
+            }
           },
           (error) => {
             let resMessage = ""
-            console.log("error")
             console.log(error)
             if (error.response.status == 429) {
               resMessage = "Password request already sent recently, try again in 5 minutes from the time you first requested a new password."
