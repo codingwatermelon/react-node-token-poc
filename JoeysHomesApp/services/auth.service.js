@@ -30,9 +30,17 @@ const logout = () => {
 };
 
 const submitPasswordReset = (email) => {
-  return api.post("/auth/submitpasswordreset", {
+  return api
+  .post("/auth/submitpasswordreset", {
     email
-  });
+  })
+  .then((response) => {
+    return response;
+  })
+  .catch((error) => {
+    return error.response;
+  })
+  ;
 };
 
 // This function will be used to set local accessToken and refreshToken after user clicks link from email

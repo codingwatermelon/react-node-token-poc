@@ -3,8 +3,8 @@ const controller = require("../controllers/auth.controller");
 const rateLimit = require('express-rate-limit');
 
 const passwordResetLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,   // 15 minutes
-  max: 1,                  // 1000 requests per IP
+  windowMs: 5 * 60 * 1000,   // 5 minutes
+  max: 1,                  // 1 request per IP
 })
 
 module.exports = function(app) {

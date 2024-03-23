@@ -31,18 +31,24 @@ export default function SubmitPasswordReset() {
       try {
         AuthService.submitPasswordReset(email).then(
           (response) => {
-            // For testing, will log this to console to form my /passwordreset? link so I don't have to waste emails
+            // For testing, I can log this to console to form my /passwordreset? link so I don't have to waste emails
             console.log(response.data);
             setMessage(response.data.message);
             setSuccessful(true);
           },
           (error) => {
-            const resMessage =
+            let resMessage = ""
+            if (error.status == 429) {
+              resMessage = "Password request already sent recently, try again in 5 minutes from the time you first requested a new password."
+            }
+            else {
+              resMessage =
               (error.response &&
                 error.response.data &&
                 error.response.data.message) ||
               error.message ||
               error.toString();
+            }
 
             setMessage(resMessage);
             setSuccessful(false);
