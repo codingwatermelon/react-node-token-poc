@@ -83,18 +83,18 @@ export default function SubmitPasswordReset() {
     <div className="login-container">
       
       {message && (
-            <h3>
+            <h2>
               {message}
-            </h3>
+            </h2>
         )}
 
       {validationMessage[0] != "defaultvalue" && (
         <>
           {validationMessage.map((item, i) => (
             <div key={i}>
-            <h3>
+            <h2>
               {item}
-            </h3>
+            </h2>
             </div>
           ))}
         </>
