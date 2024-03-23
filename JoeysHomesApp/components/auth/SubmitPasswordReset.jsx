@@ -29,20 +29,34 @@ export default function SubmitPasswordReset() {
   useEffect(() => {
     if (validationMessage.every(element => element === "")) {
       try {
-        AuthService.submitPasswordReset(email).then(
+        AuthService.submitPasswordReset(email)
+        .then(
           (response) => {
-            // For testing, will log this to console to form my /passwordreset? link so I don't have to waste emails
+            // For testing, I can log this to console to form my /passwordreset? link so I don't have to waste emails
             console.log(response.data);
-            setMessage(response.data.message);
-            setSuccessful(true);
+            if (response.status == 429) {
+              setMessage("Password request already sent recently, try again in 5 minutes from the time you first requested a new password.")
+              setSuccessful(false);
+            }
+            else {
+              setMessage(response.data.message);
+              setSuccessful(true);
+            }
           },
           (error) => {
-            const resMessage =
+            let resMessage = ""
+            console.log(error)
+            if (error.response.status == 429) {
+              resMessage = "Password request already sent recently, try again in 5 minutes from the time you first requested a new password."
+            }
+            else {
+              resMessage =
               (error.response &&
                 error.response.data &&
                 error.response.data.message) ||
               error.message ||
               error.toString();
+            }
 
             setMessage(resMessage);
             setSuccessful(false);
@@ -69,18 +83,18 @@ export default function SubmitPasswordReset() {
     <div className="login-container">
       
       {message && (
-            <h3>
+            <h2>
               {message}
-            </h3>
+            </h2>
         )}
 
       {validationMessage[0] != "defaultvalue" && (
         <>
           {validationMessage.map((item, i) => (
             <div key={i}>
-            <h3>
+            <h2>
               {item}
-            </h3>
+            </h2>
             </div>
           ))}
         </>

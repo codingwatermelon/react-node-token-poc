@@ -1,5 +1,5 @@
 const express = require('express')
-const cors = require("cors")
+const rateLimit = require('express-rate-limit');
 
 const { authJwt } = require("./app/middleware");
 const controller = require("./app/controllers/user.controller");
@@ -7,14 +7,14 @@ const controller = require("./app/controllers/user.controller");
 const app = express()
 const port = 5000
 
-const corsOptions = {
-  origin: "http://192.168.64.3:5000"
-};
-
 const api = require('./api');
 
-//app.use(cors(corsOptions));
-app.use(express.json())
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,   // 15 minutes
+  max: 1000,                  // 1000 requests per IP
+})
+
+app.use(express.json(), apiLimiter)
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
