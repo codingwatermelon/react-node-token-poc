@@ -1,3 +1,6 @@
+const mailtrap = require("mailtrap")
+require('dotenv').config()
+
 const db = require("../models");
 const config = require("../config/auth.config");
 const { user: User, role: Role, refreshToken: RefreshToken } = db;
@@ -95,6 +98,7 @@ exports.signin = (req, res) => {
 };
 
 exports.submitPasswordReset = (req, res) => {
+
   User.findOne({
     where: {
       email: req.body.email
@@ -106,20 +110,35 @@ exports.submitPasswordReset = (req, res) => {
       }
 
       // Sign token with user's current password, that way password reset is only valid once
-      const token = jwt.sign({ id: user.id }, user.password, {
+      const accessToken = jwt.sign({ id: user.id }, user.password, {
         expiresIn: config.jwtTempExpiration
       });
 
-      // TODO Send email with tokens embedded in link e.g.,
-      // /passwordreset?accessToken={}
+      // Send email with token embedded in link
+      const BASE_URL = "http://192.168.64.3:5173"
+      const MAILTRAP_TOKEN = process.env.MAILTRAP_TOKEN || ''
+      const SENDER_EMAIL = process.env.SENDER_EMAIL || ''
+      const client = new mailtrap.MailtrapClient({ token: MAILTRAP_TOKEN });
+      const sender = { name: "JoeysHomes", email: SENDER_EMAIL };
 
-      res.status(200).send({
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        // TODO Remove this because it will be sent in email instead later
-        accessToken: token
-      });
+      client
+        .send({
+          from: sender,
+          to: [{ email: req.body.email }],
+          subject: "Password Reset Request",
+          text: `Hello, click this link to reset your password: \n${BASE_URL}/passwordreset?username=${user.username}&accessToken=${accessToken}`
+        })
+        .then(async (response) => {
+          res.status(200).send({
+            message: "Submitted password reset request"
+          })
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: `Problem sending password reset request. See error: ${err.message}`
+          })
+        });
+      
     })
     .catch(err => {
       res.status(500).send({ message: err.message });
