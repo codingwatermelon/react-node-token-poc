@@ -123,7 +123,7 @@ exports.submitPasswordReset = (req, res) => {
       const client = new MailtrapClient({ token: MAILTRAP_TOKEN });
 
       const sender = { name: "JoeysHomes", email: SENDER_EMAIL };
-      
+
       client
         .send({
           from: sender,
@@ -131,11 +131,12 @@ exports.submitPasswordReset = (req, res) => {
           subject: "Password Reset Request",
           text: `Hello, click this link to reset your password: ${BASE_URL}/passwordreset?username=${user.username}&accessToken=${accessToken}`
         })
-        .then(
+        .then((response) => {
+          console.log(`sent password request ${response}`);
           res.status(200).send({
             message: "Submitted password reset request"
           })
-        )
+        })
         .catch(err => {
           res.status(500).send({
             message: `Problem sending password reset request. See error: ${err.message}`
