@@ -1,5 +1,5 @@
 //import { MailtrapClient } from "mailtrap"
-const mailtrap = require("mailtrap")
+const MailtrapClient = require("mailtrap")
 require('dotenv').config()
 
 const db = require("../models");
@@ -120,7 +120,7 @@ exports.submitPasswordReset = (req, res) => {
       const SENDER_EMAIL = process.env.SENDER_EMAIL || ''
       const BASE_URL = "http://192.168.64.3:5173"
 
-      const client = mailtrap.MailtrapClient({ token: MAILTRAP_TOKEN });
+      const client = new MailtrapClient({ token: MAILTRAP_TOKEN });
 
       const sender = { name: "JoeysHomes", email: SENDER_EMAIL };
       
