@@ -19,7 +19,7 @@ Thanks for checking it out!
 
 ### References:
 
-- See screenshots of app here
+- See [screenshots of app](docs) here
 - Implementing token auth with refresh tokens
     - Generally, how this works is that there are tables on the backend which manage tokens (authentication, and refresh) associated to users. Upon a successful first-time authentication request, both tokens are generated when a user authenticates using their username and password. The authentication token allows the user to access restricted resources (which should only be accessed by certain authorized/authenticated users), without the user having to enter their username/password upon every request to access restricted information. This is because the auth token contains a few different identifiers (read more on this separately), and importantly, an expiration date. Once the auth token expires, the user will need to authenticate again UNLESS they have an active refresh token. If the refresh token exists, then the server will receive a request to generate a new auth token, and send it back to the user.
     - Why implement refresh tokens at all if an auth token essentially accomplishes the same? In a typical implementation an auth system, a refresh token typically lasts much longer (can be days, or even months) than an access token (typically ~1 hour). Using refresh token auth offers some unique benefits, such as 1) not needing the user to reinput their credentials if the refresh token is still active, which enhances the user experience, and 2) being able to generate and scope new auth tokens according to the resources being accessed. While its not strictly necessary, it allows for a better experience in general for both the user and backend dev in these respects.
