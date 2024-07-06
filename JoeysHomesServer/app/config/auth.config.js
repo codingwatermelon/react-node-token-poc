@@ -1,5 +1,5 @@
 module.exports = {
-  secret: "jacks-secret-key-857ff5bea3f",
+  secret: "insert-secret-key-here",
   jwtExpiration: 3600,              // 1 hour
   jwtRefreshExpiration: 86400,      // 24 hours
 
